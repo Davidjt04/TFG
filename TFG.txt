@@ -1,0 +1,224 @@
+ROLES
+administrador 
+cliente
+trabajador
+
+Pedir cita para pelarse
+venta de cosmeticos(si se puede hacer que se un black market, que se pueda comprar y vender)
+
+COMO AÑADIDO (SI ME VEO BIEN DE TIEMPO)
+uñas 
+
+
+PASOS PEDIR CITA 
+-eleccion del corte deseado 
+-eleccion del peluquero (especialización en tintes o corte de hombre o de mujer)
+-tiempo que se estimado para el corte segun el corte
+-pago del corte
+
+
+					NAVEGACIÓN DE PEDIR CITA
+DIFERENTES CORTES
+corte basico 
+	lavado, corte, peinado
+
+corte colorido (no se mete el lavado porque si vas a hacer uun cambio de color es malo para el pelo)
+	corte, coloracion, peinado
+
+corte con diseño 
+	lavado, corte, diseño(hair tatto), peinado 
+
+corte relajante 
+	lavado, corte, masaje capilar, peinado
+
+corte anticaida
+	lavado, corte, tratamiento anticaida, peinado 
+
+corte completo
+	lavado, corte pelo, corte barba(dar opcioneas de como cortar la barba ), peinado 
+
+corte infantil
+	lavado, corte pelo (proporciona una silla especial con una pantalla para que el niño se divierta mientras se pela)
+
+corte personalizado 
+	doy todas las opciones que tengo abajo para que elija las que quiera eso cambiara el precio y el tiempo de duración 
+
+
+
+-lavado--
+-peinado 
+-masaje capilar---
+-diseño (hair tatto)
+-coloracion--
+	tintes
+	baños de color
+-corte
+	corte cabeaza
+	corte barba
+		navaja
+		maquina
+		tijeras
+		diseño y perfilado????
+		tinte de la barba, camuflaje de canas ????
+		
+-tratamientos anticaida
+-exfoliacon del cuello cabelludo (elimina las impurezas de la piel que hay debajo del pelo) -----
+-botox capilar (no se pincha nada como el botox de la cara simplemete se llama asi porque sus efectos son similares a los del botox rejuvenece el pelo, 	restaura la salud del mismo y lo revitaliza)
+
+
+ELECCION DE PELUQUERO 
+tenemos una lista de peluqueros (se expecializan en algo cada uno de ellos y se recomienda según el corte cual es mas apropiado, estos tardarán menos en 	hacer el corte esa será la mayor ventaja)
+cada uno va a tener un horario diferente disponible
+	
+PAGO
+pantalla de pago se mira el saldo si no se tiene el saldo suficiente se da la opcion de recargar el monedero
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+
+					NAVEGACION DE LA TIENDA 
+OPCIONES DE COMPRA
+-compra online con reserva es decir puedes recogerlo cuando vayas a la tienda y por la web reservas
+-compra online y te lo llevan a casa
+
+PASOS PARA HACER LA COMPRA 
+-añadir el objeto al carrito desde ahi hacer la compra, tambien poner la opcion de compra rapida que es un boton en el objeto en la tienda que directamente 		ponga comprar sin necesidad de añdirlo al carrito obligatoriamente
+-se mira que se tenga en el monedero el dinero necesario, si no se da la opcion de añadirlo
+-se hace la compra y se tiene que recoger en tienda o en correos
+
+					
+-marcas(mirar en la pagina que tengo guardada)
+-ofertas
+-productos electricos
+	secadores
+	maquinas de cortar
+	planchas
+	tenacillas(tenazas que alisan el pelo)
+-lavado 
+	champú 
+	mascarillas
+	acondicionadores
+
+-peinado/acabado
+	bi fases
+	espumas para el color 
+	espuimas para el rizo
+	espumas para el peinado 
+	gomina/cera
+	lacas
+	cubrecanas
+
+-coloracion/decoloracion
+	tintes
+	baños de color 
+	crema aclarantes
+	mataizadores de mechas 
+
+---------------------------------------------------
+
+		APARTADOS QUE PODRÍA AÑADIR
+un apartado de datos del peluquero porque cuando el admin va a añadir peluquero tiene que meter sus datos pero esos datos no se ven en ninguna parte de la pagina y sería informacion bueno para el cliente, ya que la tengo que meter por narices.
+
+-------------------------------------------------
+LOGICA DEL CARRITO 
+2. El usuario va a pagar (realizar el pedido)
+El sistema:
+
+Crea un nuevo registro en la tabla pedidos.
+
+Copia todos los artículos del carrito del usuario a la tabla detalle_pedido.
+
+Calcula el total y lo guarda en el pedido.
+
+Elimina los artículos del carrito (o los marca como comprados, según tu lógica).
+
+
+-------------------------------------------
+ Experiencia (Antiguedad)
+2. Un perfil tecnico con experiencia
+3. Perfil scrum master
+4. Un perfil con resolucion de problemas
+5. Curso de java 
+6. Presupuesto ilimitado
+7. Viajes ilimitados
+8. Un perfil con nivel de ingles alto
+
+Comodin presupuesto ilimitado
+
+--------------------------------------------------
+Usuario: Se registran todos los usuarios de la app 
+Articulo: articulos de la tienda
+Servicio: acciones que se puedn realizar en la barbería 
+Corte_Predefiñnido: cojuñnto der servicios que forman cortes ya establecidos (facil eleccion para el usuario)
+
+Monedero: cantidad de dinero que tiene el usuario
+Pedido: enfocado para tener un historial de pedidos
+Detalle_Pedido: detalles de un pedido en concreto 
+Carrrito: objetos que hay en el carrito
+
+Cita: informacion sobre la cita unicamente
+Detalle_trabajador:especializacion y horario para la realizacion de las citas 
+Resenia:informativa tambien (en este apartado puedo meter ia si me sobra tiempo)
+
+----------------------------------------------------------
+FUNCIONAMIENTO DE LOS CORTES
+Tomar el horario estándar fijo de la peluquería (ej. lunes a viernes 09:00-14:00 y 15:00-19:00) directamente desde la lógica de la aplicación.
+
+Filtrar los días que están en el JSON de ausencias.
+
+Comprobar las citas existentes (citas) para evitar solapamientos.
+
+Calcular la hora exacta de la cita según la duración del corte (corte_trabajador o corte_predefinido).
+
+---------------------------------------------------------------------------------------------
+REALACIONES QUE ME PROPONE LA IA PARA HACER EN LÑA VISTA HAIR CUTS
+porque se hace una tabla intermñedia entre serfvicio y corte predefinido 
+Se relaciona con el usuario (1:1) y con corte_trabajador (1:N):??
+Es la relación N:M entre trabajador y servicio:
+Se relaciona con detalle_trabajador (trabajador) y con corte_predefinido:
+----------------------------------------------------------------------------------
+RELACIONES QUE ME PROPONE LLA IA 
+Relación	Tipo
+corte_predefinido – servicio	N:M (vía corte_servicio)
+detalle_trabajador – servicio	N:M (vía corte_trabajador)
+detalle_trabajador – cita	1:N
+corte_predefinido – cita	1:N
+-------------------------------------------------------------------------------------
+ESTRUCTURA DE FLUJO DE LA IA 
+El usuario elige un corte_predefinido.
+
+El corte_predefinido tiene varios servicios (via corte_servicio).
+
+Cada trabajador (en detalle_trabajador) puede tener habilidades específicas sobre esos servicios (via corte_trabajador con sus overrides).
+
+Cuando el usuario elige trabajador → se calculan precio y duración usando corte_trabajador (si hay overrides) + corte_servicio.
+
+Se crea una cita que guarda el resultado final.
+
+La disponibilidad se controla revisando las ausencias en detalle_trabajador y los huecos ocupados en cita.
+
+----------------------------------------------------------
+FUNCIONALIDAD DATOS TABLA CITA
+
+Usuario ↔ Detalle_Trabajador
+
+Saber si el usuario es trabajador, y si lo es, conocer su horario, especialización, ausencias, etc.
+
+Detalle_Trabajador ↔ Corte_Trabajador
+
+Saber qué cortes hace ese trabajador, cuánto tarda y cuánto cobra por cada uno (precio y duración personalizados).
+
+Corte_Trabajador ↔ Corte_Predeinido
+
+Saber sobre qué corte base está trabajando ese trabajador, para conocer también el nombre, precio base y duración base del corte.
+
+----------------------------------------------------------
+MODIFICACION DE LA TABLA DETALLE_PEDIDO PARA QUE NO SE REPITA LAS TUPLAS POR UN MISMO ARTICULO, SI HAY MAS DE UN ARTICULO EN EL PEDIDO QUE SE REFLEJE POR LA CANTIDAD
+
+ALTER TABLE Detalle_Pedido
+ADD CONSTRAINT unq_pedido_articulo UNIQUE (idPedido, idArticulo);
+
+----------------------------------------------------------
+POR DONDE SEGUIR 
+meter jpa repository, empezar a programar el back hacer todas las clases conectar la bd, repositorios, servicios, guardar en docker y documentar todo 
+
