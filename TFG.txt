@@ -218,7 +218,31 @@ MODIFICACION DE LA TABLA DETALLE_PEDIDO PARA QUE NO SE REPITA LAS TUPLAS POR UN 
 ALTER TABLE Detalle_Pedido
 ADD CONSTRAINT unq_pedido_articulo UNIQUE (idPedido, idArticulo);
 
+
+----------------------------------------------------------
+📋 INDICE PARA HACER EL README 
+
+Descripción
+
+Tecnologías utilizadas
+
+Requisitos previos
+
+Instalación
+
+Ejecución
+
+Estructura del proyecto
+
+Contribución
+
+Autores
+
+Licencia
+
+
 ----------------------------------------------------------
 POR DONDE SEGUIR 
+terminar de hacer el test para que inyecte en la bd (TfgApplicationTests)
 meter jpa repository, empezar a programar el back hacer todas las clases conectar la bd, repositorios, servicios, guardar en docker y documentar todo 
 
