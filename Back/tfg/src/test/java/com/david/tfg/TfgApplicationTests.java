@@ -1,10 +1,9 @@
 package com.david.tfg;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertTrue;
-
 import java.util.Optional;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
 import org.junit.jupiter.api.Test;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -20,7 +19,7 @@ class TfgApplicationTests {
 	private RepoArticle repoArticle;
 
 	@Test
-	void testGuardarYLeerArticulo() {
+	void testComprobarPersistenciaBD() {
         // Crear entidad
         Article art = new Article();
         art.setNombre("Laptop");
@@ -34,7 +33,7 @@ class TfgApplicationTests {
         Article saved = repoArticle.save(art);
 
         // Leer de la BD
-        Optional<Article> retrieved = repoArticle.findById(saved.getId());
+        Optional<Article> retrieved = repoArticle.findById(saved.getIdArticulo());
 
         // Verificar
         assertTrue(retrieved.isPresent());

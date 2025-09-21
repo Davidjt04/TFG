@@ -12,69 +12,69 @@ public class Article {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private int idArticulo;
 
-    private String nombre;
-    private String descripcion;
-    private String imagen;
-    private double precio;
-    private String categoria;
-    private int cantidad;
+    private String Nombre;
+    private String Descripcion;
+    private String Imagen;
+    private double Precio;
+    private String Categoria;
+    private int Cantidad;
 
     // Getters y Setters
-    public int getId() {
-        return id;
+    public int getIdArticulo() {
+        return idArticulo;
     }
 
-    public void setId(int id) {
-        this.id = id;
+    public void setIdArticulo(int id) {
+        this.idArticulo = id;
     }
 
     public String getNombre() {
-        return nombre;
+        return Nombre;
     }
 
     public void setNombre(String nombre) {
-        this.nombre = nombre;
+        this.Nombre = nombre;
     }
 
     public String getDescripcion() {
-        return descripcion;
+        return Descripcion;
     }
 
     public void setDescripcion(String descripcion) {
-        this.descripcion = descripcion;
+        this.Descripcion = descripcion;
     }
 
     public String getImagen() {
-        return imagen;
+        return Imagen;
     }
 
     public void setImagen(String imagen) {
-        this.imagen = imagen;
+        this.Imagen = imagen;
     }
 
     public double getPrecio() {
-        return precio;
+        return Precio;
     }
 
     public void setPrecio(double precio) {
-        this.precio = precio;
+        this.Precio = precio;
     }
 
     public String getCategoria() {
-        return categoria;
+        return Categoria;
     }
 
     public void setCategoria(String categoria) {
-        this.categoria = categoria;
+        this.Categoria = categoria;
     }
 
     public int getCantidad() {
-        return cantidad;
+        return Cantidad;
     }
 
     public void setCantidad(int cantidad) {
-        this.cantidad = cantidad;
+        this.Cantidad = cantidad;
     }
 }
