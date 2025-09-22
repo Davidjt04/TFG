@@ -1,0 +1,80 @@
+package com.david.tfg.entities;
+
+import java.time.LocalDateTime;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.Table;
+
+@Entity
+@Table(name = "Resenia")
+public class Review {
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private int idReseña;
+
+    private int Estrellas;
+    private LocalDateTime Hora;
+
+    //Relaciones
+    //Muchos con Usuario 
+    @ManyToOne
+    @JoinColumn(name = "Resenia")
+    private User user;
+
+     // Constructor vacío
+    public Review() {}
+
+    // Constructor con relaciones
+    public Review(int idReseña, int estrellas, LocalDateTime hora, User user) {
+        this.idReseña = idReseña;
+        this.Estrellas = estrellas;
+        this.Hora = hora;
+        this.user = user;
+    }
+
+    // Constructor sin relaciones
+    public Review(int idReseña, int estrellas, LocalDateTime hora) {
+        this.idReseña = idReseña;
+        this.Estrellas = estrellas;
+        this.Hora = hora;
+    }
+
+    // Getters y setters
+    public int getIdReseña() {
+        return idReseña;
+    }
+
+    public void setIdReseña(int idReseña) {
+        this.idReseña = idReseña;
+    }
+
+    public int getEstrellas() {
+        return Estrellas;
+    }
+
+    public void setEstrellas(int estrellas) {
+        Estrellas = estrellas;
+    }
+
+    public LocalDateTime getHora() {
+        return Hora;
+    }
+
+    public void setHora(LocalDateTime hora) {
+        Hora = hora;
+    }
+
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+}
