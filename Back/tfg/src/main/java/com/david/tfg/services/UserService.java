@@ -3,11 +3,14 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.david.tfg.entities.Service;
+import org.springframework.stereotype.Service;
+
+import com.david.tfg.entities.Services;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoService;
 
-public class UserService implements Crud <Service,Integer>{
+@Service
+public class UserService implements Crud <Services,Integer>{
  //inyeccion de dependencias
     private final RepoService repo;
 
@@ -15,12 +18,12 @@ public class UserService implements Crud <Service,Integer>{
         this.repo = repo;
     }
      @Override
-    public void save(Service entity) {
+    public void save(Services entity) {
         repo.save(entity);
     }
 
     @Override
-    public Optional<Service> findById(Integer id) {
+    public Optional<Services> findById(Integer id) {
         return this.repo.findById(id);
     }
 
@@ -30,7 +33,7 @@ public class UserService implements Crud <Service,Integer>{
     }
 
     @Override
-    public List<Service> findAll() {
+    public List<Services> findAll() {
         return this.repo.findAll();
     }
 

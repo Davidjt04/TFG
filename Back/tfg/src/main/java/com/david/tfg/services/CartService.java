@@ -3,12 +3,15 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.david.tfg.entities.Article;
 import com.david.tfg.entities.Cart;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoArticle;
 import com.david.tfg.repos.RepoCart;
 
+@Service
 public class CartService implements Crud <Cart,Integer>{
 //inyeccion de dependencias
     private final RepoCart repo;

@@ -3,12 +3,15 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.david.tfg.entities.Article;
 import com.david.tfg.entities.Review;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoArticle;
 import com.david.tfg.repos.RepoReview;
 
+@Service
 public class ReviewService implements Crud <Review,Integer>{
   //inyeccion de dependencias
     private final RepoReview repo;

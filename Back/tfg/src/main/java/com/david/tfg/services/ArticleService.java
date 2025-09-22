@@ -3,10 +3,13 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.david.tfg.entities.Article;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoArticle;
 
+@Service
 public class ArticleService implements Crud <Article,Integer> {
     //inyeccion de dependencias
     private final RepoArticle repo;

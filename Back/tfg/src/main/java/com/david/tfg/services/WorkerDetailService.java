@@ -3,10 +3,13 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.david.tfg.entities.WorkerDetail;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoWorkerDetail;
 
+@Service
 public class WorkerDetailService implements Crud <WorkerDetail,Integer>{
     //inyeccion de dependencias
     private final RepoWorkerDetail repo;

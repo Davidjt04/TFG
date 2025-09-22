@@ -3,11 +3,14 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.david.tfg.entities.Purse;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoArticle;
 import com.david.tfg.repos.RepoPurse;
 
+@Service
 public class PurseService implements Crud <Purse,Integer>{
 //inyeccion de dependencias
     private final RepoPurse repo;

@@ -2,8 +2,8 @@ package com.david.tfg.repos;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 
-import com.david.tfg.entities.Service;
+import com.david.tfg.entities.Services;
 
-public interface RepoService extends JpaRepository <Service, Integer>{
+public interface RepoService extends JpaRepository <Services, Integer>{
 
 }

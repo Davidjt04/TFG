@@ -37,7 +37,7 @@ public class PredefinedCut {
     name = "Servicio_has_Corte_Predefinido", // nombre de la tabla intermedia
     joinColumns = @JoinColumn(name = "Corte_Predefinido_idCorte_Predefinido"),
     inverseJoinColumns = @JoinColumn(name = "Servicio_idServicio"))
-    private List<Service> services;
+    private List<Services> services;
     //pocos con corte Trabajador 
     
     @OneToMany(mappedBy = "predefinedCut", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
@@ -46,10 +46,7 @@ public class PredefinedCut {
 
 
 
-    //muchos con corte predefinido 
-    @ManyToOne
-    @JoinColumn(name = "Corte_Predefinido_idCorte_Predefinido")
-    private PredefinedCut predefinedCut;
+    
 
   // Constructor vacío (requerido por JPA)
     public PredefinedCut() {
@@ -57,7 +54,7 @@ public class PredefinedCut {
 
     // Constructor con todos los atributos incluyendo relaciones
     public PredefinedCut(int idCorte_Predefinido, String nombre, Double precio_Total,
-                         LocalDateTime duracion_Base, List<Service> services,
+                         LocalDateTime duracion_Base, List<Services> services,
                          List<WorkerCut> workerCut, PredefinedCut predefinedCut) {
         this.idCorte_Predefinido = idCorte_Predefinido;
         this.Nombre = nombre;
@@ -65,7 +62,7 @@ public class PredefinedCut {
         this.Duracion_Base = duracion_Base;
         this.services = services;
         this.workerCut = workerCut;
-        this.predefinedCut = predefinedCut;
+        // this.predefinedCut = predefinedCut;
     }
 
     // Constructor solo con atributos básicos (sin relaciones)
@@ -111,11 +108,11 @@ public class PredefinedCut {
         this.Duracion_Base = duracion_Base;
     }
 
-    public List<Service> getServices() {
+    public List<Services> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<Services> services) {
         this.services = services;
     }
 
@@ -127,11 +124,11 @@ public class PredefinedCut {
         this.workerCut = workerCut;
     }
 
-    public PredefinedCut getPredefinedCut() {
-        return predefinedCut;
-    }
+    // public PredefinedCut getPredefinedCut() {
+    //     return predefinedCut;
+    // }
 
-    public void setPredefinedCut(PredefinedCut predefinedCut) {
-        this.predefinedCut = predefinedCut;
-    }
+    // public void setPredefinedCut(PredefinedCut predefinedCut) {
+    //     this.predefinedCut = predefinedCut;
+    // }
 }

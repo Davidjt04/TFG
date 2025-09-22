@@ -11,7 +11,7 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Servicio")
-public class Service {
+public class Services {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idServicio;
@@ -25,10 +25,10 @@ public class Service {
     private List<WorkerCut> workerCuts;
 
     // Constructor vacío
-    public Service() {}
+    public Services() {}
 
     // Constructor con todas las relaciones
-    public Service(int idServicio, String nombre, Double precio, List<WorkerCut> workerCuts) {
+    public Services(int idServicio, String nombre, Double precio, List<WorkerCut> workerCuts) {
         this.idServicio = idServicio;
         this.Nombre = nombre;
         this.Precio = precio;
@@ -36,7 +36,7 @@ public class Service {
     }
 
     // Constructor sin relaciones
-    public Service(int idServicio, String nombre, Double precio) {
+    public Services(int idServicio, String nombre, Double precio) {
         this.idServicio = idServicio;
         this.Nombre = nombre;
         this.Precio = precio;

@@ -3,11 +3,14 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.david.tfg.entities.Article;
 import com.david.tfg.entities.Order;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoOrder;
 
+@Service
 public class OrderService implements Crud <Order,Integer>{
  private final RepoOrder repo;
 

@@ -3,12 +3,15 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import org.springframework.stereotype.Service;
+
 import com.david.tfg.entities.Article;
 import com.david.tfg.entities.OrderDetail;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoArticle;
 import com.david.tfg.repos.RepoOrderDetail;
 
+@Service
 public class OrderDetailService implements Crud <OrderDetail,Integer>{
 //inyeccion de dependencias
     private final RepoOrderDetail repo;

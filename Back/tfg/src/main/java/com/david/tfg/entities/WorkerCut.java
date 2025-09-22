@@ -28,8 +28,11 @@ public class WorkerCut {
     //1:1 con detalle trabajador 
     @OneToOne(mappedBy = "workerCut")
     private WorkerDetail workerDetail;
-
     
+    //muchos con corte predefinido 
+    @ManyToOne
+    @JoinColumn(name = "Corte_Predefinido_idCorte_Predefinido")
+    private PredefinedCut predefinedCut;
 
     //N:M con servicio
     @ManyToMany
@@ -37,7 +40,7 @@ public class WorkerCut {
     name = "Servicio_has_Corte_Predefinido", // nombre de la tabla intermedia
     joinColumns = @JoinColumn(name = "idTrabajador"),
     inverseJoinColumns = @JoinColumn(name = "Corte_Predefinido_idCorte_Predefinido"))
-    private List<Service> services;
+    private List<Services> services;
 
     // Constructor vacío
     public WorkerCut() {
@@ -45,7 +48,7 @@ public class WorkerCut {
 
     // Constructor con todos los atributos incluyendo relaciones
     public WorkerCut(int idCorte_Trabajador, LocalDateTime duracion, Double precio,
-                     WorkerDetail workerDetail, List<Service> services) {
+                     WorkerDetail workerDetail, List<Services> services) {
         this.idCorte_Trabajador = idCorte_Trabajador;
         this.Duracion = duracion;
         this.Precio = precio;
@@ -94,11 +97,11 @@ public class WorkerCut {
         this.workerDetail = workerDetail;
     }
 
-    public List<Service> getServices() {
+    public List<Services> getServices() {
         return services;
     }
 
-    public void setServices(List<Service> services) {
+    public void setServices(List<Services> services) {
         this.services = services;
     }
 
