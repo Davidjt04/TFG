@@ -21,6 +21,7 @@ public class Purse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTransacccion_Monedero;
+    private Double cantidadMonedero;
 
     //Realciones
     //1:1 con Usuario
@@ -37,15 +38,17 @@ public class Purse {
     public Purse() {}
 
     // Constructor con relaciones
-    public Purse(int idTransacccion_Monedero, User user, List<Order> order) {
+    public Purse(int idTransacccion_Monedero, User user, Double cantidadMonedero, List<Order> order) {
         this.idTransacccion_Monedero = idTransacccion_Monedero;
         this.user = user;
+        this.cantidadMonedero = cantidadMonedero; // Inicializa la cantidad del monedero a 0.0
         this.order = order;
     }
 
     // Constructor sin relaciones
-    public Purse(int idTransacccion_Monedero) {
+    public Purse(int idTransacccion_Monedero ,Double cantidadMonedero) {
         this.idTransacccion_Monedero = idTransacccion_Monedero;
+        this.cantidadMonedero = cantidadMonedero;
     }
 
     // Getters y setters
@@ -72,5 +75,12 @@ public class Purse {
     public void setOrder(List<Order> order) {
         this.order = order;
     }
-   
+
+   public Double getCantidadMonedero() {
+        return cantidadMonedero;
+    }
+
+    public void setCantidadMonedero(Double cantidadMonedero) {
+        this.cantidadMonedero = cantidadMonedero;
+    }
 }

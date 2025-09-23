@@ -3,29 +3,28 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
+import com.david.tfg.entities.Date;
+import com.david.tfg.interfaces.Crud;
+
 import org.springframework.stereotype.Service;
 
-import com.david.tfg.entities.Services;
-import com.david.tfg.entities.User;
-import com.david.tfg.interfaces.Crud;
-import com.david.tfg.repos.RepoService;
-import com.david.tfg.repos.RepoUser;
-
+import com.david.tfg.repos.RepoDate;
 @Service
-public class UserService implements Crud <User,Integer>{
- //inyeccion de dependencias
-    private final RepoUser repo;
+public class DateService implements Crud <Date,Integer>{
+    //inyeccion de dependencias
+    private final RepoDate repo;
 
-    public UserService(RepoUser repo) {
+    public DateService(RepoDate repo) {
         this.repo = repo;
     }
-     @Override
-    public void save(User entity) {
+
+    @Override
+    public void save(Date entity) {
         repo.save(entity);
     }
 
     @Override
-    public Optional<User> findById(Integer id) {
+    public Optional<Date> findById(Integer id) {
         return this.repo.findById(id);
     }
 
@@ -35,7 +34,7 @@ public class UserService implements Crud <User,Integer>{
     }
 
     @Override
-    public List<User> findAll() {
+    public List<Date> findAll() {
         return this.repo.findAll();
     }
 
@@ -48,4 +47,5 @@ public class UserService implements Crud <User,Integer>{
     public void deleteAll() {
         this.repo.deleteAll();
     }
+
 }

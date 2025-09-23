@@ -67,7 +67,6 @@ public class ArticleRestController {
     public ResponseEntity<Article> guardar(@RequestBody Article articulo){
         //parte de creacion de un articulo 
         if(articulo.getIdArticulo() == 0){
-        //    return service.save(arbitro);
             service.save(articulo);
             return ResponseEntity.ok(articulo);
         }else{

@@ -11,18 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.david.tfg.entities.Article;
 import com.david.tfg.entities.Order;
-import com.david.tfg.services.ArticleService;
 import com.david.tfg.services.OrderService;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class OrderController {
+public class OrderRestController {
  //Inyectamos el servicio
     private final OrderService service;
 
-    public OrderController(OrderService service) {
+    public OrderRestController(OrderService service) {
         this.service = service;
     }
 

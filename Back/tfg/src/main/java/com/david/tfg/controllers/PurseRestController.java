@@ -11,18 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.david.tfg.entities.Article;
 import com.david.tfg.entities.Purse;
-import com.david.tfg.services.ArticleService;
 import com.david.tfg.services.PurseService;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class PurseController {
+public class PurseRestController {
 //Inyectamos el servicio
     private final PurseService service;
 
-    public PurseController(PurseService service) {
+    public PurseRestController(PurseService service) {
         this.service = service;
     }
 
@@ -76,12 +74,7 @@ public class PurseController {
             Optional<Purse> carteraSinActu = service.findById(cartera.getIdTransacccion_Monedero());
             //cogemos el objeto del optional 
             Purse carteraActu = carteraSinActu.get();
-            carteraActu.set(cartera.getNombre());
-            carteraActu.setDescripcion(cartera.getDescripcion());
-            carteraActu.setImagen(cartera.getImagen());
-            carteraActu.setPrecio(cartera.getPrecio());
-            carteraActu.setCategoria(cartera.getCategoria());
-            carteraActu.setCantidad(cartera.getCantidad());
+            carteraActu.setCantidadMonedero(cartera.getCantidadMonedero());
 
             service.save(carteraActu);
             return ResponseEntity.ok(carteraActu);  

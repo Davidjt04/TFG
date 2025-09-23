@@ -11,18 +11,16 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.david.tfg.entities.Article;
 import com.david.tfg.entities.PredefinedCut;
-import com.david.tfg.services.ArticleService;
 import com.david.tfg.services.PredefinedCutService;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class PredefinedCutController {
+public class PredefinedCutRestController {
 //Inyectamos el servicio
     private final PredefinedCutService service;
 
-    public PredefinedCutController(PredefinedCutService service) {
+    public PredefinedCutRestController(PredefinedCutService service) {
         this.service = service;
     }
 
