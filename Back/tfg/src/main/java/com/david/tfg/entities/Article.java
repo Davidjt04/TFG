@@ -26,7 +26,6 @@ public class Article {
     private String Imagen;
     private double Precio;
     private String Categoria;
-    private int Cantidad;
 
     //Relaciones
     //Pocos con detallePedido
@@ -51,7 +50,6 @@ public class Article {
         this.Imagen = imagen;
         this.Precio = precio;
         this.Categoria = categoria;
-        this.Cantidad = cantidad;
         this.orderDetails = orderDetails;
         this.CartHasArticles = cartHasArticles;
     }
@@ -64,7 +62,6 @@ public class Article {
         this.Imagen = imagen;
         this.Precio = precio;
         this.Categoria = categoria;
-        this.Cantidad = cantidad;
     }
 
     // Getters y Setters
@@ -116,11 +113,4 @@ public class Article {
         this.Categoria = categoria;
     }
 
-    public int getCantidad() {
-        return Cantidad;
-    }
-
-    public void setCantidad(int cantidad) {
-        this.Cantidad = cantidad;
-    }
 }

@@ -27,7 +27,6 @@ class TfgApplicationTests {
         art.setImagen("imagen.jpg");
         art.setPrecio(1200);
         art.setCategoria("Electrónica");
-        art.setCantidad(10);
 
         // Guardar en la BD
         Article saved = repoArticle.save(art);

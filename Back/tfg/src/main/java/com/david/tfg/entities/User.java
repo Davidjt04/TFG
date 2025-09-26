@@ -10,7 +10,6 @@ import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
@@ -22,10 +21,10 @@ public class User {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idUsuario;
 
-    private String NombreUsuario;
-    private String Contrasenia;
-    private String Email;
-    private double Rol;
+    private String nombreUsuario;
+    private String contrasenia;
+    private String email;
+    private String rol;
    
     //Relaciones
     //1:1 con monedero 
@@ -53,13 +52,13 @@ public class User {
     public User() {}
 
     // Constructor con relaciones
-    public User(int idUsuario, String nombreUsuario, String contrasenia, String email, double rol,
+    public User(int idUsuario, String NombreUsuario, String contrasenia, String Email, String rol,
                 Purse purse, List<Order> orders, Cart cart, WorkerDetail workerDetail, List<Review> review) {
         this.idUsuario = idUsuario;
-        this.NombreUsuario = nombreUsuario;
-        this.Contrasenia = contrasenia;
-        this.Email = email;
-        this.Rol = rol;
+        this.nombreUsuario = NombreUsuario;
+        this.contrasenia = contrasenia;
+        this.email = Email;
+        this.rol = rol;
         this.purse = purse;
         this.orders = orders;
         this.cart = cart;
@@ -68,12 +67,12 @@ public class User {
     }
 
     // Constructor sin relaciones
-    public User(int idUsuario, String nombreUsuario, String contrasenia, String email, double rol) {
+    public User(int idUsuario, String NombreUsuario, String contrasenia, String email, String rol) {
         this.idUsuario = idUsuario;
-        this.NombreUsuario = nombreUsuario;
-        this.Contrasenia = contrasenia;
-        this.Email = email;
-        this.Rol = rol;
+        this.nombreUsuario = NombreUsuario;
+        this.contrasenia = contrasenia;
+        this.email = email;
+        this.rol = rol;
     }
 
     // Getters y setters
@@ -86,35 +85,35 @@ public class User {
     }
 
     public String getNombreUsuario() {
-        return NombreUsuario;
+        return nombreUsuario;
     }
 
-    public void setNombreUsuario(String nombreUsuario) {
-        NombreUsuario = nombreUsuario;
+    public void setNombreUsuario(String NombreUsuario) {
+        this.nombreUsuario = NombreUsuario;
     }
 
     public String getContrasenia() {
-        return Contrasenia;
+        return contrasenia;
     }
 
     public void setContrasenia(String contrasenia) {
-        Contrasenia = contrasenia;
+        this.contrasenia = contrasenia;
     }
 
     public String getEmail() {
-        return Email;
+        return email;
     }
 
     public void setEmail(String email) {
-        Email = email;
+        this.email = email;
     }
 
-    public double getRol() {
-        return Rol;
+    public String getRol() {
+        return rol;
     }
 
-    public void setRol(double rol) {
-        Rol = rol;
+    public void setRol(String rol) {
+        this.rol = rol;
     }
 
     public Purse getPurse() {

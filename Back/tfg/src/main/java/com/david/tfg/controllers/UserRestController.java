@@ -24,10 +24,10 @@ public class UserRestController {
         this.service = service;
     }
 
-    //se muestran todos los articulos
+    //se muestran todos los usuarios
     @GetMapping("/usuario/lista")
     public List<User> lista(){
-        //va a sacar una lista de articulos 
+        //va a sacar una lista de usuarios 
         return this.service.findAll();
     }
 

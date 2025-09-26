@@ -79,7 +79,6 @@ public class ArticleRestController {
             productoActu.setImagen(articulo.getImagen());
             productoActu.setPrecio(articulo.getPrecio());
             productoActu.setCategoria(articulo.getCategoria());
-            productoActu.setCantidad(articulo.getCantidad());
 
             //meter los partidos asociados 
             service.save(productoActu);
