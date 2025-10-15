@@ -78,12 +78,12 @@ public class UserService implements Crud <User,Integer>{
         throw new Exception("El nombre de usuario no es correcto");
     }
 
-    // 2️⃣ Validar contraseña (comparando hash)
+    // 2️ Validar contraseña (comparando hash)
     if (!passwordEncoder.matches(usuario.getContrasenia(), usuarioBD.getContrasenia())) {
         throw new Exception("La contraseña no es correcta");
     }
 
-    // 3️⃣ Retornar el usuario autenticado (desde BD)
+    // 3️ Retornar el usuario autenticado (desde BD)
     return usuarioBD;
     }
 
@@ -120,5 +120,9 @@ public class UserService implements Crud <User,Integer>{
         throw new Exception("Rol no válido. Debe ser TRABAJADOR, ADMIN o CLIENTE");
     }
     }
+    public User findByNombreUsuario(String nombreUsuario) {
+        return repo.findByNombreUsuario(nombreUsuario);
+    }
+
 
 }
