@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.david.tfg.entities.User;
@@ -16,6 +17,7 @@ import com.david.tfg.services.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
+@RequestMapping("/Cliente")
 public class UserRestController {
  //Inyectamos el servicio
     private final UserService service;
@@ -24,14 +26,16 @@ public class UserRestController {
         this.service = service;
     }
 
+    
+
     //se muestran todos los usuarios
-    @GetMapping("/usuario/lista")
+    @GetMapping("/lista")
     public List<User> lista(){
         //va a sacar una lista de usuarios 
         return this.service.findAll();
     }
 
-    @GetMapping("/usuario/borrar/{id}")
+    @GetMapping("/borrar/{id}")
     public ResponseEntity<User> borrar(@PathVariable Integer id){
         //va a borrar un user
         if(service.existsById(id)){  
@@ -44,7 +48,7 @@ public class UserRestController {
     }
 
     //editar
-    @GetMapping("/usuario/editar/{id}")
+    @GetMapping("/editar/{id}")
     public ResponseEntity<User> editar(@PathVariable Integer id) {
     Optional<User> userOpt = service.findById(id);
         if (userOpt.isPresent()) {
@@ -56,14 +60,14 @@ public class UserRestController {
     }
 
     //crear
-    @PostMapping("/usuario/crear")
+    @PostMapping("/crear")
     public ResponseEntity<User> crear(){
         //va a crear un usuario
         return ResponseEntity.ok(new User());
     }
 
     //guardar
-    @PostMapping("/usuario/guardar")
+    @PostMapping("/guardar")
     public ResponseEntity<User> guardar(@RequestBody User user){
         //parte de creacion de un articulo 
         if(user.getIdUsuario()== 0){
@@ -86,4 +90,5 @@ public class UserRestController {
         }
             
     }
+    
 }
