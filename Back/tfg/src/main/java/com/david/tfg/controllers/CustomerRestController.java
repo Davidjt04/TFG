@@ -8,10 +8,10 @@ import com.david.tfg.services.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/ADMIN")
-public class AdminRestController extends UserRestController {
+@RequestMapping("/CLIENTE") 
+public class CustomerRestController extends UserRestController {
 
-    public AdminRestController(UserService service) {
+    public CustomerRestController(UserService service) {
         super(service);
     }
 }

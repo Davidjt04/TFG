@@ -1,0 +1,78 @@
+las imagenes se guardan en la carpeta creada llamada recursos y las tratamos como string hcaer el confing para que se puedan leer las imagenes desde las carpteta dicha
+
+libreria jackson o Gson para pasar el string de workerDetail a json  
+
+---------------------------------
+POR DONDE CONTINUAR
+->Mirar la libreta y crear los entripoints básicos para los controladores de roles y mirar que todas las clases que los necesiten los tengan
+->crear todos los entripoints restantes 
+->ordenarlos todos en la seguridad para unicamente comprobar que la seguridad y los entripint son correctos es decir probar el login y register
+->plantear la agencia 
+	-plantearla eleccion de cortes
+	-plantear la eleccion del peluquero  
+	-plantear la elecion del día 
+
+
+	VALIDACIONES EN FRONT
+ninguna de las cuatro debe estar vacia (nombreUsu, contra, email, rol)
+caracteres minimos para la contraseña(tenga minimo 8 digitos, tenga algun caracter especial como el "." y minimo una mayuscula)
+email con formato valido 
+rol igual a una de las tres opciones que hay (trabajador, admin, cliente)
+
+	VALIDACIONES EN BACK
+
+los servicios deberan de tener algun valor para la hora ya que en los cortes predefinidoso si tengo un a duracion total pero en los personalizados no en estos debo 
+
+---------------------------------
+cosas interesantes para readactar en el informe del TFG
+test
+IDCartHasArticle
+
+
+PARA LA PROXIMA REVISION DEL PROYECTO TENER
+logueo y agencia 
+
+validar que no este registrado 
+si el nombre esta registrado mirar el coñrreo porque si el correo no esta registrado el menñsaje de error sera distinto 
+
+
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+
+@RestController
+@RequestMapping("/api/auth")
+public class AuthController {
+
+    @Autowired
+    private UsuarioService usuarioService;
+
+    @PostMapping("/register")
+    public ResponseEntity<?> register(@RequestBody Usuario usuario) {
+        try {
+            Usuario nuevoUsuario = usuarioService.registrarUsuario(usuario);
+            return ResponseEntity.ok("Usuario registrado con éxito: " + nuevoUsuario.getNombreUsuario());
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(e.getMessage());
+        }
+    }
+}
+
+PASOS QUE TIENE MI SEGURIDAD PARA UEGO PODER EXPLICARLA BEIN
+Login → genera token con JwtUtil.
+
+El front guarda el token y lo envía en el header:
+
+Authorization: Bearer <token>
+
+
+JwtFilter intercepta todas las peticiones:
+
+Valida el token.
+
+Carga el usuario y su rol.
+
+Permite acceso solo si el token es válido.
+
+Spring Security aplica tus reglas (permitAll, authenticated, hasRole).

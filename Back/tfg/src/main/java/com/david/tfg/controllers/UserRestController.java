@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.david.tfg.entities.User;
@@ -17,7 +16,6 @@ import com.david.tfg.services.UserService;
 
 @CrossOrigin(origins = "*")
 @RestController
-@RequestMapping("/Cliente")
 public class UserRestController {
  //Inyectamos el servicio
     private final UserService service;
@@ -26,7 +24,7 @@ public class UserRestController {
         this.service = service;
     }
 
-    
+
 
     //se muestran todos los usuarios
     @GetMapping("/lista")

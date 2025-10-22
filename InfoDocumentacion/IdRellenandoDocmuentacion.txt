@@ -1,0 +1,30 @@
+ETAPAS POR LAS QUE ESTA PASANDO EL PROYECTO 
+
+
+
+
+PROBLEMAS ENCONTRADOS Y SOLUCIONES APORTADAS
+
+BIBLIOGRAFÍA
+
+SERVICIOS O LIBRERIAS QUE VAYA UTILIZANDO 
+
+TECNOLOGIAS QUE VAYA UTILIZANDO 
+spring boot (framework)
+spring web
+devtools
+mysql driver
+lombok
+starter test
+spring security
+jpa
+maven
+bootstrap
+
+COSAS QUE SE HAN IDO QUITANDO QUE ESTABAN PENSADAS
+-pagina de información de los trabajadores para los clientes
+-introducir edxcepciones personalizadas para mayor control de errores
+-controlar que no se puedan meter instruciones sql en los campos tanto de registro como de login para evitar hacking
+-no hace falta encriptar la contraseña de un regstro en el front si se utiliza https(esta ya pasa los datos al back protegidos) en mi caso como utilizo http asique deberia de implementar https para no tener que ncriptar la contraseña cunaod la mandamos al back
+-enviar un link de activacion al email para el registro de un usuario 
+-validacion extra en el login y registro (limite de intentos con tiempo de espera para evitar ataques)

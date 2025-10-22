@@ -114,11 +114,6 @@ PASOS PARA HACER LA COMPRA
 	crema aclarantes
 	mataizadores de mechas 
 
----------------------------------------------------
-
-		APARTADOS QUE PODRÍA AÑADIR
-un apartado de datos del peluquero porque cuando el admin va a añadir peluquero tiene que meter sus datos pero esos datos no se ven en ninguna parte de la pagina y sería informacion bueno para el cliente, ya que la tengo que meter por narices.
-
 -------------------------------------------------
 LOGICA DEL CARRITO 
 2. El usuario va a pagar (realizar el pedido)
@@ -170,19 +165,6 @@ Comprobar las citas existentes (citas) para evitar solapamientos.
 
 Calcular la hora exacta de la cita según la duración del corte (corte_trabajador o corte_predefinido).
 
----------------------------------------------------------------------------------------------
-REALACIONES QUE ME PROPONE LA IA PARA HACER EN LÑA VISTA HAIR CUTS
-porque se hace una tabla intermñedia entre serfvicio y corte predefinido 
-Se relaciona con el usuario (1:1) y con corte_trabajador (1:N):??
-Es la relación N:M entre trabajador y servicio:
-Se relaciona con detalle_trabajador (trabajador) y con corte_predefinido:
-----------------------------------------------------------------------------------
-RELACIONES QUE ME PROPONE LLA IA 
-Relación	Tipo
-corte_predefinido – servicio	N:M (vía corte_servicio)
-detalle_trabajador – servicio	N:M (vía corte_trabajador)
-detalle_trabajador – cita	1:N
-corte_predefinido – cita	1:N
 -------------------------------------------------------------------------------------
 ESTRUCTURA DE FLUJO DE LA IA 
 El usuario elige un corte_predefinido.
@@ -215,10 +197,6 @@ Saber sobre qué corte base está trabajando ese trabajador, para conocer tambi�
 ----------------------------------------------------------
 MODIFICACION DE LA TABLA DETALLE_PEDIDO PARA QUE NO SE REPITA LAS TUPLAS POR UN MISMO ARTICULO, SI HAY MAS DE UN ARTICULO EN EL PEDIDO QUE SE REFLEJE POR LA CANTIDAD
 
-ALTER TABLE Detalle_Pedido
-ADD CONSTRAINT unq_pedido_articulo UNIQUE (idPedido, idArticulo);
-
-
 ----------------------------------------------------------
 📋 INDICE PARA HACER EL README 
 
@@ -240,9 +218,18 @@ Autores
 
 Licencia
 
+---------------------------------------------------
 
-----------------------------------------------------------
-POR DONDE SEGUIR 
-terminar de hacer el test para que inyecte en la bd (TfgApplicationTests)
-meter jpa repository, empezar a programar el back hacer todas las clases conectar la bd, repositorios, servicios, guardar en docker y documentar todo 
+		APARTADOS QUE PODRÍA AÑADIR
+un apartado de datos del peluquero porque cuando el admin va a añadir peluquero tiene que meter sus datos pero esos datos no se ven en ninguna parte de la pagina y sería informacion bueno para el cliente, ya que la tengo que meter por narices.
+
+controlar que no se puedan meter instruciones sql en los campos tanto de registro como de login para evitar hacking
+
+no hace falta encriptar la contraseña de un regstro en el front si se utiliza https(esta ya pasa los datos al back protegidos) en mi caso como utilizo http asique deberia de implemenr
+
+enviar un link de activacion al email para el registro de un usuario 
+
+validacion extra en el login y registro (limite de intentos con tiempo de espera para evitar ataques)
+
+crear excepciones personalizadas para no utilizar el exception general (throw new Exception) por ejemplo en validaUsuario
 
