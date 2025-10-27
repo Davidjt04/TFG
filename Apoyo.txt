@@ -4,9 +4,16 @@ libreria jackson o Gson para pasar el string de workerDetail a json
 
 ---------------------------------
 POR DONDE CONTINUAR
-->Mirar la libreta y crear los entripoints básicos para los controladores de roles y mirar que todas las clases que los necesiten los tengan
-->crear todos los entripoints restantes 
-->ordenarlos todos en la seguridad para unicamente comprobar que la seguridad y los entripint son correctos es decir probar el login y register
+Crear páginas: Login, Registro, Dashboard, etc.
+
+Conectarlas a los endpoints del backend.
+
+Manejar estado global (con Context, Redux, Zustand, etc.).
+
+Proteger rutas (por ejemplo, redirigir al login si no hay token válido).
+
+Implementar manejo de errores y loaders visuales.
+
 ->plantear la agencia 
 	-plantearla eleccion de cortes
 	-plantear la eleccion del peluquero  
@@ -24,9 +31,6 @@ rol igual a una de las tres opciones que hay (trabajador, admin, cliente)
 los servicios deberan de tener algun valor para la hora ya que en los cortes predefinidoso si tengo un a duracion total pero en los personalizados no en estos debo 
 
 ---------------------------------
-cosas interesantes para readactar en el informe del TFG
-test
-IDCartHasArticle
 
 
 PARA LA PROXIMA REVISION DEL PROYECTO TENER

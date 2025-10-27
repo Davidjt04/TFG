@@ -14,6 +14,7 @@ export const routes: Routes = [
     // { path: 'TRBAJADOR/calendario', component: HomeComponent },
   
     //CUSTOMER ROUTES
+    { path: '', component: ServiciosClienteComponent },//------
     { path: 'CLIENTE/cita/servicios', component: ServiciosClienteComponent },//------
     { path: 'CLIENTE/cita/imagenes', component: ImagenesClienteComponent },
     // { path: 'CLIENTE/cita/info', component: HomeComponent },

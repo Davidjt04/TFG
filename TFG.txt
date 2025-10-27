@@ -218,18 +218,6 @@ Autores
 
 Licencia
 
----------------------------------------------------
 
-		APARTADOS QUE PODRÍA AÑADIR
-un apartado de datos del peluquero porque cuando el admin va a añadir peluquero tiene que meter sus datos pero esos datos no se ven en ninguna parte de la pagina y sería informacion bueno para el cliente, ya que la tengo que meter por narices.
 
-controlar que no se puedan meter instruciones sql en los campos tanto de registro como de login para evitar hacking
-
-no hace falta encriptar la contraseña de un regstro en el front si se utiliza https(esta ya pasa los datos al back protegidos) en mi caso como utilizo http asique deberia de implemenr
-
-enviar un link de activacion al email para el registro de un usuario 
-
-validacion extra en el login y registro (limite de intentos con tiempo de espera para evitar ataques)
-
-crear excepciones personalizadas para no utilizar el exception general (throw new Exception) por ejemplo en validaUsuario
 

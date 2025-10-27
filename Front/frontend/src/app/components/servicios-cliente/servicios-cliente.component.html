@@ -30,3 +30,93 @@
     </div>
   </div>
 </nav>
+
+<!-- FORMULARIO WIZARD -->
+<div class="container py-4">
+  <h3 class="mb-4">Formulario paso a paso</h3>
+
+  <div class="progress mb-3">
+    <div class="progress-bar" [style.width.%]="progressWidth"></div>
+  </div>
+
+  <div #stepperEl id="stepper" class="bs-stepper">
+    <div class="bs-stepper-header" role="tablist">
+      <div class="step " data-target="#step-1">
+        <button type="button" class="step-trigger " role="tab">
+          <span class="bs-stepper-circle">1</span>
+          <span class="bs-stepper-label">Elegir corte</span>
+        </button>
+      </div>
+      <div class="line"></div>
+      <div class="step" data-target="#step-2">
+        <button type="button" class="step-trigger" role="tab">
+          <span class="bs-stepper-circle">2</span>
+          <span class="bs-stepper-label">Cuenta</span>
+        </button>
+      </div>
+      <div class="line"></div>
+      <div class="step" data-target="#step-3">
+        <button type="button" class="step-trigger" role="tab">
+          <span class="bs-stepper-circle">3</span>
+          <span class="bs-stepper-label">Confirmar</span>
+        </button>
+      </div>
+    </div>
+
+    <div class="bs-stepper-content">
+      <!-- Paso 1 -->
+<div id="step-1" class="content " role="tabpanel">
+  <form #form1="ngForm" novalidate>
+    <div class="mb-3">
+      <label class="form-label">Nombre</label>
+      <input [(ngModel)]="nombre" name="nombre" required class="form-control" />
+    </div>
+    <div class="mb-3">
+      <label class="form-label">Apellido</label>
+      <input [(ngModel)]="apellido" name="apellido" required class="form-control" />
+    </div>
+    <div class="d-flex justify-content-end">
+      <button type="button" class="btn btn-primary" (click)="next(form1)">Siguiente</button>
+    </div>
+  </form>
+</div>
+
+
+
+      <!-- Paso 2 -->
+      <div id="step-2" class="content" role="tabpanel">
+        <form #form2="ngForm" novalidate>
+          <div class="mb-3">
+            <label class="form-label">Email</label>
+            <input [(ngModel)]="email" name="email" type="email" required class="form-control" />
+          </div>
+          <div class="mb-3">
+            <label class="form-label">Contraseña</label>
+            <input name="password" type="password" minlength="6" required class="form-control" />
+          </div>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" (click)="prev()">Anterior</button>
+            <button type="button" class="btn btn-primary" (click)="next(form2)">Siguiente</button>
+          </div>
+        </form>
+      </div>
+
+      <!-- Paso 3 -->
+      <div id="step-3" class="content" role="tabpanel">
+        <div>
+          <h5>Confirmar datos</h5>
+          <ul class="list-group mb-3">
+            <li class="list-group-item">Nombre: {{ nombre }}</li>
+            <li class="list-group-item">Apellido: {{ apellido }}</li>
+            <li class="list-group-item">Email: {{ email }}</li>
+          </ul>
+          <div class="d-flex justify-content-between">
+            <button type="button" class="btn btn-secondary" (click)="prev()">Anterior</button>
+            <button type="button" class="btn btn-success" (click)="finish()">Finalizar</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
