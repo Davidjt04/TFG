@@ -1,9 +1,11 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, ElementRef, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { FormsModule, NgForm } from '@angular/forms';
 import { RouterLink } from "@angular/router";
 import Stepper from 'bs-stepper';
 import { After } from 'v8';
+import { ServicioCortePredefService } from '../../services/servicio-corte-predef.service';
+import { PredefinedCut } from '../../entities/PredefinedCut';
 
 @Component({
   selector: 'app-servicios-cliente',
@@ -11,7 +13,23 @@ import { After } from 'v8';
   templateUrl: './servicios-cliente.component.html',
   styleUrl: './servicios-cliente.component.css'
 })
-export class ServiciosClienteComponent implements AfterViewInit{
+export class ServiciosClienteComponent implements AfterViewInit,OnInit{
+  listaPredefCut : PredefinedCut[];
+  PredefinedCutSeleccionado: PredefinedCut = new PredefinedCut();
+
+   constructor(private serviPredefCut : ServicioCortePredefService) {
+    this.listaPredefCut =[];
+  }
+
+  ngOnInit(): void {
+      this.serviPredefCut.getCortePredef().subscribe((data) => {
+      console.log(data);
+      this.listaPredefCut=data;
+      this.listaPredefCut = data.map((item: any) => item.equipo || item);
+      // console.log(this.listaEquipos);
+    });
+
+  }
   private stepper!: Stepper;
   @ViewChild('stepperEl') stepperEl!: ElementRef;
 

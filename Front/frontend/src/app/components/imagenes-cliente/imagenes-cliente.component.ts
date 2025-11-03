@@ -1,6 +1,6 @@
+import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
 import { RouterLink } from '@angular/router';
-
 @Component({
   selector: 'app-imagenes-cliente',
   imports: [RouterLink],
@@ -8,5 +8,5 @@ import { RouterLink } from '@angular/router';
   styleUrl: './imagenes-cliente.component.css'
 })
 export class ImagenesClienteComponent {
-
+  
 }

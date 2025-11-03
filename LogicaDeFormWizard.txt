@@ -1,0 +1,34 @@
+desplegable para los cortes predefinidos 
+--y abajo un apartado con corte personalizado que saque un deplegable con todos los servicios que hay y que por cada vez que elija un servicio se muesatre abajo de forma que se pueda borrar también debería de aparecer el precio del mismo 
+
+--------------
+PRIMER APARTADO DEL FORM WIZARD
+
+servicio de corte predefinido
+meter el metodo de get cortes predefinidos
+servicio de servicios 
+meter el metodo get en servicios 
+css de la clase servicios-cliente-> array de obj tipo corte predefinido en el ngoninit para que cuando ase cargue el componenete ese cargue la array
+html de la clase servicios-cliente-> cargar en el select los servicios  y los cortes predefinidos 
+PRECIO AL LADO DE CADA CORTE Y EN CASO DE CORTE PERSONALIZADO IR AÑADIENDO TODOS LOS SERVICIOS Y SUMA DE PRECIO EN TIEMPO REAL PARA QUE SE VEA EL PRECIO Y LOS SERVICIOS QUE TENDRÁ EL CORTE
+------------------------
+SEGUNDO APARTADO DEL FORM WIZARD
+sacar el calendario (una tabla)SE ELIJE TANTO DÍA COMO HORA
+---------------------------
+TERCER APARTADOR DEL FORM WIZARD
+sacar un listado de todas las imagenes de los trabajadores estando iluminados aquellos que esten disponibles para el dia y fecha señalada
+finalmente sacar un objeto de la tabla de destino final para sacar mediante un objeto que se va a ir rellenando durante el formulario el resumen de todo lo elegido
+---------------------------
+
+BOOSTRAP PARA LA TABLA 
+<table class="table table-striped">
+  ...
+</table>
+---------------------------
+METODOS QUE ME HACEN FALTA
+varios get mas aparte de los que ya defino arriba para cargar las imagenes de los trabajadores 
+metodo para sacar el precio y los servicios del corte personalizado 
+implementación para quitar los servicios de un corte predefinido y en ese caso ir cambiando el precio 
+metodo para sacar unos horarios que voya definir yo en codigo sin necesidad de que esten en bd para que cuando elija el usuario día también elija hora una 	de las horas que le voy a dar yo como opción
+metodo para sacar todos los trabajadores en el tercer form resaltando los que estan disponibles y resaltando aún mas los que son especialistas en el corte 	que ha elegido en caso de haber elegido un corte predefinido
+

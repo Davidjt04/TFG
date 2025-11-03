@@ -47,16 +47,18 @@ public class SecurityConfig {
             // Autorización de rutas
             .authorizeHttpRequests(auth -> auth
                 // Rutas públicas
-                .requestMatchers("/auth/**").permitAll()
-                // Endpoints accesibles solo por ADMIN
-                .requestMatchers("/ADMIN/**").hasRole("ADMIN")
-//             //.requestMatchers("/partido/lista", "/arbitro/lista", "/evento/guardar").hasAnyAuthority("READ", "WRITE")
+                .requestMatchers("/**").permitAll()
 
-                // // Endpoints accesibles por el CLIENTE
-                .requestMatchers("/CLIENTE/cita/servicios","/CLIENTE/cita/info","/CLIENTE/cita/imagenes",
-                "/CLIENTE/cita/imagenes","/CLIENTE/tienda","/CLIENTE/tienda/saldo","monedero","carrito","resenias").hasAnyRole("CLIENTE", "ADMIN")
-                // // Endpoints accesibles por el TRABAJADOR
-                .requestMatchers("/TRABAJOR/calendario","lading","monedero","carrito","resenias").hasAnyRole("TRAJADOR")
+                // .requestMatchers("/auth/**").permitAll()
+                // Endpoints accesibles solo por ADMIN
+//                 .requestMatchers("/ADMIN/**").hasRole("ADMIN")
+// //             //.requestMatchers("/partido/lista", "/arbitro/lista", "/evento/guardar").hasAnyAuthority("READ", "WRITE")
+
+//                 // // Endpoints accesibles por el CLIENTE
+//                 .requestMatchers("/CLIENTE/cita/servicios","/CLIENTE/cita/info","/CLIENTE/cita/imagenes",
+//                 "/CLIENTE/cita/imagenes","/CLIENTE/tienda","/CLIENTE/tienda/saldo","monedero","carrito","resenias").hasAnyRole("CLIENTE", "ADMIN")
+//                 // // Endpoints accesibles por el TRABAJADOR
+//                 .requestMatchers("/TRABAJOR/calendario","lading","monedero","carrito","resenias").hasAnyRole("TRAJADOR")
 
                 // Rutas protegidas (requieren token JWT válido)
                 .anyRequest().authenticated()
