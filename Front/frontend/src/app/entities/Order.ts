@@ -3,9 +3,9 @@ import { User } from "./User";
 
 export class Order {
     idPedido!: number;
-    Precio_Total!: number;
-    Fecha_Realizacion!: Date;
-    Estado!:String
-    Usuario_idUsuario!: User;
-    Monedero_idTransacccion_Monedero!: Purse;
+    precio_Total!: number;
+    fecha_Realizacion!: Date;
+    estado!:String
+    usuario_idUsuario!: User;
+    monedero_idTransacccion_Monedero!: Purse;
 }   

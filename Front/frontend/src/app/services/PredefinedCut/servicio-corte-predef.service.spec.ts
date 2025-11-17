@@ -1,6 +1,6 @@
 import { TestBed } from '@angular/core/testing';
 
-import { ServicioCortePredefService } from '../servicio-corte-predef.service';
+import { ServicioCortePredefService } from './servicio-corte-predef.service';
 
 describe('ServicioCortePredefService', () => {
   let service: ServicioCortePredefService;

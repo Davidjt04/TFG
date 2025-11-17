@@ -80,6 +80,7 @@ public class WorkerDetailsRestController {
             productoActu.setHorario_Trabajador(WorkerDetail.getHorario_Trabajador());
             productoActu.setEspecializacion(WorkerDetail.getEspecializacion());
             productoActu.setAusencias(WorkerDetail.getAusencias());
+            productoActu.setImagen(WorkerDetail.getImagen());
 
             //meter los partidos asociados 
             service.save(productoActu);

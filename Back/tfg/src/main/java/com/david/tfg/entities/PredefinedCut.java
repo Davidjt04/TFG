@@ -14,7 +14,6 @@ import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.JoinTable;
 import jakarta.persistence.ManyToMany;
-import jakarta.persistence.ManyToOne;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 
@@ -28,6 +27,7 @@ public class PredefinedCut {
     private String Nombre;
     private Double Precio_Total;
     private LocalDateTime Duracion_Base;
+    private String Imagen;
 
 
     //Relaciones
@@ -54,12 +54,13 @@ public class PredefinedCut {
 
     // Constructor con todos los atributos incluyendo relaciones
     public PredefinedCut(int idCorte_Predefinido, String nombre, Double precio_Total,
-                         LocalDateTime duracion_Base, List<Services> services,
+                         LocalDateTime duracion_Base, String Imagen, List<Services> services,
                          List<WorkerCut> workerCut, PredefinedCut predefinedCut) {
         this.idCorte_Predefinido = idCorte_Predefinido;
         this.Nombre = nombre;
         this.Precio_Total = precio_Total;
         this.Duracion_Base = duracion_Base;
+        this.Imagen = Imagen;
         this.services = services;
         this.workerCut = workerCut;
         // this.predefinedCut = predefinedCut;
@@ -67,11 +68,13 @@ public class PredefinedCut {
 
     // Constructor solo con atributos básicos (sin relaciones)
     public PredefinedCut(int idCorte_Predefinido, String nombre, Double precio_Total,
-                         LocalDateTime duracion_Base) {
+                         LocalDateTime duracion_Base,String Imagen) {
         this.idCorte_Predefinido = idCorte_Predefinido;
         this.Nombre = nombre;
         this.Precio_Total = precio_Total;
         this.Duracion_Base = duracion_Base;
+        this.Imagen = Imagen;
+
     }
 
     // --- Getters y Setters ---
@@ -131,4 +134,12 @@ public class PredefinedCut {
     // public void setPredefinedCut(PredefinedCut predefinedCut) {
     //     this.predefinedCut = predefinedCut;
     // }
+
+    public String getImagen() {
+        return Imagen;
+    }
+
+    public void setImagen(String Imagen) {
+        this.Imagen = Imagen;
+    }
 }

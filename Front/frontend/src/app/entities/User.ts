@@ -1,8 +1,8 @@
 export class User {
     idUsuario!: number;
-    NombreUsuario!: String;
-    Contrasenia!: String;
-    Email!:String
-    Rol!:String
+    nombreUsuario!: String;
+    contrasenia!: String;
+    email!:String
+    rol!:String
 
 }   

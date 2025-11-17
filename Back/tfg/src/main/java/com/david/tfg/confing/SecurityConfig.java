@@ -47,7 +47,7 @@ public class SecurityConfig {
             // Autorización de rutas
             .authorizeHttpRequests(auth -> auth
                 // Rutas públicas
-                .requestMatchers("/**").permitAll()
+                .requestMatchers("/**","/img/**").permitAll()
 
                 // .requestMatchers("/auth/**").permitAll()
                 // Endpoints accesibles solo por ADMIN
@@ -63,7 +63,7 @@ public class SecurityConfig {
                 // Rutas protegidas (requieren token JWT válido)
                 .anyRequest().authenticated()
             )
-
+ 
             // No usamos sesiones en el servidor (stateless, solo tokens)
             .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
 

@@ -1,5 +1,5 @@
 ETAPAS POR LAS QUE ESTA PASANDO EL PROYECTO 
-entidades,-repos,servicios,controladores,seguridad, ->FRONT->componentes, rutas, servicicos,fomulario wizard
+entidades,repos,servicios,controladores,seguridad, FRONT->componentes, rutas, servicicos,fomulario wizard
 
 
 
@@ -29,6 +29,7 @@ COSAS QUE SE HAN IDO QUITANDO QUE ESTABAN PENSADAS
 -no hace falta encriptar la contraseña de un regstro en el front si se utiliza https(esta ya pasa los datos al back protegidos) en mi caso como utilizo http asique deberia de implementar https para no tener que ncriptar la contraseña cunaod la mandamos al back
 -enviar un link de activacion al email para el registro de un usuario 
 -validacion extra en el login y registro (limite de intentos con tiempo de espera para evitar ataques)
+--un acumulador e precio dinamico para que en función de cuantos servicios de corte se escogiesen el precio aumentase en el momento
 
 cosas interesantes para readactar en el informe del TFG
 test

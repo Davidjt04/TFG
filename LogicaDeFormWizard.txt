@@ -1,16 +1,19 @@
-desplegable para los cortes predefinidos 
 --y abajo un apartado con corte personalizado que saque un deplegable con todos los servicios que hay y que por cada vez que elija un servicio se muesatre abajo de forma que se pueda borrar también debería de aparecer el precio del mismo 
 
 --------------
 PRIMER APARTADO DEL FORM WIZARD
+me he quedado en el segundo paso del form wizard SE QUEDA PILLADO EN LA SEGUNDA STEP EL BOTON SIGUIENTE NO FUNCIONA IGUAL ES PORQUE NO SE HA PUESTO HORA Y NO SE PUEDEN CARGAR LOS TRABAJADORES PARA EL SIGUIENTE STEP PREGUNTAR AL CHAT GPT 
 
-servicio de corte predefinido
-meter el metodo de get cortes predefinidos
-servicio de servicios 
-meter el metodo get en servicios 
+terminar de hacer el controlador y demas de la nueva tabla y empesar a probar ya con Front
+
+hacer el metodo para la suma de precios del select multiple->planteado en el suma-select.txt-> EMPECE A PLANTEARLO Y COPIE EL CODIGO EN EL HTML Y TS (AY QUE MIRARLO PORQUE NO FUNCIONA)
 css de la clase servicios-cliente-> array de obj tipo corte predefinido en el ngoninit para que cuando ase cargue el componenete ese cargue la array
 html de la clase servicios-cliente-> cargar en el select los servicios  y los cortes predefinidos 
-PRECIO AL LADO DE CADA CORTE Y EN CASO DE CORTE PERSONALIZADO IR AÑADIENDO TODOS LOS SERVICIOS Y SUMA DE PRECIO EN TIEMPO REAL PARA QUE SE VEA EL PRECIO Y LOS SERVICIOS QUE TENDRÁ EL CORTE
+PRECIO AL LADO DE CADA CORTE Y EN CASO DE CORTE PERSONALIZADO IR AÑADIENDO TODOS LOS SERVICIOS Y SUMA DE PRECIO EN TIEMPO REAL PARA QUE SE VEA EL PRECIO Y 
+LOS SERVICIOS QUE TENDRÁ EL CORTE
+---Al final (en el método finish()), crear un objeto de reserva que los combine todos.
+---hacer el metodo get datos cita 
+---hay mas cosas a tener en cuenta preguntar al gpt como actuar
 ------------------------
 SEGUNDO APARTADO DEL FORM WIZARD
 sacar el calendario (una tabla)SE ELIJE TANTO DÍA COMO HORA
@@ -31,4 +34,3 @@ metodo para sacar el precio y los servicios del corte personalizado
 implementación para quitar los servicios de un corte predefinido y en ese caso ir cambiando el precio 
 metodo para sacar unos horarios que voya definir yo en codigo sin necesidad de que esten en bd para que cuando elija el usuario día también elija hora una 	de las horas que le voy a dar yo como opción
 metodo para sacar todos los trabajadores en el tercer form resaltando los que estan disponibles y resaltando aún mas los que son especialistas en el corte 	que ha elegido en caso de haber elegido un corte predefinido
-

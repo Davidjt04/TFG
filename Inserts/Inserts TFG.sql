@@ -1,0 +1,1 @@
+INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('1', '2025-11-17 14:30:00', 'CORTE BASICO', 'IMAGEN1', '1', '1');

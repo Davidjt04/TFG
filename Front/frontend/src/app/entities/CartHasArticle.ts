@@ -1,8 +1,8 @@
 export class CartHasArticle {
-    Articulo_idArticulo!: number;
-    Cantidad!: number;
-    Fecha_agrega!: Date;
-    Imagen!:String
-    Precio!:number
-    Categorta!:String
+    articulo_idArticulo!: number;
+    cantidad!: number;
+    fecha_agrega!: Date;
+    imagen!:String
+    precio!:number
+    categorta!:String
 }   

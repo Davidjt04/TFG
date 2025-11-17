@@ -1,95 +1,90 @@
 package com.david.tfg.entities;
 
-
 import java.time.LocalDateTime;
+import jakarta.persistence.*;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.ManyToOne;
-import jakarta.persistence.OneToOne;
-import jakarta.persistence.Table;
 @Entity
 @Table(name = "Detalle_Trabajador")
 public class WorkerDetail {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idDetalle_Trabajador;
+    private Integer idDetalle_Trabajador;
 
-    private LocalDateTime Horario_Trabajador;
-    private String Especializacion;
-    private String Ausencias;
+    private LocalDateTime horario_Trabajador;
+    private String especializacion;
+    private String ausencias;
+    private String imagen;
 
-
-    //Relaciones
-    //1:1 con usuario 
     @OneToOne
     @JoinColumn(name = "Usuario_idUsuario")
     private User user;
 
-    //1:1 con corte trabajador 
     @OneToOne
     @JoinColumn(name = "Corte_Trabajador_idCorte_Trabajador")
     private WorkerCut workerCut;
 
-     // Constructor vacío (obligatorio para JPA)
-    public WorkerDetail() {
-    }
+    public WorkerDetail() {}
 
-    // Constructor con todos los atributos incluyendo relaciones
-    public WorkerDetail(int idDetalle_Trabajador, LocalDateTime horario_Trabajador, String especializacion,
-                        String ausencias, User user, WorkerCut workerCut) {
+    public WorkerDetail(Integer idDetalle_Trabajador, LocalDateTime horario_Trabajador, String especializacion,
+                        String ausencias, String imagen, User user, WorkerCut workerCut) {
         this.idDetalle_Trabajador = idDetalle_Trabajador;
-        this.Horario_Trabajador = horario_Trabajador;
-        this.Especializacion = especializacion;
-        this.Ausencias = ausencias;
+        this.horario_Trabajador = horario_Trabajador;
+        this.especializacion = especializacion;
+        this.ausencias = ausencias;
+        this.imagen = imagen;
         this.user = user;
         this.workerCut = workerCut;
     }
 
-    // Constructor solo con atributos básicos (sin relaciones)
-    public WorkerDetail(int idDetalle_Trabajador, LocalDateTime horario_Trabajador, String especializacion,
-                        String ausencias) {
+    public WorkerDetail(Integer idDetalle_Trabajador, LocalDateTime horario_Trabajador, String especializacion,
+                        String ausencias, String imagen) {
         this.idDetalle_Trabajador = idDetalle_Trabajador;
-        this.Horario_Trabajador = horario_Trabajador;
-        this.Especializacion = especializacion;
-        this.Ausencias = ausencias;
+        this.horario_Trabajador = horario_Trabajador;
+        this.especializacion = especializacion;
+        this.ausencias = ausencias;
+        this.imagen = imagen;
     }
 
     // --- Getters y Setters ---
-
-    public int getIdDetalle_Trabajador() {
+    public Integer getIdDetalle_Trabajador() {
         return idDetalle_Trabajador;
     }
 
-    public void setIdDetalle_Trabajador(int idDetalle_Trabajador) {
+    public void setIdDetalle_Trabajador(Integer idDetalle_Trabajador) {
         this.idDetalle_Trabajador = idDetalle_Trabajador;
     }
 
     public LocalDateTime getHorario_Trabajador() {
-        return Horario_Trabajador;
+        return horario_Trabajador;
     }
 
     public void setHorario_Trabajador(LocalDateTime horario_Trabajador) {
-        Horario_Trabajador = horario_Trabajador;
+        this.horario_Trabajador = horario_Trabajador;
     }
 
     public String getEspecializacion() {
-        return Especializacion;
+        return especializacion;
     }
 
     public void setEspecializacion(String especializacion) {
-        Especializacion = especializacion;
+        this.especializacion = especializacion;
     }
 
     public String getAusencias() {
-        return Ausencias;
+        return ausencias;
     }
 
     public void setAusencias(String ausencias) {
-        Ausencias = ausencias;
+        this.ausencias = ausencias;
+    }
+
+    public String getImagen() {
+        return imagen;
+    }
+
+    public void setImagen(String imagen) {
+        this.imagen = imagen;
     }
 
     public User getUser() {
@@ -107,6 +102,4 @@ public class WorkerDetail {
     public void setWorkerCut(WorkerCut workerCut) {
         this.workerCut = workerCut;
     }
-
-
 }

@@ -5,10 +5,8 @@ import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
-import com.david.tfg.entities.Article;
 import com.david.tfg.entities.PredefinedCut;
 import com.david.tfg.interfaces.Crud;
-import com.david.tfg.repos.RepoArticle;
 import com.david.tfg.repos.RepoPredefinedCut;
 
 @Service

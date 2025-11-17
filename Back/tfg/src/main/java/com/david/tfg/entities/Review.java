@@ -15,7 +15,7 @@ import jakarta.persistence.Table;
 public class Review {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idReseña;
+    private int idResenia;
 
     private int Estrellas;
     private LocalDateTime Hora;
@@ -30,27 +30,27 @@ public class Review {
     public Review() {}
 
     // Constructor con relaciones
-    public Review(int idReseña, int estrellas, LocalDateTime hora, User user) {
-        this.idReseña = idReseña;
+    public Review(int idResenia, int estrellas, LocalDateTime hora, User user) {
+        this.idResenia = idResenia;
         this.Estrellas = estrellas;
         this.Hora = hora;
         this.user = user;
     }
 
     // Constructor sin relaciones
-    public Review(int idReseña, int estrellas, LocalDateTime hora) {
-        this.idReseña = idReseña;
+    public Review(int idResenia, int estrellas, LocalDateTime hora) {
+        this.idResenia = idResenia;
         this.Estrellas = estrellas;
         this.Hora = hora;
     }
 
     // Getters y setters
     public int getIdReseña() {
-        return idReseña;
+        return idResenia;
     }
 
-    public void setIdReseña(int idReseña) {
-        this.idReseña = idReseña;
+    public void setIdReseña(int idResenia) {
+        this.idResenia = idResenia;
     }
 
     public int getEstrellas() {

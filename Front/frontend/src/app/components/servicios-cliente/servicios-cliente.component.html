@@ -31,7 +31,6 @@
   </div>
 </nav>
 
-<!-- FORMULARIO WIZARD -->
 <div class="container py-4">
   <h3 class="mb-4">Formulario paso a paso</h3>
 
@@ -40,24 +39,25 @@
     <div class="progress-bar" [style.width.%]="progressWidth"></div>
   </div>
 
+  <!-- Stepper -->
   <div #stepperEl id="stepper" class="bs-stepper">
     <div class="bs-stepper-header" role="tablist">
       <div class="step" data-target="#step-1">
-        <button type="button" class="step-trigger" role="tab">
+        <button type="button" class="step-trigger">
           <span class="bs-stepper-circle">1</span>
           <span class="bs-stepper-label">Elegir corte</span>
         </button>
       </div>
       <div class="line"></div>
       <div class="step" data-target="#step-2">
-        <button type="button" class="step-trigger" role="tab">
+        <button type="button" class="step-trigger">
           <span class="bs-stepper-circle">2</span>
-          <span class="bs-stepper-label">Fecha</span>
+          <span class="bs-stepper-label">Fecha y hora</span>
         </button>
       </div>
       <div class="line"></div>
       <div class="step" data-target="#step-3">
-        <button type="button" class="step-trigger" role="tab">
+        <button type="button" class="step-trigger">
           <span class="bs-stepper-circle">3</span>
           <span class="bs-stepper-label">Trabajador</span>
         </button>
@@ -65,91 +65,88 @@
     </div>
 
     <div class="bs-stepper-content">
-      <!-- 🧩 Paso 1: Seleccionar corte -->
+      <!-- Paso 1: Seleccionar corte y servicios -->
       <div id="step-1" class="content" role="tabpanel">
         <form #form1="ngForm" novalidate>
           <div class="mb-3">
             <label class="form-label fw-bold">Cortes disponibles</label>
-
-            <!-- Contenedor de cards -->
             <div class="row row-cols-1 row-cols-md-3 g-4">
-
-              <!-- Bucle dinámico -->
               <div class="col" *ngFor="let corte of listaPredefCut">
                 <div class="card h-100 shadow-sm"
-                     [ngClass]="{'border-primary border-3': corte === PredefinedCutSeleccionado}">
-
-                  <!-- Imagen (usa un campo real de tu objeto, si lo tiene) -->
-                  <!-- <img [src]="corte.imagen || 'assets/img/placeholder.jpg'"  --><!--TODO METER LA IMAGEN-->
-                       class="card-img-top" 
-                       [alt]="corte.Nombre">
-
+                     [ngClass]="{'border-primary border-3': corte === PredefinedCutSeleccionado}"
+                     (click)="PredefinedCutSeleccionado = corte">
+                  <img [src]="'http://localhost:8081/img/' + corte.imagen" class="card-img-top" [alt]="corte.nombre">
                   <div class="card-body">
-                    <h5 class="card-title">{{ corte.Nombre }}</h5>
-                    <!-- <button type="button"
-                            class="btn btn-outline-primary w-100"
-                            (click)="seleccionarCorte(corte)">
-                      {{ corte === PredefinedCutSeleccionado ? 'Seleccionado' : 'Seleccionar' }}
-                    </button> -->
+                    <h5 class="card-title">{{ corte.nombre }}</h5>
+                    <p class="card-text">Duración: {{ corte.duracion_Base }} min</p>
                   </div>
                 </div>
               </div>
             </div>
-
-            <!-- Si aún no hay cortes cargados -->
-            <div *ngIf="listaPredefCut.length === 0" class="text-center text-muted mt-4">
-              <div class="spinner-border text-primary mb-2" role="status"></div>
-              <p>Cargando cortes disponibles...</p>
-            </div>
           </div>
 
-          <!-- Botón para avanzar -->
+          <!-- Servicios adicionales -->
+          <div class="mb-3">
+            <label class="form-label fw-bold">Servicios adicionales</label>
+            <select class="form-select" multiple [(ngModel)]="ServiceSeleccionado" name="ServiciosSeleccionados" (change)="calcularTotal()">
+              <option *ngFor="let servicio of listaServices" [ngValue]="servicio">
+                {{ servicio.nombre }} - {{ servicio.precio | currency:'EUR':'symbol':'1.0-0' }}
+              </option>
+            </select>
+          </div>
+
+          <div class="mt-2">
+            <strong>Total: {{ totalSeleccionado | currency:'EUR':'symbol':'1.0-0' }}</strong>
+          </div>
+
           <div class="d-flex justify-content-end mt-3">
-            <button type="button" 
-                    class="btn btn-primary" 
-                    (click)="next(form1)"
-                    [disabled]="!PredefinedCutSeleccionado">
+            <button type="button" class="btn btn-primary" (click)="next(form1)" [disabled]="!PredefinedCutSeleccionado">
               Siguiente
             </button>
           </div>
         </form>
       </div>
 
-
-      <!-- Paso 2 -->
+      <!-- Paso 2: Seleccionar fecha y hora -->
       <div id="step-2" class="content" role="tabpanel">
         <form #form2="ngForm" novalidate>
           <div class="mb-3">
-            <label class="form-label">Email</label>
-            <input [(ngModel)]="email" name="email" type="email" required class="form-control" />
+            <label class="form-label">Fecha</label>
+            <input type="date" class="form-control" [(ngModel)]="fechaSeleccionada" name="fecha" (change)="cargarHorasDisponibles()" required>
           </div>
-          <div class="mb-3">
-            <label class="form-label">Contraseña</label>
-            <input name="password" type="password" minlength="6" required class="form-control" />
+
+          <div class="mb-3" *ngIf="listaHorasDisponibles.length > 0">
+            <label class="form-label">Horas disponibles</label>
+            <select class="form-select" [(ngModel)]="horaSeleccionada" name="hora" required>
+              <option *ngFor="let hora of listaHorasDisponibles" [value]="hora">{{ hora }}</option>
+            </select>
           </div>
+
           <div class="d-flex justify-content-between">
             <button type="button" class="btn btn-secondary" (click)="prev()">Anterior</button>
-            <button type="button" class="btn btn-primary" (click)="next(form2)">Siguiente</button>
+            <button type="button" class="btn btn-primary" (click)="next(form2)" [disabled]="!horaSeleccionada">Siguiente</button>
           </div>
         </form>
       </div>
 
-      <!-- Paso 3 -->
+      <!-- Paso 3: Seleccionar trabajador -->
       <div id="step-3" class="content" role="tabpanel">
-        <div>
-          <h5>Confirmar datos</h5>
-          <ul class="list-group mb-3">
-            <li class="list-group-item">Nombre: {{ nombre }}</li>
-            <li class="list-group-item">Apellido: {{ apellido }}</li>
-            <li class="list-group-item">Email: {{ email }}</li>
-          </ul>
-          <div class="d-flex justify-content-between">
-            <button type="button" class="btn btn-secondary" (click)="prev()">Anterior</button>
-            <button type="button" class="btn btn-success" (click)="finish()">Finalizar</button>
-          </div>
+        <div class="mb-3" *ngIf="listaTrabajadoresDisponibles.length > 0">
+          <label class="form-label">Trabajadores disponibles</label>
+          <select class="form-select" [(ngModel)]="trabajadorSeleccionado" name="trabajador" required>
+            <option *ngFor="let t of listaTrabajadoresDisponibles" [ngValue]="t">{{ t.nombre }}</option>
+          </select>
+        </div>
+
+        <div *ngIf="listaTrabajadoresDisponibles.length === 0" class="text-muted">
+          Selecciona fecha y hora para ver trabajadores disponibles.
+        </div>
+
+        <div class="d-flex justify-content-between mt-3">
+          <button type="button" class="btn btn-secondary" (click)="prev()">Anterior</button>
+          <button type="button" class="btn btn-success" (click)="finish()" [disabled]="!trabajadorSeleccionado">Finalizar</button>
         </div>
       </div>
     </div>
   </div>
 </div>
-

@@ -1,7 +1,8 @@
 
 export class PredefinedCut {
     idCorte_Predefinido!: number;
-    Nombre!: String;
-    Precio_Total!: number;
-    Duracion_Base !: Date;
+    nombre!: String;
+    precio_Total!: number;
+    duracion_Base !: Date;
+    imagen !: String;
 }   

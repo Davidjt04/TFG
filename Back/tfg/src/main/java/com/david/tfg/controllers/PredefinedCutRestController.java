@@ -78,6 +78,7 @@ public class PredefinedCutRestController {
             cortePredefinidoActu.setNombre(cortePredefinido.getNombre());
             cortePredefinidoActu.setPrecio_Total(cortePredefinido.getPrecio_Total());
             cortePredefinidoActu.setDuracion_Base(cortePredefinido.getDuracion_Base());
+            cortePredefinidoActu.setImagen(cortePredefinido.getImagen());
 
             //meter los partidos asociados 
             service.save(cortePredefinidoActu);
