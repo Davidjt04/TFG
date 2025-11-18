@@ -3,6 +3,8 @@ package com.david.tfg.entities;
 import java.time.LocalDateTime;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -27,6 +29,7 @@ public class WorkerCut {
     //Relaciones
     //1:1 con detalle trabajador 
     @OneToOne(mappedBy = "workerCut")
+    @JsonIgnore
     private WorkerDetail workerDetail;
     
     //muchos con corte predefinido 

@@ -1,7 +1,16 @@
 package com.david.tfg.entities;
 
 import java.time.LocalDateTime;
-import jakarta.persistence.*;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
+import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
+import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.OneToOne;
+import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "Detalle_Trabajador")
@@ -18,6 +27,7 @@ public class WorkerDetail {
 
     @OneToOne
     @JoinColumn(name = "Usuario_idUsuario")
+    @JsonIgnore
     private User user;
 
     @OneToOne
