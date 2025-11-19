@@ -75,8 +75,9 @@
             <div class="row row-cols-1 row-cols-md-3 g-4">
               <div class="col" *ngFor="let corte of listaPredefCut">
                 <div class="card h-100 shadow-sm"
-                     [ngClass]="{'border-primary border-3': corte === PredefinedCutSeleccionado}"
-                     (click)="PredefinedCutSeleccionado = corte">
+     [ngClass]="{'border-primary border-3': corte === PredefinedCutSeleccionado}"
+     (click)="seleccionarCorte(corte)">
+
                   <img [src]="'http://localhost:8081/img/' + corte.imagen" class="card-img-top" [alt]="corte.nombre">
                   <div class="card-body">
                     <h5 class="card-title">{{ corte.nombre }}</h5>
@@ -140,7 +141,6 @@
         </form>
       </div>
 
-<!-- Paso 3: Seleccionar trabajador -->
 <div id="step-3" class="content" role="tabpanel">
   <div *ngIf="listaTrabajadoresDisponibles.length > 0" class="row row-cols-1 row-cols-md-3 g-4">
     <div class="col" *ngFor="let trabajador of listaTrabajadoresDisponibles">
@@ -153,15 +153,12 @@
         <img
           [src]="'/assets/trabajadores/' + trabajador.imagen"
           class="card-img-top"
-          [alt]="trabajador.usuario_idUsuario?.nombreUsuario || 'Sin nombre'"
+          [alt]="trabajador.nombre"
         >
         <div class="card-body">
-          <h5 class="card-title">{{ trabajador.usuario_idUsuario?.nombreUsuario || 'Sin nombre' }}</h5>
+          <h5 class="card-title">{{ trabajador.nombre }}</h5>
           <p class="card-text mb-0">
-            <strong>Especialidad:</strong> {{ trabajador.especializacion || 'General' }}
-          </p>
-          <p class="card-text">
-            <strong>Experiencia:</strong> {{ trabajador.corte_Trabajador_idCorte_Trabajador?.length || 'N/A' }} años
+            <strong>Especialidad:</strong> {{ trabajador.especializacion }}
           </p>
         </div>
       </div>
@@ -179,6 +176,7 @@
     </button>
   </div>
 </div>
+
 
 
 

@@ -5,6 +5,7 @@ import java.util.List;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import jakarta.persistence.CascadeType;
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
@@ -21,6 +22,7 @@ public class Purse {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idTransacccion_Monedero;
+    @Column(name = "Cantidad_Monedero")
     private Double cantidadMonedero;
 
     //Realciones

@@ -1,18 +1,16 @@
 
-/*DETALLE TRTABAJADOR */
-INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('1', '2025-11-17 14:30:00', 'CORTE BASICO', 'IMAGEN1', '1', '1');
-INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES
-(1, '2025-11-17 09:00:00', 'Cortes clásicos', 'trabajador1.jpg', 1, 1),
-(2, '2025-11-17 10:00:00', 'Cortes modernos', 'trabajador2.jpg', 2, 2),
-(3, '2025-11-17 11:00:00', 'Degradados', 'trabajador3.jpg', 3, 3),
-(4, '2025-11-17 12:00:00', 'Infantiles', 'trabajador4.jpg', 4, 4),
-(5, '2025-11-17 13:00:00', 'Profesionales', 'trabajador5.jpg', 5, 5),
-(6, '2025-11-17 14:00:00', 'Estilo libre', 'trabajador6.jpg', 6, 6),
-(7, '2025-11-17 15:00:00', 'Ejecutivos', 'trabajador7.jpg', 7, 7),
-(8, '2025-11-17 16:00:00', 'Rápidos', 'trabajador8.jpg', 8, 8),
-(9, '2025-11-17 17:00:00', 'Fiesta', 'trabajador9.jpg', 9, 9),
-(10, '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 10, 10);
-
+/*USUARIO*/
+INSERT INTO `tfg`.`usuario` (`idUsuario`, `nombreUsuario`, `contrasenia`, `email`, `rol`) VALUES
+(1, 'usuario1', 'pass123', 'usuario1@email.com', 'CLIENTE'),
+(2, 'usuario2', 'pass123', 'usuario2@email.com', 'CLIENTE'),
+(3, 'usuario3', 'pass123', 'usuario3@email.com', 'CLIENTE'),
+(4, 'usuario4', 'pass123', 'usuario4@email.com', 'CLIENTE'),
+(5, 'usuario5', 'pass123', 'usuario5@email.com', 'CLIENTE'),
+(6, 'usuario6', 'pass123', 'usuario6@email.com', 'ADMIN'),
+(7, 'usuario7', 'pass123', 'usuario7@email.com', 'TRABAJADOR'),
+(8, 'usuario8', 'pass123', 'usuario8@email.com', 'TRABAJADOR'),
+(9, 'usuario9', 'pass123', 'usuario9@email.com', 'TRABAJADOR'),
+(10, 'usuario10', 'pass123', 'usuario10@email.com', 'TRABAJADOR');
 
 /*CORTE PREDEFINIDO*/
 INSERT INTO `tfg`.`corte_predefinido` (`idCorte_Predefinido`, `Nombre`, `Precio_Total`, `Duracion_Base`, `Imagen`) VALUES
@@ -27,19 +25,6 @@ INSERT INTO `tfg`.`corte_predefinido` (`idCorte_Predefinido`, `Nombre`, `Precio_
 (9, 'Corte Fiesta', 28.00, '2025-11-17 00:55:00', 'corte_fiesta.jpg'),
 (10, 'Corte Vintage', 26.00, '2025-11-17 00:50:00', 'corte_vintage.jpg');
 
-/*USUARIO*/
-INSERT INTO `tfg`.`usuario` (`idUsuario`, `nombreUsuario`, `contrasenia`, `email`, `rol`) VALUES
-(1, 'usuario1', 'pass123', 'usuario1@email.com', 'CLIENTE'),
-(2, 'usuario2', 'pass123', 'usuario2@email.com', 'CLIENTE'),
-(3, 'usuario3', 'pass123', 'usuario3@email.com', 'CLIENTE'),
-(4, 'usuario4', 'pass123', 'usuario4@email.com', 'CLIENTE'),
-(5, 'usuario5', 'pass123', 'usuario5@email.com', 'CLIENTE'),
-(6, 'usuario6', 'pass123', 'usuario6@email.com', 'ADMIN'),
-(7, 'usuario7', 'pass123', 'usuario7@email.com', 'TRABAJADOR'),
-(8, 'usuario8', 'pass123', 'usuario8@email.com', 'TRABAJADOR'),
-(9, 'usuario9', 'pass123', 'usuario9@email.com', 'TRABAJADOR'),
-(10, 'usuario10', 'pass123', 'usuario10@email.com', 'TRABAJADOR');
-
 /*CORTE TRABAJADOR*/
 INSERT INTO `tfg`.`corte_trabajador` (`idCorte_Trabajador`, `Duracion`, `Precio`, `Corte_Predefinido_idCorte_Predefinido`) VALUES
 (1, '2000-01-01 00:30:00', 15.00, 1),
@@ -52,6 +37,35 @@ INSERT INTO `tfg`.`corte_trabajador` (`idCorte_Trabajador`, `Duracion`, `Precio`
 (8, '2000-01-01 00:20:00', 10.00, 8),
 (9, '2000-01-01 00:55:00', 28.00, 9),
 (10, '2000-01-01 00:50:00', 26.00, 10);
+
+
+/*DETALLE TRABAJADOR */
+INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('1', '2025-11-17 14:30:00', 'CORTE BASICO', 'IMAGEN1', '1', '1');
+INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES
+(1, '2025-11-17 09:00:00', 'Cortes clásicos', 'trabajador1.jpg', 1, 1),
+(2, '2025-11-17 10:00:00', 'Cortes modernos', 'trabajador2.jpg', 2, 2),
+(3, '2025-11-17 11:00:00', 'Degradados', 'trabajador3.jpg', 3, 3),
+(4, '2025-11-17 12:00:00', 'Infantiles', 'trabajador4.jpg', 4, 4),
+(5, '2025-11-17 13:00:00', 'Profesionales', 'trabajador5.jpg', 5, 5),
+(6, '2025-11-17 14:00:00', 'Estilo libre', 'trabajador6.jpg', 6, 6),
+(7, '2025-11-17 15:00:00', 'Ejecutivos', 'trabajador7.jpg', 7, 7),
+(8, '2025-11-17 16:00:00', 'Rápidos', 'trabajador8.jpg', 8, 8),
+(9, '2025-11-17 17:00:00', 'Fiesta', 'trabajador9.jpg', 9, 9),
+(10, '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 10, 10);
+
+/*HORARIO TRABAJADOR*/
+INSERT INTO `tfg`.`horario_trabajador` (`idHorario_trabajador`, `fecha`, `hora`, `disponible`, `Detalle_Trabajador_idDetalle_Trabajador`) VALUES
+(1, '2025-11-18', '09:00:00', 1, 1),
+(2, '2025-11-18', '10:00:00', 1, 2),
+(3, '2025-11-18', '11:00:00', 1, 3),
+(4, '2025-11-18', '12:00:00', 1, 4),
+(5, '2025-11-18', '13:00:00', 1, 5),
+(6, '2025-11-19', '09:00:00', 1, 6),
+(7, '2025-11-19', '10:30:00', 1, 7),
+(8, '2025-11-19', '11:30:00', 1, 8),
+(9, '2025-11-19', '12:30:00', 1, 9),
+(10, '2025-11-19', '13:30:00', 1, 10);
+
 
 
 

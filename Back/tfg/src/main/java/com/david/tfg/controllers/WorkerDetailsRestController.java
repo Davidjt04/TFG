@@ -81,6 +81,7 @@ public class WorkerDetailsRestController {
             productoActu.setEspecializacion(WorkerDetail.getEspecializacion());
             productoActu.setAusencias(WorkerDetail.getAusencias());
             productoActu.setImagen(WorkerDetail.getImagen());
+            productoActu.setNombre(WorkerDetail.getNombre());
 
             //meter los partidos asociados 
             service.save(productoActu);

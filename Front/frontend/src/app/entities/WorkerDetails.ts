@@ -5,9 +5,9 @@ export class WorkerDetails {
     idDetalle_Trabajador!: number;
     horario_Trabajador!: Date;
     especializacion!: String;
-    ausencias!:any
+    ausencias?:any
     imagen !: String;
+    nombre!:String;
     corte_Trabajador_idCorte_Trabajador!:WorkerCut[];
     usuario_idUsuario!:User;
-
 }   

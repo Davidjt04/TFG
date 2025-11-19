@@ -24,6 +24,7 @@ public class WorkerDetail {
     private String especializacion;
     private String ausencias;
     private String imagen;
+    private String nombre;
 
     @OneToOne
     @JoinColumn(name = "Usuario_idUsuario")
@@ -37,7 +38,7 @@ public class WorkerDetail {
     public WorkerDetail() {}
 
     public WorkerDetail(Integer idDetalle_Trabajador, LocalDateTime horario_Trabajador, String especializacion,
-                        String ausencias, String imagen, User user, WorkerCut workerCut) {
+                        String ausencias, String imagen, User user, WorkerCut workerCut, String nombre) {
         this.idDetalle_Trabajador = idDetalle_Trabajador;
         this.horario_Trabajador = horario_Trabajador;
         this.especializacion = especializacion;
@@ -45,15 +46,17 @@ public class WorkerDetail {
         this.imagen = imagen;
         this.user = user;
         this.workerCut = workerCut;
+        this.nombre = nombre;
     }
 
     public WorkerDetail(Integer idDetalle_Trabajador, LocalDateTime horario_Trabajador, String especializacion,
-                        String ausencias, String imagen) {
+                        String ausencias, String imagen, String nombre) {
         this.idDetalle_Trabajador = idDetalle_Trabajador;
         this.horario_Trabajador = horario_Trabajador;
         this.especializacion = especializacion;
         this.ausencias = ausencias;
         this.imagen = imagen;
+        this.nombre = nombre;
     }
 
     // --- Getters y Setters ---
@@ -111,5 +114,11 @@ public class WorkerDetail {
 
     public void setWorkerCut(WorkerCut workerCut) {
         this.workerCut = workerCut;
+    }
+    public String getNombre() {
+        return nombre;
+    }
+    public void setNombre(String nombre) {
+        this.nombre = nombre;
     }
 }

@@ -2,7 +2,7 @@
 
 --------------
 PRIMER APARTADO DEL FORM WIZARD
-me he quedado en el segundo paso del form wizard SE QUEDA PILLADO EN LA SEGUNDA STEP EL BOTON SIGUIENTE NO FUNCIONA IGUAL ES PORQUE NO SE HA PUESTO HORA Y NO SE PUEDEN CARGAR LOS TRABAJADORES PARA EL SIGUIENTE STEP PREGUNTAR AL CHAT GPT 
+ya termina todo el proceso del formwizard quedari amandarlo a una ventana de confirmacion de pedido es decir la informacion que sale en el alert pero en una ventana encondiciones y ver que esos datos se quedan guardados como un ojeto tipo cita de forma que se guardan
 
 terminar de hacer el controlador y demas de la nueva tabla y empesar a probar ya con Front
 
