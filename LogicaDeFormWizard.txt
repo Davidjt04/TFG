@@ -1,8 +1,10 @@
 --y abajo un apartado con corte personalizado que saque un deplegable con todos los servicios que hay y que por cada vez que elija un servicio se muesatre abajo de forma que se pueda borrar también debería de aparecer el precio del mismo 
 
+
+Perfecto ahora  quiero que enlugar de crear un alert cuando se termine de realizar el fromwizard se guarde un objeto tipo cita en la bd para ello tengo ya un modelo creado que se llama cite pero lo vamoñs a cambiar los atributos de la bd de forma que se adapte a los datos finales que tenemos en nuestro form wizard te voy a pasar todo lo relacionado con este modelo del back hacemos primero los cambios del back y despues ya nos pasamos con el front: 
 --------------
 PRIMER APARTADO DEL FORM WIZARD
-ya termina todo el proceso del formwizard quedari amandarlo a una ventana de confirmacion de pedido es decir la informacion que sale en el alert pero en una ventana encondiciones y ver que esos datos se quedan guardados como un ojeto tipo cita de forma que se guardan
+ya me sale el precio y la info del trabajador me falta cambiar el objeto cita para que guarde los campos resultantes del formulario 
 
 terminar de hacer el controlador y demas de la nueva tabla y empesar a probar ya con Front
 

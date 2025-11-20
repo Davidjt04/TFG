@@ -3,28 +3,28 @@ package com.david.tfg.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.david.tfg.entities.Date;
+import com.david.tfg.entities.FinalCite;
 import com.david.tfg.interfaces.Crud;
 
 import org.springframework.stereotype.Service;
 
-import com.david.tfg.repos.RepoDate;
+import com.david.tfg.repos.RepoFinalCite;
 @Service
-public class DateService implements Crud <Date,Integer>{
+public class FinalCiteService implements Crud <FinalCite,Integer>{
     //inyeccion de dependencias
-    private final RepoDate repo;
+    private final RepoFinalCite repo;
 
-    public DateService(RepoDate repo) {
+    public FinalCiteService(RepoFinalCite repo) {
         this.repo = repo;
     }
 
     @Override
-    public void save(Date entity) {
+    public void save(FinalCite entity) {
         repo.save(entity);
     }
 
     @Override
-    public Optional<Date> findById(Integer id) {
+    public Optional<FinalCite> findById(Integer id) {
         return this.repo.findById(id);
     }
 
@@ -34,7 +34,7 @@ public class DateService implements Crud <Date,Integer>{
     }
 
     @Override
-    public List<Date> findAll() {
+    public List<FinalCite> findAll() {
         return this.repo.findAll();
     }
 
