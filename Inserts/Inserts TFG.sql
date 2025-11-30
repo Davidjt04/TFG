@@ -66,5 +66,19 @@ INSERT INTO `tfg`.`horario_trabajador` (`idHorario_trabajador`, `fecha`, `hora`,
 (9, '2025-11-19', '12:30:00', 1, 9),
 (10, '2025-11-19', '13:30:00', 1, 10);
 
+/*SERVICIOS*/
+INSERT INTO `tfg`.`servicio` (`idServicio`, `Nombre`, `Precio`) VALUES
+(1, 'Corte de Pelo', 12.50),
+(2, 'Manicura Básica', 8.99),
+(3, 'Pedicura Completa', 15.75),
+(4, 'Masaje Relajante', 25.00),
+(5, 'Depilación Facial', 9.50),
+(6, 'Tratamiento Facial', 30.20),
+(7, 'Tinte de Cabello', 22.00),
+(8, 'Lavado y Peinado', 10.00),
+(9, 'Afeitado Profesional', 7.80),
+(10, 'Spa de Manos', 13.40);
+
+
 
 

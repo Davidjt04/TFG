@@ -12,13 +12,11 @@ export class FinalCiteService {
 
   constructor(private http: HttpClient) { }
 
-  
-  // Guardar CortePredef (crear o actualizar según si hay id o no)
-  guardarCiteService(Finalcite: any): Observable<any> {
+  guardarCiteService(Finalcite: FinalCite): Observable<any> {
     return this.http.post(`${this.baseUrl}/guardar`, Finalcite);
   }
 
-  getCiteService(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/lista`);
+  getCiteService(): Observable<FinalCite[]> {
+    return this.http.get<FinalCite[]>(`${this.baseUrl}/lista`);
   }
 }

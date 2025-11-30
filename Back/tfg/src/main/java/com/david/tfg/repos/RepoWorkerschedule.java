@@ -27,3 +27,5 @@ public interface RepoWorkerschedule extends JpaRepository<Workerschedule, Intege
                 @Param("hora") LocalTime hora
         );
 }
+
+

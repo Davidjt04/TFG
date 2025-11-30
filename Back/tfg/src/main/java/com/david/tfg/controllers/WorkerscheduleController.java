@@ -16,6 +16,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.david.tfg.entities.Workerschedule;
+import com.david.tfg.repos.RepoWorkerschedule;
 import com.david.tfg.services.WorkerscheduleService;
 @CrossOrigin(origins = "*")
 @RestController
@@ -23,9 +24,11 @@ import com.david.tfg.services.WorkerscheduleService;
 public class WorkerscheduleController {
     //Inyectamos el servicio
     private final WorkerscheduleService service;
+    private final RepoWorkerschedule repo;
 
-    public WorkerscheduleController (WorkerscheduleService service) {
+    public WorkerscheduleController (WorkerscheduleService service, RepoWorkerschedule repo) {
         this.service = service;
+        this.repo = repo;
     }
 
     //se muestran todos las reseñas
@@ -100,6 +103,80 @@ public class WorkerscheduleController {
     ) {
         return service.getTrabajadoresDisponibles(fecha, hora);
     }
+
+// @GetMapping("/horas-disponibles")
+// public List<Workerschedule> getHorasDisponiblesPorTrabajador(
+//         @RequestParam Integer idTrabajador,
+//         @RequestParam LocalDate fecha) {
+
+//     System.out.println("Backend: recibiendo idTrabajador=" + idTrabajador + ", fecha=" + fecha);
+
+//     List<Workerschedule> todosLosHorarios = service.getHorasDisponibles(fecha);
+
+//     List<Workerschedule> filtrados = todosLosHorarios.stream()
+//             .filter(ws -> ws.getDetalleTrabajador().getIdDetalle_Trabajador().equals(idTrabajador))
+//             .toList();
+
+//     System.out.println("Backend: horarios filtrados encontrados=" + filtrados.size());
+
+//     return filtrados;
+// }
+
+@GetMapping("/horas-disponibles")
+public List<Workerschedule> getHorasDisponiblesPorTrabajador(
+        @RequestParam Integer idTrabajador,
+        @RequestParam LocalDate fecha) {
+
+    // Filtramos usando tu servicio existente
+    List<Workerschedule> todosLosHorarios = service.getHorasDisponibles(fecha);
+    
+    // Solo los del trabajador específico
+    return todosLosHorarios.stream()
+            .filter(ws -> ws.getDetalleTrabajador().getIdDetalle_Trabajador().equals(idTrabajador))
+            .toList();
+}
+
+// @PostMapping("/marcar-no-disponible")
+// public ResponseEntity<Void> marcarHoraNoDisponible(
+//         @RequestParam Integer idTrabajador,
+//         @RequestParam LocalDate fecha,
+//         @RequestParam LocalTime hora) {
+
+//     Optional<Workerschedule> wsOpt = repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(
+//             idTrabajador, fecha, hora
+//     );
+
+//     if(wsOpt.isPresent()) {
+//         Workerschedule ws = wsOpt.get();
+//         ws.setDisponible(false);
+//         repo.save(ws);
+//         return ResponseEntity.ok().build();
+//     }
+
+//     return ResponseEntity.notFound().build();
+// }
+
+@PostMapping("/marcar-no-disponible")
+public ResponseEntity<Void> marcarHoraNoDisponible(
+        @RequestParam Integer idTrabajador,
+        @RequestParam LocalDate fecha,
+        @RequestParam LocalTime hora) {
+
+    Optional<Workerschedule> wsOpt = repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(
+            idTrabajador, fecha, hora
+    );
+
+    if(wsOpt.isPresent()) {
+        Workerschedule ws = wsOpt.get();
+        ws.setDisponible(false);
+        repo.save(ws);
+        return ResponseEntity.ok().build();
+    }
+
+    return ResponseEntity.notFound().build();
+}
+
+
 
 
 }

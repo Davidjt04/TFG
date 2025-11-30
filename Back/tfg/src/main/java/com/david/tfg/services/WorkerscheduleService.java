@@ -11,7 +11,6 @@ import com.david.tfg.entities.Workerschedule;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoWorkerschedule;
 
-import jakarta.transaction.Transactional;
 
 @Service
 public class WorkerscheduleService implements Crud <Workerschedule,Integer>{
@@ -82,8 +81,13 @@ public class WorkerscheduleService implements Crud <Workerschedule,Integer>{
     //     }
     // }
 
-    public List<Workerschedule> getHorasDisponibles(LocalDate fecha) {
-    return repo.findByFechaAndDisponible(fecha, true);
+//     public List<Workerschedule> getHorasDisponibles(LocalDate fecha) {
+//     return repo.findByFechaAndDisponible(fecha, true);
+// }
+
+// Horas disponibles para una fecha
+public List<Workerschedule> getHorasDisponibles(LocalDate fecha) {
+    return repo.findByFechaAndDisponible(fecha,true);
 }
 
     public List<Workerschedule> getTrabajadoresDisponibles(LocalDate fecha, LocalTime hora) {
@@ -91,4 +95,14 @@ public class WorkerscheduleService implements Crud <Workerschedule,Integer>{
     }
 
 
+    // Marcar horario como no disponible cuando se reserve
+public void marcarHoraNoDisponible(Integer idTrabajador, LocalDate fecha, LocalTime hora) {
+    Optional<Workerschedule> ws = repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(idTrabajador, fecha, hora);
+    ws.ifPresent(slot -> {
+        slot.setDisponible(false); // aquí cambia de 1 a 0
+        repo.save(slot);
+    });
 }
+}
+
+
