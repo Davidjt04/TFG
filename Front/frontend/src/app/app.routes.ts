@@ -1,6 +1,7 @@
 import { Routes } from '@angular/router';
 import { ServiciosClienteComponent } from './components/servicios-cliente/servicios-cliente.component';
 import { ImagenesClienteComponent } from './components/imagenes-cliente/imagenes-cliente.component';
+import { LandingPageComponent } from './components/landing-page/landing-page.component';
 
 export const routes: Routes = [
     //ADMIN ROUTES
@@ -14,7 +15,7 @@ export const routes: Routes = [
     // { path: 'TRBAJADOR/calendario', component: HomeComponent },
   
     //CUSTOMER ROUTES
-    { path: '', component: ServiciosClienteComponent },//------
+    // { path: '', component: ServiciosClienteComponent },//------
     { path: 'CLIENTE/cita/servicios', component: ServiciosClienteComponent },//------
     { path: 'CLIENTE/cita/imagenes', component: ImagenesClienteComponent },
     // { path: 'CLIENTE/cita/info', component: HomeComponent },
@@ -22,9 +23,9 @@ export const routes: Routes = [
     // { path: 'CLIENTE/tienda/saldo', component: HomeComponent },
 
 
+    { path: '', component: LandingPageComponent }
     // { path: 'login', component: LoginComponent },
     // { path: 'registro', component: RegisterComponent },
-    // { path: 'dashboard', component: DashboardComponent },
         // { path: 'partido/lista', component: PartidoComponent },
 
 ];
