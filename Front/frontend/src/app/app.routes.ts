@@ -1,13 +1,17 @@
-import { Routes } from '@angular/router';
+// import { Routes } from '@angular/router';
 import { ServiciosClienteComponent } from './components/servicios-cliente/servicios-cliente.component';
 import { ImagenesClienteComponent } from './components/imagenes-cliente/imagenes-cliente.component';
 import { LandingPageComponent } from './components/landing-page/landing-page.component';
+import { ServicioComponent } from './components/servicios-admin/servicios-admin.component';
+import { Routes } from '@angular/router';
+import { InfoAdminComponent } from './components/info-admin/info-admin.component';
+// import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 
 export const routes: Routes = [
     //ADMIN ROUTES
-    // { path: 'ADMIN/cita/servicios', component: HomeComponent },
-    // { path: 'ADMIN/cita/imagenes', component: HomeComponent },
-    // { path: 'ADMIN/cita/info', component: HomeComponent },
+    { path: 'ADMIN/cita/servicios', component: ServicioComponent },
+    // { path: 'ADMIN/cita/imagenes', component: ImagenesAdminComponent },
+    { path: 'ADMIN/cita/info', component: InfoAdminComponent },
     // { path: 'ADMIN/cita/trabajadores', component: HomeComponent },
     // { path: 'ADMIN/tienda', component: HomeComponent },
 
@@ -23,9 +27,44 @@ export const routes: Routes = [
     // { path: 'CLIENTE/tienda/saldo', component: HomeComponent },
 
 
-    { path: '', component: LandingPageComponent }
+    { path: '', component: LandingPageComponent }//TODO CAMBIAR LA URL DE ESTA RUTA PORQUE ES LA PRINCIPAL
     // { path: 'login', component: LoginComponent },
     // { path: 'registro', component: RegisterComponent },
         // { path: 'partido/lista', component: PartidoComponent },
 
 ];
+
+// import { Routes } from '@angular/router';
+
+// export const routes: Routes = [
+//   // ADMIN
+//   {
+//     path: 'ADMIN/cita/servicios',
+//     loadComponent: () =>
+//       import('./components/servicios-admin/servicios-admin.component')
+//         .then(m => m.ServicioComponent)
+//   },
+
+//   // CLIENTE
+//   {
+//     path: 'CLIENTE/cita/servicios',
+//     loadComponent: () =>
+//       import('./components/servicios-cliente/servicios-cliente.component')
+//         .then(m => m.ServiciosClienteComponent)
+//   },
+//   {
+//     path: 'CLIENTE/cita/imagenes',
+//     loadComponent: () =>
+//       import('./components/imagenes-cliente/imagenes-cliente.component')
+//         .then(m => m.ImagenesClienteComponent)
+//   },
+
+//   // LANDING
+//   {
+//     path: '',
+//     loadComponent: () =>
+//       import('./components/landing-page/landing-page.component')
+//         .then(m => m.LandingPageComponent)
+//   }
+// ];
+

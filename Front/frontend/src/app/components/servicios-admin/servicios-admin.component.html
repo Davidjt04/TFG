@@ -1,0 +1,74 @@
+<!-- Tabla para pantallas md+ -->
+<div class="table-responsive d-none d-md-block">
+  <table class="table table-striped table-hover">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Nombre</th>
+        <th>Precio (€)</th>
+        <th><!-- Botones --></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let servicio of listaServicios">
+        <td>{{ servicio.idServicio }}</td>
+        <td>{{ servicio.nombre }}</td>
+        <td>{{ servicio.precio | number:'1.2-2' }}</td>
+        <td>
+          <button type="button" class="btn btn-danger btn-sm me-1" (click)="borrarServicio(servicio.idServicio)">Borrar</button>
+          <button type="button" class="btn btn-warning btn-sm" (click)="editarServicio(servicio.idServicio)">Editar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+
+<!-- Cards para móviles/tablets -->
+<div class="d-block d-md-none">
+  <div *ngFor="let servicio of listaServicios" class="card mb-3 shadow-sm">
+    <div class="card-body p-2">
+      <h6 class="card-title mb-1">{{ servicio.nombre }}</h6>
+      <p class="mb-1"><strong>ID:</strong> {{ servicio.idServicio }}</p>
+      <p class="mb-1"><strong>Precio (€):</strong> {{ servicio.precio | number:'1.2-2' }}</p>
+      <div class="d-flex gap-2">
+        <button type="button" class="btn btn-danger btn-sm flex-fill" (click)="borrarServicio(servicio.idServicio)">Borrar</button>
+        <button type="button" class="btn btn-warning btn-sm flex-fill" (click)="editarServicio(servicio.idServicio)">Editar</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Botón crear -->
+<button type="button" class="btn btn-success mt-3" (click)="crearServicio()">Crear Servicio</button>
+
+<!-- Modal para crear/editar servicio -->
+<div class="modal fade" id="servicioModal" tabindex="-1" aria-labelledby="servicioModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="servicioModalLabel">Servicio</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Cerrar"></button>
+      </div>
+      <div class="modal-body">
+        <form>
+          <!-- Campo nombre -->
+          <div class="mb-3">
+            <label for="nombre" class="form-label">Nombre del servicio</label>
+            <input type="text" [(ngModel)]="servicioSeleccionado.nombre" name="nombre" class="form-control" id="nombre" />
+          </div>
+
+          <!-- Campo precio -->
+          <div class="mb-3">
+            <label for="precio" class="form-label">Precio (€)</label>
+            <input type="number" [(ngModel)]="servicioSeleccionado.precio" name="precio" class="form-control" id="precio" step="0.01" />
+          </div>
+
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+            <button type="button" class="btn btn-primary" (click)="guardarServicio()">Guardar</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>

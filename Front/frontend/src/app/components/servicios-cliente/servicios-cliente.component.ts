@@ -15,6 +15,7 @@ import { FinalCite } from '../../entities/FinalCite';
 @Component({
   selector: 'app-servicios-cliente',
   imports: [RouterLink, CommonModule, FormsModule],
+  standalone: true,
   templateUrl: './servicios-cliente.component.html',
   styleUrls: ['./servicios-cliente.component.css']
 })

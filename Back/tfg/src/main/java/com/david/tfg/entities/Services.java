@@ -2,6 +2,8 @@ package com.david.tfg.entities;
 
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -16,12 +18,13 @@ public class Services {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idServicio;
 
-    private String Nombre;
-    private Double Precio;
+    private String nombre ;
+    private Double precio;
 
     //Relaciones
     //N:M con corte predefinido
     @ManyToMany(mappedBy = "services")
+    @JsonIgnore
     private List<WorkerCut> workerCuts;
 
     // Constructor vacío
@@ -30,16 +33,16 @@ public class Services {
     // Constructor con todas las relaciones
     public Services(int idServicio, String nombre, Double precio, List<WorkerCut> workerCuts) {
         this.idServicio = idServicio;
-        this.Nombre = nombre;
-        this.Precio = precio;
+        this.nombre = nombre;
+        this.precio = precio;
         this.workerCuts = workerCuts;
     }
 
     // Constructor sin relaciones
     public Services(int idServicio, String nombre, Double precio) {
         this.idServicio = idServicio;
-        this.Nombre = nombre;
-        this.Precio = precio;
+        this.nombre = nombre;
+        this.precio = precio;
     }
 
     // Getters y setters
@@ -52,19 +55,19 @@ public class Services {
     }
 
     public String getNombre() {
-        return Nombre;
+        return nombre;
     }
 
     public void setNombre(String nombre) {
-        Nombre = nombre;
+        this.nombre = nombre;
     }
 
     public Double getPrecio() {
-        return Precio;
+        return precio;
     }
 
     public void setPrecio(Double precio) {
-        Precio = precio;
+        this.precio = precio;
     }
 
     public List<WorkerCut> getWorkerCuts() {

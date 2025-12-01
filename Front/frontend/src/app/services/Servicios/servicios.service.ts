@@ -1,39 +1,40 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { Service } from '../../entities/Service';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ServiciosService {
 
-  constructor(private http: HttpClient) {}
   private baseUrl = 'http://localhost:8081/service';
-  
+
+  constructor(private http: HttpClient) {}
 
   // Obtener lista de servicios
-  getServicios(): Observable<any> {
-    return this.http.get(`${this.baseUrl}/lista`);
+  getServicios(): Observable<Service[]> {
+    return this.http.get<Service[]>(`${this.baseUrl}/lista`);
   }
 
-  // Obtener servicios por ID (para edición)
-  editarServicios(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/editar/${id}`); 
+  // Obtener servicio por ID (para edición)
+  editarServicios(id: number): Observable<Service> {
+    return this.http.get<Service>(`${this.baseUrl}/editar/${id}`); 
   }
 
-  // Crear nuevo servicios (opcional, solo si quieres iniciar con objeto vacío desde el backend)
-  crearServicios(): Observable<any> {
-    return this.http.post(`${this.baseUrl}/crear`, {});
+  // Crear nuevo servicio (inicia con objeto vacío desde el backend)
+  crearServicios(): Observable<Service> {
+    return this.http.post<Service>(`${this.baseUrl}/crear`, {});
   }
 
-  // Guardar servicios (crear o actualizar según si hay id o no)
-  guardarServicios(arbitro: any): Observable<any> {
-    return this.http.post(`${this.baseUrl}/guardar`, arbitro);
+  // Guardar servicio (crear o actualizar)
+  guardarServicios(servicio: Service): Observable<Service> {
+    return this.http.post<Service>(`${this.baseUrl}/guardar`, servicio);
   }
 
-  // Borrar servicios
-  borrarServicios(id: number): Observable<any> {
-    return this.http.get(`${this.baseUrl}/borrar/${id}`);
+  // Borrar servicio
+  borrarServicios(id: number): Observable<void> {
+    return this.http.delete<void>(`${this.baseUrl}/borrar/${id}`);
   }
 
 }

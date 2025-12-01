@@ -47,7 +47,7 @@ public class SecurityConfig {
             // Autorización de rutas
             .authorizeHttpRequests(auth -> auth
                 // Rutas públicas
-                .requestMatchers("/**","/img/**").permitAll()
+                .requestMatchers("/**","/img/**","/service/**").permitAll()
 
                 // .requestMatchers("/auth/**").permitAll()
                 // Endpoints accesibles solo por ADMIN
