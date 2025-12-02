@@ -26,7 +26,7 @@ public class WorkerCut {
     private LocalDateTime Duracion;
     private Double Precio;
     
-    //Relaciones
+       //Relaciones
     //1:1 con detalle trabajador 
     @OneToOne(mappedBy = "workerCut")
     @JsonIgnore

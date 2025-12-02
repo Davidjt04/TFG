@@ -28,7 +28,8 @@ public class User {
    
     //Relaciones
     //1:1 con monedero 
-   @OneToOne(mappedBy = "user")
+   //1:1 con monedero 
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Purse purse;
 
     //pocos con pedido 
@@ -37,7 +38,7 @@ public class User {
     private List<Order> orders;
 
     //1:1 con carrito
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", cascade = CascadeType.ALL, orphanRemoval = true)
     private Cart cart;
 
     //1:1 con detalle trabajador

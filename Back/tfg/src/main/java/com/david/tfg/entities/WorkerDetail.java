@@ -4,6 +4,7 @@ import java.time.LocalDateTime;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -26,12 +27,12 @@ public class WorkerDetail {
     private String imagen;
     private String nombre;
 
-    @OneToOne
+  @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "Usuario_idUsuario")
     @JsonIgnore
     private User user;
 
-    @OneToOne
+    @OneToOne(cascade = CascadeType.ALL, orphanRemoval = true)
     @JoinColumn(name = "Corte_Trabajador_idCorte_Trabajador")
     private WorkerCut workerCut;
 

@@ -8,6 +8,8 @@ export class WorkerDetails {
   ausencias?: any;
   imagen!: string;
   nombre!: string;
-  corte_Trabajador_idCorte_Trabajador!: WorkerCut[];
+  // corte_Trabajador_idCorte_Trabajador!: WorkerCut[];
   usuario_idUsuario!: User;
+    workerCut?: WorkerCut;  // ← corregido
+
 }

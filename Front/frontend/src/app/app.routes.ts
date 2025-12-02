@@ -7,6 +7,7 @@ import { Routes } from '@angular/router';
 import { InfoAdminComponent } from './components/info-admin/info-admin.component';
 import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 import { ReseniaComponent } from './components/resenia/resenia.component';
+import { TrabajadoresAdminComponent } from './components/trabajadores-admin/trabajadores-admin.component';
 // import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 
 export const routes: Routes = [
@@ -14,7 +15,7 @@ export const routes: Routes = [
     { path: 'ADMIN/cita/servicios', component: ServicioComponent },
     { path: 'ADMIN/cita/imagenes', component: ImagenesAdminComponent },
     { path: 'ADMIN/cita/info', component: InfoAdminComponent },
-    // { path: 'ADMIN/cita/trabajadores', component: HomeComponent },
+    { path: 'ADMIN/cita/trabajadores', component: TrabajadoresAdminComponent },
     // { path: 'ADMIN/tienda', component: HomeComponent },
 
     //WORKER ROUTES
