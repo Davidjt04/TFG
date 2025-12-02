@@ -5,5 +5,5 @@ export class Review {
   estrellas!: number;
   hora!: Date;
   resenia!: string;
-  usuario_idUsuario!: User;
+  user!: User;
 }

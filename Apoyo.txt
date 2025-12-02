@@ -4,7 +4,7 @@ libreria jackson o Gson para pasar el string de workerDetail a json
 
 ---------------------------------
 POR DONDE CONTINUAR
-Crear páginas: Login, Registro, Dashboard, etc.
+EL COMPONENTE REVIEW NO FUNCIONABA SIN LA SEGURIDAD MIRAR CUANDO ESTÉ APLICADA
 
 Conectarlas a los endpoints del backend.
 

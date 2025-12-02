@@ -3,15 +3,57 @@
   <!-- Formulario para nueva reseña -->
   <div class="mb-4 p-3 border rounded shadow-sm">
     <h4>Deja tu reseña</h4>
+
+    <!-- Estrellas -->
     <div class="mb-2">
       <label>Estrellas (0-5): </label>
-      <input type="number" [(ngModel)]="nuevaReview.estrellas" min="0" max="5" class="form-control" />
+      <input type="number"
+             [(ngModel)]="nuevaReview.estrellas"
+             min="0"
+             max="5"
+             class="form-control"
+             #estrellasInput="ngModel" />
+
+      <!-- Mensaje de error -->
+      <div *ngIf="estrellasInput.invalid && estrellasInput.touched"
+           class="text-danger small mt-1">
+        El número de estrellas debe estar entre 0 y 5.
+      </div>
+
+      <div *ngIf="nuevaReview.estrellas > 5"
+           class="text-danger small mt-1">
+        ❌ No puedes poner más de 5 estrellas.
+      </div>
+
+      <div *ngIf="nuevaReview.estrellas < 0"
+           class="text-danger small mt-1">
+        ❌ No puedes poner menos de 0 estrellas.
+      </div>
     </div>
+
+    <!-- Reseña -->
     <div class="mb-2">
       <label>Reseña:</label>
-      <textarea [(ngModel)]="nuevaReview.resenia" rows="3" class="form-control"></textarea>
+      <textarea [(ngModel)]="nuevaReview.resenia"
+                rows="3"
+                class="form-control"
+                #reseniaInput="ngModel"
+                required></textarea>
+
+      <!-- Error reseña vacía -->
+      <div *ngIf="reseniaInput.invalid && reseniaInput.touched"
+           class="text-danger small mt-1">
+        La reseña no puede estar vacía.
+      </div>
     </div>
-    <button class="btn btn-primary" (click)="guardarReview()">Enviar</button>
+
+    <button class="btn btn-primary"
+            (click)="guardarReview()"
+            [disabled]="nuevaReview.estrellas < 0 ||
+                        nuevaReview.estrellas > 5 ||
+                        !nuevaReview.resenia">
+      Enviar
+    </button>
   </div>
 
   <!-- Listado de reseñas -->
@@ -31,7 +73,6 @@
         <i class="bi" [ngClass]="llena ? 'bi-star-fill text-warning' : 'bi-star text-muted'"></i>
       </ng-container>
 
-      <!-- Fecha y número de estrellas en negrita -->
       <small class="text-muted ms-2">
         {{ review.hora | date:'short' }} - <strong>{{ review.estrellas }}/5</strong>
       </small>
