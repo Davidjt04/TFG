@@ -1,0 +1,58 @@
+<div class="container mt-4">
+  <div class="row">
+
+    <div class="col-md-4 mb-4" *ngFor="let corte of cortes">
+      <div class="card shadow">
+
+        <img [src]="getImageUrl(corte.imagen)" class="card-img-top" alt="Imagen corte">
+
+        <div class="card-body">
+          <h5 class="card-title">{{ corte.nombre }}</h5>
+          <p class="card-text">
+          </p>
+
+          <button class="btn btn-primary" (click)="abrirEditor(corte)">
+            Cambiar imagen
+          </button>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- MODAL / EDITOR DE IMAGEN -->
+<div class="modal-backdrop" *ngIf="corteSeleccionado" style="background: rgba(0,0,0,0.5);"></div>
+
+<div class="modal" tabindex="-1" role="dialog" *ngIf="corteSeleccionado"
+     style="display: block; background: rgba(0,0,0,0.2);">
+  <div class="modal-dialog">
+    <div class="modal-content">
+
+      <div class="modal-header">
+        <h5 class="modal-title">
+          Cambiar imagen a "{{ corteSeleccionado?.nombre }}"
+        </h5>
+        <button class="btn-close" (click)="cancelarEdicion()"></button>
+      </div>
+
+      <div class="modal-body">
+        <label>Nueva imagen (nombre del archivo dentro de /img)</label>
+        <input type="text" class="form-control" [(ngModel)]="nuevaImagen">
+        <p class="mt-2">Vista previa:</p>
+        <img [src]="getImageUrl(nuevaImagen)" class="img-fluid rounded">
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="cancelarEdicion()">
+          Cancelar
+        </button>
+        <button class="btn btn-success" (click)="guardarCambios()">
+          Guardar cambios
+        </button>
+      </div>
+
+    </div>
+  </div>
+</div>

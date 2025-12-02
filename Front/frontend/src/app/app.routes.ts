@@ -5,12 +5,14 @@ import { LandingPageComponent } from './components/landing-page/landing-page.com
 import { ServicioComponent } from './components/servicios-admin/servicios-admin.component';
 import { Routes } from '@angular/router';
 import { InfoAdminComponent } from './components/info-admin/info-admin.component';
+import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
+import { ReseniaComponent } from './components/resenia/resenia.component';
 // import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 
 export const routes: Routes = [
     //ADMIN ROUTES
     { path: 'ADMIN/cita/servicios', component: ServicioComponent },
-    // { path: 'ADMIN/cita/imagenes', component: ImagenesAdminComponent },
+    { path: 'ADMIN/cita/imagenes', component: ImagenesAdminComponent },
     { path: 'ADMIN/cita/info', component: InfoAdminComponent },
     // { path: 'ADMIN/cita/trabajadores', component: HomeComponent },
     // { path: 'ADMIN/tienda', component: HomeComponent },
@@ -27,10 +29,12 @@ export const routes: Routes = [
     // { path: 'CLIENTE/tienda/saldo', component: HomeComponent },
 
 
-    { path: '', component: LandingPageComponent }//TODO CAMBIAR LA URL DE ESTA RUTA PORQUE ES LA PRINCIPAL
+    //RUTAS GENERALES
+    { path: '', component: LandingPageComponent },//TODO CAMBIAR LA URL DE ESTA RUTA PORQUE ES LA PRINCIPAL
     // { path: 'login', component: LoginComponent },
     // { path: 'registro', component: RegisterComponent },
         // { path: 'partido/lista', component: PartidoComponent },
+    { path: 'review', component: ReseniaComponent }
 
 ];
 

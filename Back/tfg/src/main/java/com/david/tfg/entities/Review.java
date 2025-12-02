@@ -23,35 +23,48 @@ public class Review {
     //Relaciones
     //Muchos con Usuario 
     @ManyToOne
-    @JoinColumn(name = "Resenia")
+    @JoinColumn(name = "Usuario_idUsuario")
     private User user;
+    private String Resenia; 
+
 
      // Constructor vacío
     public Review() {}
 
     // Constructor con relaciones
-    public Review(int idResenia, int estrellas, LocalDateTime hora, User user) {
+    public Review(int idResenia, int estrellas, LocalDateTime hora, User user, String Resenia) {
         this.idResenia = idResenia;
         this.Estrellas = estrellas;
         this.Hora = hora;
         this.user = user;
+        this.Resenia = Resenia;
     }
 
     // Constructor sin relaciones
-    public Review(int idResenia, int estrellas, LocalDateTime hora) {
+    public Review(int idResenia, int estrellas, LocalDateTime hora, String Resenia) {
         this.idResenia = idResenia;
         this.Estrellas = estrellas;
         this.Hora = hora;
+        this.Resenia = Resenia;
     }
 
     // Getters y setters
-    public int getIdReseña() {
+    public int getIdResenia() {
         return idResenia;
     }
 
-    public void setIdReseña(int idResenia) {
+    public void setIdResenia(int idResenia) {
         this.idResenia = idResenia;
     }
+
+        public String getResenia() {
+        return Resenia;
+    }
+
+    public void setResenia(String Resenia) {
+        this.Resenia = Resenia;
+    }
+
 
     public int getEstrellas() {
         return Estrellas;

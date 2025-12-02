@@ -1,0 +1,43 @@
+<div class="container my-5">
+
+  <!-- Formulario para nueva reseña -->
+  <div class="mb-4 p-3 border rounded shadow-sm">
+    <h4>Deja tu reseña</h4>
+    <div class="mb-2">
+      <label>Estrellas (0-5): </label>
+      <input type="number" [(ngModel)]="nuevaReview.estrellas" min="0" max="5" class="form-control" />
+    </div>
+    <div class="mb-2">
+      <label>Reseña:</label>
+      <textarea [(ngModel)]="nuevaReview.resenia" rows="3" class="form-control"></textarea>
+    </div>
+    <button class="btn btn-primary" (click)="guardarReview()">Enviar</button>
+  </div>
+
+  <!-- Listado de reseñas -->
+  <div *ngFor="let review of reviews" 
+       class="mb-3 p-3 border rounded shadow-sm"
+       [ngClass]="{
+         'bg-light': review.estrellas === 5,
+         'bg-white': review.estrellas === 4,
+         'bg-secondary bg-opacity-10': review.estrellas === 3,
+         'bg-secondary bg-opacity-25': review.estrellas === 2,
+         'bg-secondary bg-opacity-50': review.estrellas <= 1
+       }">
+    
+    <div class="d-flex align-items-center mb-2">
+      <!-- Mostrar estrellas -->
+      <ng-container *ngFor="let llena of obtenerEstrellas(review.estrellas)">
+        <i class="bi" [ngClass]="llena ? 'bi-star-fill text-warning' : 'bi-star text-muted'"></i>
+      </ng-container>
+
+      <!-- Fecha y número de estrellas en negrita -->
+      <small class="text-muted ms-2">
+        {{ review.hora | date:'short' }} - <strong>{{ review.estrellas }}/5</strong>
+      </small>
+    </div>
+
+    <p class="fst-italic mb-0">{{ review.resenia }}</p>
+  </div>
+
+</div>

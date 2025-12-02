@@ -3,15 +3,16 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLink } from '@angular/router';
 import { PredefinedCut } from '../../entities/PredefinedCut';
 import { ServicioCortePredefService } from '../../services/PredefinedCut/servicio-corte-predef.service';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-imagenes-cliente',
   standalone: true,
-  imports: [CommonModule, RouterLink],
-  templateUrl: './imagenes-cliente.component.html',
-  styleUrl: './imagenes-cliente.component.css'
+  imports: [CommonModule, RouterLink,FormsModule],
+  templateUrl: './imagenes-admin.component.html',
+  styleUrl: './imagenes-admin.component.css'
 })
-export class ImagenesClienteComponent implements OnInit {
+export class ImagenesAdminComponent implements OnInit {
 
   cortes: PredefinedCut[] = [];
 
