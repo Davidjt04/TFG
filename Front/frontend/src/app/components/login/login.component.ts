@@ -28,7 +28,7 @@ export class LoginComponent {
         this.authService.setRol(res.rol);
 
         // Redirigimos a landing page
-        this.router.navigate(['/']);
+        this.router.navigate(['/landing']);
       },
       error: (err) => {
         // Mostrar mensaje de error

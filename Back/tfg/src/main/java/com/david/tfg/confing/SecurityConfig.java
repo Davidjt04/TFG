@@ -105,20 +105,20 @@ public class SecurityConfig {
 
             // Reglas de autorización
             .authorizeHttpRequests(auth -> auth
-                // Permite OPTIONS para preflight (clave para CORS)
-                .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            // Rutas públicas
+            .requestMatchers("/", "/login", "/registro", "/review").permitAll()
+            .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
+            .requestMatchers("/auth/**").permitAll()
 
-                // Endpoints públicos
-                .requestMatchers("/auth/**").permitAll()
+            // Rutas por rol
+            .requestMatchers("/ADMIN/**").hasRole("ADMIN")
+            .requestMatchers("/CLIENTE/**").hasAnyRole("CLIENTE", "ADMIN")
+            .requestMatchers("/TRABAJADOR/**").hasAnyRole("TRABAJADOR", "ADMIN")
 
-                // Endpoints por roles (descomentar cuando los necesites)
-                // .requestMatchers("/ADMIN/**").hasRole("ADMIN")
-                // .requestMatchers("/CLIENTE/**").hasAnyRole("CLIENTE", "ADMIN")
-                // .requestMatchers("/TRABAJADOR/**").hasAnyRole("TRABAJADOR", "ADMIN")
+            // Todo lo demás requiere autenticación
+            .anyRequest().authenticated()
+        )
 
-                // Todo lo demás requiere token
-                .anyRequest().authenticated()
-            )
 
             // Stateless: no se usan sesiones
             .sessionManagement(session ->

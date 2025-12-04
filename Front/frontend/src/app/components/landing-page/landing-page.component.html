@@ -1,7 +1,6 @@
 <body class="d-flex flex-column min-vh-100">
 
-  <!-- Navbar -->
-  <nav class="navbar bg-body-tertiary">
+  <!-- <nav class="navbar bg-body-tertiary">
     <div class="container">
       <a class="navbar-brand" href="#">
         <img src="/docs/5.3/assets/brand/bootstrap-logo.svg" alt="Bootstrap" width="30" height="24">
@@ -15,17 +14,27 @@
         <strong>MI CUENTA</strong>
       </p>
     </div>
-  </nav>
+  </nav> -->
 
 
   <!-- Contenido principal -->
   <main class="flex-fill">
     <div class="container py-4 text-center">
 
-      <div class="mb-3">
-        <button type="button" class="btn btn-primary me-2" [routerLink]="'CLIENTE/cita/servicios'">PEDIR CITA</button>
-        <button type="button" class="btn btn-primary" [routerLink]="'/CLIENTE/cita/servicios'">TIENDA ONLINE (EN OBRAS)</button>
-      </div>
+     <div class="mb-3">
+  <button type="button"
+          class="btn btn-primary me-2"
+          (click)="irAPedirCita()">
+    PEDIR CITA
+  </button>
+
+  <button type="button"
+          class="btn btn-primary"
+          (click)="irATienda()">
+    TIENDA ONLINE (EN OBRAS)
+  </button>
+</div>
+
 
       <div class="mb-4">
         <h5>QUIENES SOMOS</h5>

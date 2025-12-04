@@ -1,0 +1,78 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark shadow-sm">
+  <div class="container-fluid">
+
+    <!-- LOGO / TÍTULO -->
+    <a class="navbar-brand fw-bold" routerLink="/ADMIN/cita/servicios">
+      Panel Admin
+    </a>
+
+    <!-- BOTÓN RESPONSIVE -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#adminNavbar"
+      aria-controls="adminNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- CONTENIDO DEL NAV -->
+    <div class="collapse navbar-collapse" id="adminNavbar">
+
+      <!-- LINKS -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/ADMIN/cita/servicios"
+             routerLinkActive="active">
+            Servicios
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/ADMIN/cita/imagenes"
+             routerLinkActive="active">
+            Imágenes
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/ADMIN/cita/info"
+             routerLinkActive="active">
+            Info
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/ADMIN/cita/trabajadores"
+             routerLinkActive="active">
+            Trabajadores
+          </a>
+        </li>
+
+        <!-- RUTA PÚBLICA -->
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/landing"
+             routerLinkActive="active">
+            Inicio
+          </a>
+        </li>
+      </ul>
+
+      <!-- ZONA DERECHA -->
+      <div class="d-flex align-items-center gap-2">
+        <span class="text-white me-2 small fw-semibold">
+          ADMIN
+        </span>
+      </div>
+
+    </div>
+  </div>
+</nav>

@@ -14,7 +14,9 @@
 <!-- NAVEGADOR  PARA EL ADMIN -->
 
 <!-- NAVEGADOR  PARA EL TRABAJADOR -->
-
+<app-admin-nav *ngIf="authService.esAdmin()"></app-admin-nav>
+<app-cliente-nav *ngIf="authService.esCliente()"></app-cliente-nav>
+<app-trabajador-nav *ngIf="authService.esTrabajador()"></app-trabajador-nav>
 
 <!-- Contenido principal -->
 <router-outlet></router-outlet>

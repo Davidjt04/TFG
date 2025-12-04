@@ -1,0 +1,62 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary shadow-sm">
+  <div class="container-fluid">
+
+    <!-- LOGO -->
+    <a class="navbar-brand fw-bold" routerLink="/CLIENTE/cita/servicios">
+      Panel Cliente
+    </a>
+
+    <!-- BOTÓN RESPONSIVE -->
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#clienteNavbar"
+      aria-controls="clienteNavbar"
+      aria-expanded="false"
+      aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- CONTENIDO -->
+    <div class="collapse navbar-collapse" id="clienteNavbar">
+
+      <!-- LINKS -->
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/CLIENTE/cita/servicios"
+             routerLinkActive="active">
+            Servicios
+          </a>
+        </li>
+
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/CLIENTE/cita/imagenes"
+             routerLinkActive="active">
+            Imágenes
+          </a>
+        </li>
+
+        <!-- RUTA PÚBLICA -->
+        <li class="nav-item">
+          <a class="nav-link"
+             routerLink="/landing"
+             routerLinkActive="active">
+            Inicio
+          </a>
+        </li>
+      </ul>
+
+      <!-- DERECHA -->
+      <div class="d-flex align-items-center gap-2">
+        <span class="text-white me-2 small fw-semibold">
+          CLIENTE
+        </span>
+      </div>
+
+    </div>
+  </div>
+</nav>
