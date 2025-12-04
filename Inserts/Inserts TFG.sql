@@ -79,6 +79,20 @@ INSERT INTO `tfg`.`servicio` (`idServicio`, `Nombre`, `Precio`) VALUES
 (9, 'Afeitado Profesional', 7.80),
 (10, 'Spa de Manos', 13.40);
 
+/*RESENIA*/
+INSERT INTO `tfg`.`resenia` (`idResenia`, `Estrellas`, `Hora`, `Usuario_idUsuario`, `Resenia`) VALUES
+(1, 5, '2025-11-01 14:30:00', 1, '¡Excelente servicio! Mi corte quedó perfecto.'),
+(2, 4, '2025-11-02 10:15:00', 2, 'Buen trato y profesionalidad, volveré seguro.'),
+(3, 3, '2025-11-03 16:00:00', 3, 'Está bien, pero tardaron un poco en atenderme.'),
+(4, 2, '2025-11-04 09:45:00', 4, 'No me gustó mucho el resultado, esperaba algo mejor.'),
+(5, 1, '2025-11-05 11:20:00', 5, 'Muy mala experiencia, no lo recomiendo.'),
+(6, 5, '2025-11-06 15:00:00', 6, 'Servicio excelente, estilista muy profesional.'),
+(7, 4, '2025-11-07 13:10:00', 7, 'Me gustó el corte, aunque un poco caro.'),
+(8, 3, '2025-11-08 17:30:00', 8, 'Normal, nada destacable.'),
+(9, 5, '2025-11-09 12:00:00', 9, '¡Fantástico! Muy recomendable.'),
+(10, 4, '2025-11-10 18:45:00', 10, 'Buen servicio y buen ambiente, volveré.');
+
+
 
 
 

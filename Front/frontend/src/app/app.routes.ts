@@ -8,6 +8,8 @@ import { InfoAdminComponent } from './components/info-admin/info-admin.component
 import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 import { ReseniaComponent } from './components/resenia/resenia.component';
 import { TrabajadoresAdminComponent } from './components/trabajadores-admin/trabajadores-admin.component';
+import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
 // import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 
 export const routes: Routes = [
@@ -32,8 +34,8 @@ export const routes: Routes = [
 
     //RUTAS GENERALES
     { path: '', component: LandingPageComponent },//TODO CAMBIAR LA URL DE ESTA RUTA PORQUE ES LA PRINCIPAL
-    // { path: 'login', component: LoginComponent },
-    // { path: 'registro', component: RegisterComponent },
+    { path: 'login', component: LoginComponent },
+    { path: 'registro', component: RegisterComponent },
         // { path: 'partido/lista', component: PartidoComponent },
     { path: 'review', component: ReseniaComponent }
 

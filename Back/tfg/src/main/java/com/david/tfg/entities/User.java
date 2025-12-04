@@ -42,7 +42,7 @@ public class User {
     private Cart cart;
 
     //1:1 con detalle trabajador
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user", orphanRemoval = true)
     private WorkerDetail workerDetail;
 
     //pocos con reseña 

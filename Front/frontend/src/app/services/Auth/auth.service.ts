@@ -1,45 +1,98 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-// import { User } from '../../models/user.model';
+import { HttpClient } from '@angular/common/http';
+
+export interface RegisterRequest {
+  nombreUsuario: string;
+  contrasenia: string;
+  email: string;
+  rol: string;
+}
+
+export interface LoginRequest {
+  nombreUsuario: string;
+  contrasenia: string;
+}
+
+export interface LoginResponse {
+  token: string;
+  nombreUsuario: string;
+  rol: string;
+}
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  // BehaviorSubject para manejar el rol del usuario dinámicamente
-  private rolUsuarioSubject: BehaviorSubject<string | null> = new BehaviorSubject<string | null>(null);
 
-  constructor() {
-    // Inicializamos desde localStorage si hay un rol guardado
+  private apiUrl = 'http://localhost:8081/auth';
+
+  // ✅ BehaviorSubject para manejar el rol dinámicamente
+  private rolUsuarioSubject: BehaviorSubject<string | null> =
+    new BehaviorSubject<string | null>(null);
+
+  constructor(private http: HttpClient) {
     const rol = localStorage.getItem('rol');
     if (rol) {
       this.rolUsuarioSubject.next(rol);
     }
   }
 
-  // Observable para suscribirse al rol
+  // ============================
+  // ✅ REGISTRO
+  // ============================
+  register(data: RegisterRequest): Observable<any> {
+    return this.http.post(`${this.apiUrl}/register`, data, {
+      responseType: 'text'
+    });
+  }
+
+  // ============================
+  // ✅ LOGIN
+  // ============================
+  login(data: LoginRequest): Observable<LoginResponse> {
+    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, data);
+  }
+
+  // ============================
+  // ✅ TOKEN
+  // ============================
+  setToken(token: string) {
+    localStorage.setItem('token', token);
+  }
+
+  getToken(): string | null {
+    return localStorage.getItem('token');
+  }
+
+  clearToken() {
+    localStorage.removeItem('token');
+  }
+
+  // ============================
+  // ✅ ROL (TU LÓGICA ORIGINAL)
+  // ============================
   getRolObservable(): Observable<string | null> {
     return this.rolUsuarioSubject.asObservable();
   }
 
-  // Obtener rol actual (síncrono)
   getRol(): string | null {
     return this.rolUsuarioSubject.value;
   }
 
-  // Guardar rol del usuario
   setRol(rol: string) {
     this.rolUsuarioSubject.next(rol);
     localStorage.setItem('rol', rol);
   }
 
-  // Limpiar rol (logout)
   clearRol() {
     this.rolUsuarioSubject.next(null);
     localStorage.removeItem('rol');
   }
 
-  // Métodos para los roles
+  // ============================
+  // ✅ MÉTODOS DE ROL
+  // ============================
   esAdmin(): boolean {
     return this.getRol() === 'ADMIN';
   }
@@ -50,5 +103,13 @@ export class AuthService {
 
   esTrabajador(): boolean {
     return this.getRol() === 'TRABAJADOR';
+  }
+
+  // ============================
+  // ✅ LOGOUT COMPLETO
+  // ============================
+  logout() {
+    this.clearRol();
+    this.clearToken();
   }
 }

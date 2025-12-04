@@ -29,7 +29,7 @@ export class WorkerDetailsService {
   }
 
   borrarTrabajador(id: number): Observable<void> {
-    return this.http.get<void>(`${this.baseUrl}/borrar/${id}`);
+    return this.http.delete<void>(`${this.baseUrl}/borrar/${id}`);
   }
 
 }

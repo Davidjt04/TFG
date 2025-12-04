@@ -1,0 +1,40 @@
+<div class="container py-5">
+  <div class="row justify-content-center">
+    <div class="col-md-5">
+      <div class="card shadow-sm">
+        <div class="card-body">
+          <h3 class="card-title text-center mb-4">Iniciar Sesión</h3>
+
+          <form (ngSubmit)="login()">
+            <!-- Nombre de usuario -->
+            <div class="mb-3">
+              <label for="nombreUsuario" class="form-label">Usuario</label>
+              <input type="text" id="nombreUsuario" class="form-control"
+                     [(ngModel)]="loginData.nombreUsuario" name="nombreUsuario" required
+                     placeholder="Introduce tu usuario">
+            </div>
+
+            <!-- Contraseña -->
+            <div class="mb-3">
+              <label for="contrasenia" class="form-label">Contraseña</label>
+              <input type="password" id="contrasenia" class="form-control"
+                     [(ngModel)]="loginData.contrasenia" name="contrasenia" required
+                     placeholder="Introduce tu contraseña">
+            </div>
+
+            <!-- Botón -->
+            <button type="submit" class="btn btn-primary w-100" [disabled]="cargando">
+              {{ cargando ? 'Iniciando sesión...' : 'Entrar' }}
+            </button>
+
+            <!-- Error -->
+            <div class="alert alert-danger mt-3" *ngIf="error">
+              {{ error }}
+            </div>
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

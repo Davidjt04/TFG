@@ -1,0 +1,98 @@
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <div class="col-md-6 col-lg-5">
+
+      <div class="card shadow">
+        <div class="card-body p-4">
+
+          <h2 class="text-center mb-4">Registro de Usuario</h2>
+
+          <form (ngSubmit)="registrar()" #registerForm="ngForm">
+
+            <!-- NOMBRE DE USUARIO -->
+            <div class="mb-3">
+              <label for="nombreUsuario" class="form-label">Nombre de usuario</label>
+              <input
+                type="text"
+                class="form-control"
+                id="nombreUsuario"
+                name="nombreUsuario"
+                [(ngModel)]="formData.nombreUsuario"
+                required
+                placeholder="Introduce tu nombre de usuario"
+              />
+            </div>
+
+            <!-- EMAIL -->
+            <div class="mb-3">
+              <label for="email" class="form-label">Correo electrónico</label>
+              <input
+                type="email"
+                class="form-control"
+                id="email"
+                name="email"
+                [(ngModel)]="formData.email"
+                required
+                placeholder="ejemplo@email.com"
+              />
+            </div>
+
+            <!-- CONTRASEÑA -->
+            <div class="mb-3">
+              <label for="contrasenia" class="form-label">Contraseña</label>
+              <input
+                type="password"
+                class="form-control"
+                id="contrasenia"
+                name="contrasenia"
+                [(ngModel)]="formData.contrasenia"
+                required
+                placeholder="Mínimo 8 caracteres"
+              />
+            </div>
+
+            <!-- ROL -->
+            <div class="mb-4">
+              <label for="rol" class="form-label">Rol</label>
+              <select
+                class="form-select"
+                id="rol"
+                name="rol"
+                [(ngModel)]="formData.rol"
+                required
+              >
+                <option value="">-- Selecciona un rol --</option>
+                <option value="CLIENTE">CLIENTE</option>
+                <option value="TRABAJADOR">TRABAJADOR</option>
+                <option value="ADMIN">ADMIN</option>
+              </select>
+            </div>
+
+            <!-- BOTÓN -->
+            <button
+              type="submit"
+              class="btn btn-dark w-100"
+              [disabled]="cargando || registerForm.invalid"
+            >
+              <span *ngIf="!cargando">Registrarse</span>
+              <span *ngIf="cargando">Registrando usuario...</span>
+            </button>
+
+            <!-- MENSAJE DE ÉXITO -->
+            <div class="alert alert-success mt-3" *ngIf="mensaje">
+              {{ mensaje }}
+            </div>
+
+            <!-- MENSAJE DE ERROR -->
+            <div class="alert alert-danger mt-3" *ngIf="error">
+              {{ error }}
+            </div>
+
+          </form>
+
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

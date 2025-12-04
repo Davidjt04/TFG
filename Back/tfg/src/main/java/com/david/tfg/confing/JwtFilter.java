@@ -1,11 +1,8 @@
 package com.david.tfg.confing;
 
-import com.david.tfg.entities.User;
-import com.david.tfg.services.UserService;
-import jakarta.servlet.FilterChain;
-import jakarta.servlet.ServletException;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.util.List;
+
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.context.SecurityContextHolder;
@@ -13,8 +10,13 @@ import org.springframework.security.web.authentication.WebAuthenticationDetailsS
 import org.springframework.stereotype.Component;
 import org.springframework.web.filter.OncePerRequestFilter;
 
-import java.io.IOException;
-import java.util.List;
+import com.david.tfg.entities.User;
+import com.david.tfg.services.UserService;
+
+import jakarta.servlet.FilterChain;
+import jakarta.servlet.ServletException;
+import jakarta.servlet.http.HttpServletRequest;
+import jakarta.servlet.http.HttpServletResponse;
 
 @Component
 public class JwtFilter extends OncePerRequestFilter {
@@ -34,7 +36,7 @@ public class JwtFilter extends OncePerRequestFilter {
                                     FilterChain filterChain)
                                     throws ServletException, IOException {
 
-        // 1️⃣ Leer el header "Authorization"
+        // Leer el header "Authorization"
         final String authHeader = request.getHeader("Authorization");
         String username = null;
         String token = null;
@@ -49,7 +51,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
 
-        // 3️⃣ Validar token y autenticar usuario
+        // Validar token y autenticar usuario
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
             User usuario = userService.findByNombreUsuario(username);
 
@@ -72,7 +74,7 @@ public class JwtFilter extends OncePerRequestFilter {
             }
         }
 
-        // 4️⃣ Continuar con la cadena de filtros
+        // Continuar con la cadena de filtros
         filterChain.doFilter(request, response);
     }
 }
