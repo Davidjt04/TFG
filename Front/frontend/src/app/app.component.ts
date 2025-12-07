@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { RouterOutlet } from '@angular/router';
+import { Router, RouterOutlet } from '@angular/router';
 import { AuthService } from './services/Auth/auth.service';
 import { FooterComponent } from "./components/footer/footer.component";
 import { AdminNavComponent } from './components/admin-nav/admin-nav.component';
@@ -19,8 +19,10 @@ export class AppComponent implements OnInit {
 
   rolActual: string | null = null;
 
-  constructor(public authService: AuthService) {}
-
+constructor(
+  public authService: AuthService,
+  private router: Router
+) {}
   ngOnInit(): void {
     // Nos suscribimos al rol para actualizar la vista dinámicamente
     this.authService.getRolObservable().subscribe(rol => {
@@ -40,7 +42,12 @@ export class AppComponent implements OnInit {
     return this.rolActual === 'TRABAJADOR';
   }
 
+  // esPaginaDeAuth(): boolean {
+  //   return window.location.pathname.startsWith('/auth');
+  // }
   esPaginaDeAuth(): boolean {
-    return window.location.pathname.startsWith('/auth');
-  }
+  return this.router.url.includes('/auth') 
+      || this.router.url.includes('/login') 
+      || this.router.url.includes('/register');
+}
 }

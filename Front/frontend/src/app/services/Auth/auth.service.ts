@@ -31,6 +31,12 @@ export class AuthService {
   private rolUsuarioSubject: BehaviorSubject<string | null> =
     new BehaviorSubject<string | null>(null);
 
+  // constructor(private http: HttpClient) {
+  //   const rol = localStorage.getItem('rol');
+  //   if (rol) {
+  //     this.rolUsuarioSubject.next(rol);
+  //   }
+  // }
   constructor(private http: HttpClient) {
     const rol = localStorage.getItem('rol');
     if (rol) {
@@ -112,4 +118,20 @@ export class AuthService {
     this.clearRol();
     this.clearToken();
   }
+
+  // AuthService
+getUsername(): string | null {
+  const token = this.getToken();
+  if (!token) return null;
+
+  try {
+    // Decodificamos el payload del JWT (la parte central, base64)
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    return payload.sub; // según tu log, el username está en 'sub'
+  } catch (e) {
+    console.error('Error al decodificar JWT', e);
+    return null;
+  }
+}
+
 }

@@ -109,6 +109,9 @@ public class SecurityConfig {
             .requestMatchers("/", "/login", "/registro", "/review").permitAll()
             .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
             .requestMatchers("/auth/**").permitAll()
+            .requestMatchers("/workerschedule/usuario/id").hasAnyRole("TRABAJADOR","ADMIN")
+            .requestMatchers("/workerschedule/**").permitAll()
+
 
             // Rutas por rol
             .requestMatchers("/ADMIN/**").hasRole("ADMIN")

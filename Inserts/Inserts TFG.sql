@@ -52,6 +52,8 @@ INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabaja
 (8, '2025-11-17 16:00:00', 'Rápidos', 'trabajador8.jpg', 8, 8, 'Miguel'),
 (9, '2025-11-17 17:00:00', 'Fiesta', 'trabajador9.jpg', 9, 9, 'Feliipe'),
 (10, '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 10, 10, 'Feliipe');
+INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `nombre`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('11', '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 'David4', '6', '17');
+
 
 /*HORARIO TRABAJADOR*/
 INSERT INTO `tfg`.`horario_trabajador` (`idHorario_trabajador`, `fecha`, `hora`, `disponible`, `Detalle_Trabajador_idDetalle_Trabajador`) VALUES

@@ -10,6 +10,7 @@ import { ReseniaComponent } from './components/resenia/resenia.component';
 import { TrabajadoresAdminComponent } from './components/trabajadores-admin/trabajadores-admin.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
+import { JustificantesTrabajadorComponent } from './components/justificantes-trabajador/justificantes-trabajador.component';
 // import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 
 export const routes: Routes = [
@@ -47,7 +48,6 @@ export const routes: Routes = [
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegisterComponent },
   { path: 'review', component: ReseniaComponent },
-//   {path: 'partido/lista', component: PartidoComponent },
 
 
 //   // Rutas ADMIN
@@ -66,7 +66,7 @@ export const routes: Routes = [
 //   {path: 'CLIENTE/tienda/saldo', component: HomeComponent },
 
 //   // Rutas TRABAJADOR
-//   // { path: 'TRABAJADOR/calendario', component: CalendarioComponent },
+  { path: 'TRABAJADOR/calendario', component: JustificantesTrabajadorComponent },
 
 //   // Ruta comodín para 404
   { path: '**', redirectTo: '' }

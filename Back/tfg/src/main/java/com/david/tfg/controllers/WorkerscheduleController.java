@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -15,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.david.tfg.entities.User;
+import com.david.tfg.entities.WorkerDetail;
 import com.david.tfg.entities.Workerschedule;
 import com.david.tfg.repos.RepoWorkerschedule;
 import com.david.tfg.services.WorkerscheduleService;
@@ -176,7 +179,62 @@ public ResponseEntity<Void> marcarHoraNoDisponible(
     return ResponseEntity.notFound().build();
 }
 
+// @PostMapping("/TRABAJADOR/marcar-no-disponible")
+// public ResponseEntity<Void> marcarHoraNoDisponibleTrabajador(
+//         @RequestParam LocalDate fecha,
+//         @RequestParam LocalTime hora,
+//         Authentication authentication) {
 
+//     User usuario = (User) authentication.getPrincipal();
+//     WorkerDetail trabajador = usuario.getWorkerDetail();
+
+//     Optional<Workerschedule> wsOpt =
+//         repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(
+//             trabajador.getIdDetalle_Trabajador(), fecha, hora
+//         );
+
+//     if (wsOpt.isPresent()) {
+//         Workerschedule ws = wsOpt.get();
+//         ws.setDisponible(false);
+//         repo.save(ws);
+//         return ResponseEntity.ok().build();
+//     }
+
+//     return ResponseEntity.notFound().build();
+// }
+
+
+@PostMapping("/trabajador/marcar-no-disponible")
+public ResponseEntity<Void> marcarHoraNoDisponiblePorTrabajador(
+        @RequestParam LocalDate fecha,
+        @RequestParam LocalTime hora,
+        Authentication authentication) {
+
+    // Obtenemos el usuario logueado
+    User usuario = (User) authentication.getPrincipal();
+
+    // Obtenemos el WorkerDetail asociado
+    WorkerDetail trabajador = usuario.getWorkerDetail();
+
+    if (trabajador == null) {
+        return ResponseEntity.badRequest().build(); // Por si no tiene WorkerDetail
+    }
+
+    // Buscamos la hora correspondiente
+    Optional<Workerschedule> wsOpt =
+        repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(
+            trabajador.getIdDetalle_Trabajador(), fecha, hora
+        );
+
+    if (wsOpt.isPresent()) {
+        Workerschedule ws = wsOpt.get();
+        ws.setDisponible(false);
+        repo.save(ws);
+        return ResponseEntity.ok().build();
+    }
+
+    return ResponseEntity.notFound().build();
+}
 
 
 }

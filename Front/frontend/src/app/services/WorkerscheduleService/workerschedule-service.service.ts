@@ -52,6 +52,70 @@ export class WorkerscheduleServiceService {
       .set('hora', hora);
     return this.http.post<void>(`${this.apiUrl}/marcar-no-disponible`, null, { params });
   }
+
+  // ✅ NUEVO: Bloqueo de horario por el trabajador (sin pasar ID)
+// marcarHoraNoDisponibleTrabajador(fecha: string, hora: string): Observable<void> {
+//   const params = new HttpParams()
+//     .set('fecha', fecha)
+//     .set('hora', hora);
+
+//   return this.http.post<void>(
+//     `${this.apiUrl}/TRABAJADOR/marcar-no-disponible`,
+//     null,
+//     { params }
+//   );
+// }
+// workerschedule.service.ts
+// Marcar una hora como no disponible (por el trabajador logueado)
+marcarHoraNoDisponiblePorTrabajador(fecha: string, hora: string): Observable<void> {
+  const params = new HttpParams()
+    .set('fecha', fecha)
+    .set('hora', hora);
+  return this.http.post<void>(`${this.apiUrl}/trabajador/marcar-no-disponible`, null, { params });
+}
+getIdTrabajadorPorUsuario(username: string) {
+  return this.http.get<number>(`${this.apiUrl}/usuario/id?username=${username}`);
+}
+
+// Obtener ID del trabajador usando el JWT del usuario logueado
+getIdTrabajadorPorUsuarioLogueado(username: string, token: string): Observable<number> {
+  return this.http.get<number>(`${this.apiUrl}/usuario/id?username=${username}`, {
+    headers: { Authorization: `Bearer ${token}` }
+  });
+}
+
+// Obtener horas disponibles del trabajador logueado (nuevo)
+getHorasDisponiblesPorTrabajadorLogueado(fecha: string, token: string): Observable<any[]> {
+  return this.http.get<any[]>(`${this.apiUrl}/horas-disponibles`, {
+    headers: { Authorization: `Bearer ${token}` },
+    params: { fecha }
+  });
+}
+
+// Bloquear hora para el trabajador logueado (nuevo)
+marcarHoraNoDisponiblePorTrabajadorLogueado(fecha: string, hora: string, token: string): Observable<void> {
+  const params = new HttpParams().set('fecha', fecha).set('hora', hora);
+  return this.http.post<void>(`${this.apiUrl}/trabajador/marcar-no-disponible`, null, {
+    headers: { Authorization: `Bearer ${token}` },
+    params
+  });
+}
+
+// workerschedule.service.ts
+getIdTrabajadorConToken(): Observable<number> {
+  const token = localStorage.getItem('token');
+  if (!token) throw new Error('Token no encontrado');
+  
+  // Se envía en el header Authorization
+  return this.http.get<number>(`${this.apiUrl}/usuario/id`, {
+    headers: {
+      'Authorization': `Bearer ${token}`
+    }
+  });
+}
+
+
+
 }
 
   
