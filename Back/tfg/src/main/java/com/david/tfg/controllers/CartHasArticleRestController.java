@@ -91,107 +91,97 @@
 //         return 17;
 //     }
 // }
-        package com.david.tfg.controllers;
+package com.david.tfg.controllers;
 
 import java.util.List;
-import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.CrossOrigin;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.david.tfg.entities.Cart;
+import com.david.tfg.entities.CartArticleDTO;
+import com.david.tfg.entities.CartDTO;
 import com.david.tfg.entities.CartHasArticle;
-import com.david.tfg.entities.CartItemDto;
-import com.david.tfg.entities.IDCartHasArticle;
 import com.david.tfg.services.CartHasArticleService;
 
 @CrossOrigin(origins = "*")
 @RestController
-public class CartHasArticleRestsController {
-    //Inyectamos el servicio
-    private final CartHasArticleService service;
+@RequestMapping("/CLIENTE")
+public class CartHasArticleRestController {
 
-    public CartHasArticleRestsController(CartHasArticleService service) {
-        this.service = service;
+    private final CartHasArticleService cartHasArticleService;
+
+    public CartHasArticleRestController(CartHasArticleService cartHasArticleService) {
+        this.cartHasArticleService = cartHasArticleService;
     }
 
-    //se muestran todos los CartHasArticle
-    @GetMapping("/CartHasArticle/lista")
-    public List<CartHasArticle> lista(){
-        //va a sacar una lista de CartHasArticle 
-        return this.service.findAll();
+    // 1️⃣ Agregar artículo
+    @PostMapping("/carrito/add")
+    public ResponseEntity<CartDTO> addArticleToCart(@RequestBody CartArticleDTO dto) {
+        CartHasArticle cha = cartHasArticleService.addArticleToCart(dto);
+        Cart cart = cha.getCart();
+
+        CartDTO cartDTO = new CartDTO();
+        cartDTO.setIdCarrito(cart.getIdCarrito());
+        cartDTO.setCantidadTotal(cart.getCantidad_Total());
+        cartDTO.setUserId(cart.getUser() != null ? cart.getUser().getIdUsuario() : 0);
+
+        List<CartArticleDTO> articulos = cart.getCartHasArticles() != null ?
+            cart.getCartHasArticles().stream().map(ca ->
+                new CartArticleDTO(cart.getUser() != null ? cart.getUser().getIdUsuario() : 0,
+                                   ca.getArticle().getIdArticulo(),
+                                   ca.getCantidad())
+            ).toList() : List.of();
+
+        cartDTO.setArticulos(articulos);
+
+        return ResponseEntity.ok(cartDTO);
     }
 
-    @GetMapping("/CartHasArticle/borrar/{id}")
-    public ResponseEntity<CartHasArticle> borrar(@PathVariable IDCartHasArticle id){
-        //va a borrar un CartHasArticle
-        if(service.existsById(id)){  
-          service.deleteById(id);
-          //noContent la operacion se hizo bien pero no hay contenido en el cuerpo
-            return ResponseEntity.noContent().build(); 
+    // 2️⃣ Listar artículos de usuario
+    // @GetMapping("/carrito/{idUsuario}/articulos")
+    // public ResponseEntity<List<CartHasArticle>> getCartArticles(@PathVariable int idUsuario) {
+    //     List<CartHasArticle> articles = cartHasArticleService.getCartArticles(idUsuario);
+    //     return ResponseEntity.ok(articles);
+    // }
+    @GetMapping("/carrito/{idUsuario}/articulos")
+    public ResponseEntity<List<CartArticleDTO>> getCartArticles(@PathVariable int idUsuario) {
+    // Obtenemos todos los CartHasArticle del usuario
+    List<CartHasArticle> articles = cartHasArticleService.getCartArticles(idUsuario);
+
+    // Convertimos a DTO para evitar referencias circulares
+    List<CartArticleDTO> dtoList = articles.stream()
+            .map(cha -> new CartArticleDTO(
+                    cha.getCart().getUser() != null ? cha.getCart().getUser().getIdUsuario() : 0,
+                    cha.getArticle().getIdArticulo(),
+                    cha.getCantidad()
+            ))
+            .toList();
+
+    return ResponseEntity.ok(dtoList);
+}
+
+    // 3️⃣ Obtener carrito completo
+    @GetMapping("/carrito/{idUsuario}")
+    public ResponseEntity<CartDTO> getCartDTOByUser(@PathVariable int idUsuario) {
+        List<CartHasArticle> articles = cartHasArticleService.getCartArticles(idUsuario);
+        CartDTO cartDTO = new CartDTO();
+
+        if (!articles.isEmpty()) {
+            Cart cart = articles.get(0).getCart();
+            cartDTO.setIdCarrito(cart.getIdCarrito());
+            cartDTO.setCantidadTotal(cart.getCantidad_Total());
+            cartDTO.setUserId(cart.getUser() != null ? cart.getUser().getIdUsuario() : 0);
+
+            List<CartArticleDTO> articulosDTO = articles.stream().map(ca ->
+                new CartArticleDTO(cart.getUser() != null ? cart.getUser().getIdUsuario() : 0,
+                                   ca.getArticle().getIdArticulo(),
+                                   ca.getCantidad())
+            ).toList();
+
+            cartDTO.setArticulos(articulosDTO);
         }
-        //noFound no se ha encontrado, codigo de error 404
-        return ResponseEntity.notFound().build();
-    }
 
-    //editar
-    @GetMapping("/CartHasArticle/editar/{id}")
-    public ResponseEntity<CartHasArticle> editar(@PathVariable IDCartHasArticle id) {
-    Optional<CartHasArticle> CartHasArticleOpt = service.findById(id);
-        if (CartHasArticleOpt.isPresent()) {
-            CartHasArticle CartHasArticle = CartHasArticleOpt.get();
-            return ResponseEntity.ok(CartHasArticle);
-        } else {
-            return ResponseEntity.notFound().build();
-        }
-    }
-
-    //crear
-    @PostMapping("/CartHasArticle/crear")
-    public ResponseEntity<CartHasArticle> crear(){
-        //va a crear un CartHasArticle
-        return ResponseEntity.ok(new CartHasArticle());
-    }
-
-    //guardar
-    @PostMapping("/CartHasArticle/guardar")
-    public ResponseEntity<CartHasArticle> guardar(@RequestBody CartHasArticle CartHasArticle){
-        //parte de creacion de un CartHasArticle 
-        Optional<CartHasArticle> existente = service.findById(CartHasArticle.getId());
-        if(existente.isPresent()){
-            service.save(CartHasArticle);
-            return ResponseEntity.ok(CartHasArticle);
-        }else{
-            //parte de modificacin de un CartHasArticle 
-            Optional<CartHasArticle> CartHasArticleSinActu = service.findById(CartHasArticle.getId());
-            //cogemos el objeto del optional 
-            CartHasArticle CartHasArticleActu = CartHasArticleSinActu.get();
-            CartHasArticleActu.setCantidad(CartHasArticle.getCantidad());
-
-            service.save(CartHasArticleActu);
-            return ResponseEntity.ok(CartHasArticleActu);  
-        }
-            
-    }
-
-    @PostMapping("/agregar")
-    public ResponseEntity<Void> agregarArticulo(@RequestBody CartItemDto dto){
-        service.saveFromDto(dto);
-        return ResponseEntity.ok().build();
-    }
-
-    @GetMapping("/usuario/{userId}")
-    public ResponseEntity<List<CartHasArticle>> obtenerCarritoUsuario(@PathVariable int userId){
-        // Aquí se debe obtener el carrito del usuario
-        Optional<Cart> carritoOpt = service.getCartByUsuarioId(userId);
-        if (carritoOpt.isEmpty()) return ResponseEntity.notFound().build();
-
-        List<CartHasArticle> items = carritoOpt.get().getCartHasArticles();
-        return ResponseEntity.ok(items);
+        return ResponseEntity.ok(cartDTO);
     }
 }

@@ -117,12 +117,10 @@
 import { Component, OnInit } from '@angular/core';
 import { ClienteArticleService } from '../../services/Shop-cliente/tienda-cliente.service';
 import { Article } from '../../entities/Article';
-import { Cart } from '../../entities/Cart';
 import { CarritoService } from '../../services/Cart/carrito.service';
-import { AuthService } from '../../services/Auth/auth.service';
-import { FormsModule } from '@angular/forms';
+import { Cart } from '../../entities/Cart';
 import { CommonModule } from '@angular/common';
-import { CartItemDto } from '../../entities/CartItemDto';
+import { FormsModule } from '@angular/forms';
 
 interface ArticleUI extends Article {
   cantidadSeleccionada: number;
@@ -132,7 +130,7 @@ interface ArticleUI extends Article {
 
 @Component({
   selector: 'app-tienda-cliente',
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule,FormsModule],
   templateUrl: './tienda-cliente.component.html',
   styleUrls: ['./tienda-cliente.component.css']
 })
@@ -144,12 +142,10 @@ export class TiendaClienteComponent implements OnInit {
 
   constructor(
     private clienteService: ClienteArticleService,
-    private carritoService: CarritoService,
-    private authService: AuthService
+    private carritoService: CarritoService
   ) {}
 
   ngOnInit(): void {
-    console.log('🟣 ngOnInit ejecutado');
     this.cargarArticulos();
     this.obtenerCarritoUsuario();
   }
@@ -172,50 +168,24 @@ export class TiendaClienteComponent implements OnInit {
     });
   }
 
-  // obtenerCarritoUsuario(): void {
-  //   const idUsuario = this.authService.getUserId();
-  //   console.log('🟡 Obteniendo carrito del usuario:', idUsuario);
+  obtenerCarritoUsuario(): void {
+    const token = localStorage.getItem('token');
+    if (!token) return;
 
-  //   this.carritoService.getCarritoPorUsuario(idUsuario).subscribe({
-  //     next: (carrito: Cart) => {
-  //       console.log('✅ Carrito recibido correctamente:', carrito);
-  //       this.cartDelUsuario = carrito;
-  //     },
-  //     error: (err) => console.error('❌ Error obteniendo carrito:', err)
-  //   });
-  // }
- obtenerCarritoUsuario(): void {
-  const idUsuario = this.authService.getUserId();
-  console.log('🟡 Obteniendo carrito del usuario:', idUsuario);
+    const payload = JSON.parse(atob(token.split('.')[1]));
+    const idUsuario = payload.idUsuario;
 
-  this.carritoService.getCarritoPorUsuario(idUsuario).subscribe({
-    next: (carrito: Cart) => {
-      console.log('✅ Carrito recibido correctamente:', carrito);
-      this.cartDelUsuario = carrito;
-    },
-    error: (err) => {
-      console.error('❌ Error obteniendo carrito:', err);
-    }
-  });
-}
-
-
+    this.carritoService.getCarritoPorUsuario(idUsuario).subscribe({
+      next: (carrito: Cart) => this.cartDelUsuario = carrito,
+      error: (err) => console.error('Error obteniendo carrito:', err)
+    });
+  }
 
   agregarAlCarrito(articulo: ArticleUI): void {
-    if (!this.cartDelUsuario) {
-      console.error('❌ No hay carrito definido, no se puede añadir el artículo');
-      return;
-    }
-
-    const dto: CartItemDto = {
-      cartId: this.cartDelUsuario.idCarrito,
-      articleId: articulo.idArticulo,
-      quantity: articulo.cantidadSeleccionada
-    };
-
-    console.log('➕ Agregando al carrito DTO:', dto);
-
-    this.carritoService.agregarArticuloClienteDtoCompleto(dto).subscribe({
+    this.carritoService.agregarArticulo({ 
+      idArticulo: articulo.idArticulo, 
+      cantidad: articulo.cantidadSeleccionada 
+    }).subscribe({
       next: () => {
         articulo.exitoAgregar = true;
         setTimeout(() => articulo.exitoAgregar = false, 2000);

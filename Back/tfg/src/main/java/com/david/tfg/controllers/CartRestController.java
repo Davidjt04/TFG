@@ -99,6 +99,8 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.david.tfg.entities.Cart;
+import com.david.tfg.entities.CartArticleDTO;
+import com.david.tfg.entities.CartDTO;
 import com.david.tfg.entities.User;
 import com.david.tfg.services.CartService;
 import com.david.tfg.services.UserService;
@@ -177,43 +179,59 @@ public ResponseEntity<Cart> guardar(@RequestBody Cart monedero){
 }
 
 @GetMapping("/CartHasArticle/carrito/usuario/{idUsuario}")
-public ResponseEntity<Cart> obtenerCarritoPorUsuario(@PathVariable Integer idUsuario) {
+public ResponseEntity<CartDTO> obtenerCarritoPorUsuario(@PathVariable Integer idUsuario) {
     System.out.println("📌 Buscando carrito para usuario: " + idUsuario);
 
     Optional<Cart> carritoOpt = service.findByUsuarioId(idUsuario);
-    Cart carrito;
+    Cart cart;
 
     if (carritoOpt.isPresent()) {
-        carrito = carritoOpt.get();
-        System.out.println("✅ Carrito encontrado: " + carrito.getIdCarrito() + 
-                           ", Usuario: " + (carrito.getUser() != null ? carrito.getUser().getIdUsuario() : "ninguno"));
+        cart = carritoOpt.get();
+        System.out.println("✅ Carrito encontrado: " + cart.getIdCarrito() 
+                           + ", Usuario: " + (cart.getUser() != null ? cart.getUser().getIdUsuario() : "ninguno"));
     } else {
         System.out.println("⚠️ Carrito no encontrado, creando uno nuevo para usuario: " + idUsuario);
-        carrito = new Cart();
-        carrito.setCantidad_Total(0);
+        cart = new Cart();
+        cart.setCantidad_Total(0);
 
-        // Recuperar usuario con UserService
         Optional<User> usuarioOpt = usuarioService.findById(idUsuario);
         if (usuarioOpt.isPresent()) {
-            carrito.setUser(usuarioOpt.get());
+            cart.setUser(usuarioOpt.get());
             System.out.println("📌 Usuario asignado al carrito: " + usuarioOpt.get().getIdUsuario());
         } else {
             System.out.println("❌ Usuario no encontrado, el carrito no tendrá relación con usuario");
         }
 
-        // Log adicional antes de guardar
-        System.out.println("📌 Guardando carrito con usuario: " + 
-                           (carrito.getUser() != null ? carrito.getUser().getIdUsuario() : "ninguno"));
-        
-        // Guardar carrito
-        service.save(carrito);
-        System.out.println("✅ Carrito creado con id: " + carrito.getIdCarrito());
+        service.save(cart);
+        System.out.println("✅ Carrito creado con id: " + cart.getIdCarrito());
     }
 
-    return ResponseEntity.ok(carrito);
+    // Mapear a DTO
+    CartDTO cartDTO = new CartDTO();
+    cartDTO.setIdCarrito(cart.getIdCarrito());
+    cartDTO.setCantidadTotal(cart.getCantidad_Total());
+    cartDTO.setUserId(cart.getUser() != null ? cart.getUser().getIdUsuario() : 0);
+
+    System.out.println("📌 Mapeando artículos del carrito a DTO...");
+    List<CartArticleDTO> articulos = cart.getCartHasArticles() != null ?
+        cart.getCartHasArticles().stream().map(ca -> {
+            CartArticleDTO artDto = new CartArticleDTO(
+                cart.getUser() != null ? cart.getUser().getIdUsuario() : 0,
+                ca.getArticle().getIdArticulo(),
+                ca.getCantidad()
+            );
+            System.out.println("📝 Artículo mapeado: usuario=" + artDto.getIdUsuario() 
+                               + ", articulo=" + artDto.getIdArticulo() 
+                               + ", cantidad=" + artDto.getCantidad());
+            return artDto;
+        }).toList() : List.of();
+
+    cartDTO.setArticulos(articulos);
+    System.out.println("✅ Carrito convertido a CartDTO: idCarrito=" + cartDTO.getIdCarrito() 
+                       + ", cantidadTotal=" + cartDTO.getCantidadTotal());
+
+    return ResponseEntity.ok(cartDTO);
 }
-
-
 
 
 
