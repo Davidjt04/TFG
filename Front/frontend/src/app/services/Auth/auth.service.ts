@@ -1,6 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { HttpClient } from '@angular/common/http';
+import { tap } from 'rxjs/operators';
+
 
 export interface RegisterRequest {
   nombreUsuario: string;
@@ -56,9 +58,22 @@ export class AuthService {
   // ============================
   // ✅ LOGIN
   // ============================
+  // login(data: LoginRequest): Observable<LoginResponse> {
+  //   return this.http.post<LoginResponse>(`${this.apiUrl}/login`, data);
+  // }
+
   login(data: LoginRequest): Observable<LoginResponse> {
-    return this.http.post<LoginResponse>(`${this.apiUrl}/login`, data);
-  }
+  return this.http.post<LoginResponse>(`${this.apiUrl}/login`, data).pipe(
+    tap(res => {
+      // Guardamos token y rol
+      this.setToken(res.token);
+      this.setRol(res.rol);
+
+      // Guardamos todo el usuario, incluido idUsuario
+      localStorage.setItem("user", JSON.stringify(res));
+    })
+  );
+}
 
   // ============================
   // ✅ TOKEN
@@ -132,6 +147,12 @@ getUsername(): string | null {
     console.error('Error al decodificar JWT', e);
     return null;
   }
+}
+
+getUserId(): number {
+  const user = localStorage.getItem('user');
+  if (!user) return 0;
+  return JSON.parse(user).idUsuario; // o el nombre correcto del campo
 }
 
 }

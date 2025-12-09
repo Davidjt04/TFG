@@ -48,20 +48,45 @@ public class AuthController {
     //     }
     // }
 
-    @PostMapping("/login")
+//     @PostMapping("/login")
+// public ResponseEntity<?> login(@RequestBody User usuario) {
+//     try {
+//         //valida las credenciales del usuario
+//         User usuarioBD = userService.validaLogin(usuario);
+//         //se genera el token JWT
+//         String token = jwtUtil.generateToken(usuarioBD.getNombreUsuario(), usuarioBD.getRol());
+//         System.out.println("Token generado: " + token);
+//         return ResponseEntity.ok(new LoginResponse(token, usuarioBD.getNombreUsuario(), usuarioBD.getRol()));
+        
+//     } catch (Exception e) {
+//         return ResponseEntity.badRequest().body(e.getMessage());
+//     }
+// }
+
+@PostMapping("/login")
 public ResponseEntity<?> login(@RequestBody User usuario) {
     try {
-        //valida las credenciales del usuario
         User usuarioBD = userService.validaLogin(usuario);
-        //se genera el token JWT
-        String token = jwtUtil.generateToken(usuarioBD.getNombreUsuario(), usuarioBD.getRol());
+
+        // 🔥 Ahora enviamos ID, nombre y rol al token
+        String token = jwtUtil.generateToken(
+                usuarioBD.getIdUsuario(),
+                usuarioBD.getNombreUsuario(),
+                usuarioBD.getRol()
+        );
+
         System.out.println("Token generado: " + token);
-        return ResponseEntity.ok(new LoginResponse(token, usuarioBD.getNombreUsuario(), usuarioBD.getRol()));
-        
+
+        // 🔥 LoginResponse debe incluir idUsuario
+        return ResponseEntity.ok(
+            new LoginResponse(token, usuarioBD.getNombreUsuario(), usuarioBD.getRol(), usuarioBD.getIdUsuario())
+        );
+
     } catch (Exception e) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
+
 
 // Clase interna para la respuesta
 

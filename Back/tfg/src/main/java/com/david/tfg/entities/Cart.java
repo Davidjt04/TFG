@@ -130,6 +130,24 @@ public class Cart {
     public void setCantidad_Total(int cantidad_Total) {
         this.Cantidad_Total = cantidad_Total;
     }
+    // Getter y Setter del usuario
+    public User getUser() {
+        return user;
+    }
+
+    public void setUser(User user) {
+        this.user = user;
+    }
+
+    // Getter y Setter de la lista de CartHasArticle
+    public List<CartHasArticle> getCartHasArticles() {
+        return CartHasArticles;
+    }
+
+    public void setCartHasArticles(List<CartHasArticle> cartHasArticles) {
+        this.CartHasArticles = cartHasArticles;
+    }
+
 
 }
 

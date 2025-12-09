@@ -43,6 +43,7 @@ public class SecurityConfig {
             // .requestMatchers("/workerschedule/usuario/id").hasAnyRole("TRABAJADOR","ADMIN")
             // .requestMatchers("/workerschedule/**").permitAll()
             .requestMatchers("/CartHasArticle/**").permitAll()
+            .requestMatchers("/carrito/**").hasAnyRole("CLIENTE", "ADMIN")
 
 
             // Rutas por rol

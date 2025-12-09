@@ -49,20 +49,82 @@ import io.jsonwebtoken.security.Keys;
 //         public String extractRole(String token) {
 //         return getClaims(token).get("rol", String.class);
 //     }
+// @Component
+// public class JwtUtil {
+
+//     // ✅ Clave secreta larga para HS256 (mínimo 256 bits)
+//     private final String SECRET_KEY = "mi_clave_secreta_muy_larga_para_hs256_que_no_tenga_underscores";
+//     private final SecretKey SECRET = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
+
+//     private final long EXPIRATION_MS = 1000 * 60 * 60; // 1 hora
+
+//     // ==========================
+//     // Generar token JWT
+//     // ==========================
+//     public String generateToken(String username, String rol) {
+//         return Jwts.builder()
+//                 .setSubject(username)
+//                 .claim("rol", rol)
+//                 .setIssuedAt(new Date())
+//                 .setExpiration(new Date(System.currentTimeMillis() + EXPIRATION_MS))
+//                 .signWith(SECRET, SignatureAlgorithm.HS256)
+//                 .compact();
+//     }
+
+//     // ==========================
+//     // Obtener username del token
+//     // ==========================
+//     public String extractUsername(String token) {
+//         return getClaims(token).getSubject();
+//     }
+
+//     // ==========================
+//     // Obtener rol del token
+//     // ==========================
+//     public String extractRole(String token) {
+//         return getClaims(token).get("rol", String.class);
+//     }
+
+//     // ==========================
+//     // Validar token
+//     // ==========================
+//     public boolean validateToken(String token, String username) {
+//         return extractUsername(token).equals(username) && !isTokenExpired(token);
+//     }
+
+//     // ==========================
+//     // Verificar expiración
+//     // ==========================
+//     private boolean isTokenExpired(String token) {
+//         return getClaims(token).getExpiration().before(new Date());
+//     }
+
+//     // ==========================
+//     // Extraer claims del token
+//     // ==========================
+//     private Claims getClaims(String token) {
+//         return Jwts.parserBuilder()
+//                 .setSigningKey(SECRET)
+//                 .build()
+//                 .parseClaimsJws(token)
+//                 .getBody();
+//     }
+// }
+
 @Component
 public class JwtUtil {
 
-    // ✅ Clave secreta larga para HS256 (mínimo 256 bits)
     private final String SECRET_KEY = "mi_clave_secreta_muy_larga_para_hs256_que_no_tenga_underscores";
     private final SecretKey SECRET = Keys.hmacShaKeyFor(SECRET_KEY.getBytes(StandardCharsets.UTF_8));
 
-    private final long EXPIRATION_MS = 1000 * 60 * 60; // 1 hora
+    private final long EXPIRATION_MS = 1000L * 60 * 60 * 24 * 7; // 7 días
 
     // ==========================
     // Generar token JWT
     // ==========================
-    public String generateToken(String username, String rol) {
+    public String generateToken(Integer idUsuario, String username, String rol) {
         return Jwts.builder()
+                .claim("idUsuario", idUsuario)
                 .setSubject(username)
                 .claim("rol", rol)
                 .setIssuedAt(new Date())
@@ -72,36 +134,28 @@ public class JwtUtil {
     }
 
     // ==========================
-    // Obtener username del token
+    // Extraer idUsuario del token
     // ==========================
+    public Integer extractUserId(String token) {
+        return getClaims(token).get("idUsuario", Integer.class);
+    }
+
     public String extractUsername(String token) {
         return getClaims(token).getSubject();
     }
 
-    // ==========================
-    // Obtener rol del token
-    // ==========================
     public String extractRole(String token) {
         return getClaims(token).get("rol", String.class);
     }
 
-    // ==========================
-    // Validar token
-    // ==========================
     public boolean validateToken(String token, String username) {
         return extractUsername(token).equals(username) && !isTokenExpired(token);
     }
 
-    // ==========================
-    // Verificar expiración
-    // ==========================
     private boolean isTokenExpired(String token) {
         return getClaims(token).getExpiration().before(new Date());
     }
 
-    // ==========================
-    // Extraer claims del token
-    // ==========================
     private Claims getClaims(String token) {
         return Jwts.parserBuilder()
                 .setSigningKey(SECRET)
@@ -109,5 +163,4 @@ public class JwtUtil {
                 .parseClaimsJws(token)
                 .getBody();
     }
-
 }

@@ -104,7 +104,9 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.david.tfg.entities.Cart;
 import com.david.tfg.entities.CartHasArticle;
+import com.david.tfg.entities.CartItemDto;
 import com.david.tfg.entities.IDCartHasArticle;
 import com.david.tfg.services.CartHasArticleService;
 
@@ -175,5 +177,21 @@ public class CartHasArticleRestsController {
             return ResponseEntity.ok(CartHasArticleActu);  
         }
             
+    }
+
+    @PostMapping("/agregar")
+    public ResponseEntity<Void> agregarArticulo(@RequestBody CartItemDto dto){
+        service.saveFromDto(dto);
+        return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/usuario/{userId}")
+    public ResponseEntity<List<CartHasArticle>> obtenerCarritoUsuario(@PathVariable int userId){
+        // Aquí se debe obtener el carrito del usuario
+        Optional<Cart> carritoOpt = service.getCartByUsuarioId(userId);
+        if (carritoOpt.isEmpty()) return ResponseEntity.notFound().build();
+
+        List<CartHasArticle> items = carritoOpt.get().getCartHasArticles();
+        return ResponseEntity.ok(items);
     }
 }
