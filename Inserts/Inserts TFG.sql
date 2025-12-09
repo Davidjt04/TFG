@@ -94,6 +94,18 @@ INSERT INTO `tfg`.`resenia` (`idResenia`, `Estrellas`, `Hora`, `Usuario_idUsuari
 (9, 5, '2025-11-09 12:00:00', 9, '¡Fantástico! Muy recomendable.'),
 (10, 4, '2025-11-10 18:45:00', 10, 'Buen servicio y buen ambiente, volveré.');
 
+/*ARTICULOS*/
+INSERT INTO `tfg`.`articulo` (`idArticulo`, `Nombre`, `Descripcion`, `Imagen`, `Precio`, `Categoria`) VALUES
+(1, 'Crema Facial', 'Crema hidratante para todo tipo de piel', 'https://example.com/img/crema1.jpg', 19.99, 'Cosmética'),
+(2, 'Sérum Antiedad', 'Sérum para reducir arrugas y líneas de expresión', 'https://example.com/img/serum1.jpg', 29.99, 'Cosmética'),
+(3, 'Perfume Floral', 'Fragancia floral de larga duración', 'https://example.com/img/perfume1.jpg', 49.99, 'Perfumería'),
+(4, 'Champú Revitalizante', 'Champú para cabello seco y dañado', 'https://example.com/img/champu1.jpg', 12.50, 'Cuidado Capilar'),
+(5, 'Mascarilla Capilar', 'Mascarilla nutritiva para cabello brillante', 'https://example.com/img/mascarilla1.jpg', 15.75, 'Cuidado Capilar'),
+(6, 'Gel Corporal', 'Gel refrescante y energizante para el cuerpo', 'https://example.com/img/gel1.jpg', 9.99, 'Cuidado Corporal'),
+(7, 'Exfoliante Facial', 'Exfoliante suave para todo tipo de piel', 'https://example.com/img/exfoliante1.jpg', 14.99, 'Cosmética'),
+(8, 'Loción Hidratante', 'Loción corporal hidratante con aloe vera', 'https://example.com/img/locion1.jpg', 11.50, 'Cuidado Corporal'),
+(9, 'Bálsamo Labial', 'Bálsamo nutritivo para labios secos', 'https://example.com/img/balsamo1.jpg', 4.99, 'Cosmética'),
+(10, 'Aceite Esencial', 'Aceite esencial relajante de lavanda', 'https://example.com/img/aceite1.jpg', 19.50, 'Aromaterapia');
 
 
 

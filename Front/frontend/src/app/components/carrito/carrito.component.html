@@ -1,0 +1,59 @@
+<div class="container mt-4">
+
+  <!-- Spinner mientras carga -->
+  <div *ngIf="cargando" class="text-center my-5">
+    <div class="spinner-border text-primary" role="status">
+      <span class="visually-hidden">Cargando...</span>
+    </div>
+  </div>
+
+  <!-- Mensaje si el carrito está vacío -->
+  <div *ngIf="!cargando && carrito.length === 0" class="alert alert-info text-center">
+    Tu carrito está vacío.
+  </div>
+
+  <!-- Lista de artículos en el carrito -->
+  <div *ngIf="!cargando && carrito.length > 0" class="row">
+    <div *ngFor="let item of carrito" class="col-md-12 mb-3">
+      <div class="card shadow-sm">
+        <div class="row g-0 align-items-center">
+          
+          <!-- Imagen del artículo -->
+          <div class="col-md-2">
+            <img [src]="item.article.imagen" class="img-fluid rounded-start" [alt]="item.article.nombre">
+          </div>
+
+          <!-- Detalles del artículo -->
+          <div class="col-md-6">
+            <div class="card-body">
+              <h5 class="card-title">{{ item.article.nombre }}</h5>
+              <p class="card-text">{{ item.article.descripcion }}</p>
+              <p class="card-text">
+                <strong>Precio:</strong> {{ item.article.precio | currency:'EUR' }}
+              </p>
+            </div>
+          </div>
+
+          <!-- Cantidad y acciones -->
+          <div class="col-md-4">
+            <div class="d-flex flex-column align-items-center justify-content-center h-100 p-2">
+
+              <div class="input-group mb-2" style="width: 120px;">
+                <button class="btn btn-outline-secondary" type="button" (click)="disminuirCantidad(item)">-</button>
+                <input type="number" class="form-control text-center" [value]="item.cantidad" readonly>
+                <button class="btn btn-outline-secondary" type="button" (click)="incrementarCantidad(item)">+</button>
+              </div>
+
+              <button class="btn btn-danger btn-sm w-100" (click)="borrarArticulo(item)">
+                Eliminar
+              </button>
+
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

@@ -8,6 +8,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
@@ -41,7 +42,7 @@ public class WorkerDetail {
     @JoinColumn(name = "Corte_Trabajador_idCorte_Trabajador")
     private WorkerCut workerCut;
 
-    @OneToMany(mappedBy = "detalleTrabajador", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "detalleTrabajador", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     @JsonIgnore
 private List<Workerschedule> horarios;
 

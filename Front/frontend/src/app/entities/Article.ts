@@ -1,8 +1,8 @@
 export class Article {
     idArticulo!: number;
-    nombre!: String;
-    descripcion!: String;
-    imagen!:String
+    nombre!: string;
+    descripcion!: string;
+    imagen!:string
     precio!:number
-    categorta!:String
+    categorta!:string
 }   

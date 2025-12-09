@@ -11,6 +11,10 @@ import { TrabajadoresAdminComponent } from './components/trabajadores-admin/trab
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { JustificantesTrabajadorComponent } from './components/justificantes-trabajador/justificantes-trabajador.component';
+import { InfoClienteComponent } from './components/info-cliente/info-cliente.component';
+import { TiendaClienteComponent } from './components/tienda-cliente/tienda-cliente.component';
+import { TiendaAdminComponent } from './components/tienda-admin/tienda-admin.component';
+import { CarritoComponent } from './components/carrito/carrito.component';
 // import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 
 export const routes: Routes = [
@@ -55,15 +59,17 @@ export const routes: Routes = [
   { path: 'ADMIN/cita/imagenes', component: ImagenesAdminComponent },
   { path: 'ADMIN/cita/info', component: InfoAdminComponent },
   { path: 'ADMIN/cita/trabajadores', component: TrabajadoresAdminComponent },
-//   {path: 'ADMIN/tienda', component: HomeComponent },
+  {path: 'ADMIN/tienda', component: TiendaAdminComponent },
 
 
 //   // Rutas CLIENTE
   { path: 'CLIENTE/cita/servicios', component: ServiciosClienteComponent },
   { path: 'CLIENTE/cita/imagenes', component: ImagenesClienteComponent },
-//   {path: 'CLIENTE/cita/info', component: HomeComponent },
-//   {path: 'CLIENTE/tienda', component: HomeComponent },
+  {path: 'CLIENTE/cita/info', component: InfoClienteComponent },
+  {path: 'CLIENTE/tienda', component: TiendaClienteComponent },
 //   {path: 'CLIENTE/tienda/saldo', component: HomeComponent },
+  {path: 'CLIENTE/carrito', component: CarritoComponent },
+
 
 //   // Rutas TRABAJADOR
   { path: 'TRABAJADOR/calendario', component: JustificantesTrabajadorComponent },

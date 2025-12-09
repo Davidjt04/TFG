@@ -1,57 +1,54 @@
 package com.david.tfg.entities;
 
 import java.io.Serializable;
-import java.util.Objects;
 
 import jakarta.persistence.Embeddable;
 
 @Embeddable
-public class IDCartHasArticle implements Serializable{
-    private int Carrito_idCarrito;
-    private int Articulo_idArticulo;
+public class IDCartHasArticle implements Serializable {
 
-    //constructor vacio
+    private static final long serialVersionUID = 1L;
+
+    private int carritoId;   // antes: Carrito_idCarrito
+    private int articuloId;  // antes: Articulo_idArticulo
+
+    // Constructor vacío
     public IDCartHasArticle() {}
 
-    //constructor con parametros
-    public IDCartHasArticle(int carrito_idCarrito, int articulo_idArticulo) {
-        this.Carrito_idCarrito = carrito_idCarrito;
-        this.Articulo_idArticulo = articulo_idArticulo;
+    // Constructor con parámetros
+    public IDCartHasArticle(int carritoId, int articuloId) {
+        this.carritoId = carritoId;
+        this.articuloId = articuloId;
     }
 
-    // Getters y Setters
-    public int getCarrito_idCarrito() {
-        return Carrito_idCarrito;
+    // --- Getters y Setters ---
+    public int getCarritoId() {
+        return carritoId;
     }
 
-    public void setCarrito_idCarrito(int carrito_idCarrito) {
-        this.Carrito_idCarrito = carrito_idCarrito;
+    public void setCarritoId(int carritoId) {
+        this.carritoId = carritoId;
     }
 
-    public int getArticulo_idArticulo() {
-        return Articulo_idArticulo;
+    public int getArticuloId() {
+        return articuloId;
     }
 
-    public void setArticulo_idArticulo(int articulo_idArticulo) {
-        this.Articulo_idArticulo = articulo_idArticulo;
+    public void setArticuloId(int articuloId) {
+        this.articuloId = articuloId;
     }
-    
-    //equals 
+
+    // equals y hashCode obligatorios para claves compuestas
     @Override
     public boolean equals(Object o) {
-        //Validaciones
         if (this == o) return true;
         if (!(o instanceof IDCartHasArticle)) return false;
-        //casting
         IDCartHasArticle that = (IDCartHasArticle) o;
-        
-        return Carrito_idCarrito == that.Carrito_idCarrito &&
-               Articulo_idArticulo == that.Articulo_idArticulo;
-    }
-    //hashCode
-    //genera un numero unico para cada objeto
-    public int hashCode() {
-        return Objects.hash(Carrito_idCarrito, Articulo_idArticulo);
+        return carritoId == that.carritoId && articuloId == that.articuloId;
     }
 
+    @Override
+    public int hashCode() {
+        return 31 * carritoId + articuloId;
+    }
 }

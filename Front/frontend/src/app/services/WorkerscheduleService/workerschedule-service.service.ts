@@ -114,6 +114,11 @@ getIdTrabajadorConToken(): Observable<number> {
   });
 }
 
+delete(id: number){
+  return this.http.delete(`${this.apiUrl}/borrar/${id}`);
+}
+
+
 
 
 }

@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -32,7 +33,7 @@ public class ServiceRestController {
         return this.serviceService.findAll();
     }
 
-    @GetMapping("/service/borrar/{id}")
+    @DeleteMapping("/service/borrar/{id}")
     public ResponseEntity<Services> borrar(@PathVariable Integer id){
         //va a borrar un servicio
         if(serviceService.existsById(id)){  

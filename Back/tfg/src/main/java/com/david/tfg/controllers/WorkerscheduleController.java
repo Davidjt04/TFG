@@ -8,6 +8,7 @@ import java.util.Optional;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -41,17 +42,14 @@ public class WorkerscheduleController {
         return this.service.findAll();
     }
 
-    @GetMapping("/borrar/{id}")
-    public ResponseEntity<Workerschedule> borrar(@PathVariable Integer id){
-        //va a borrar una Review
-        if(service.existsById(id)){  
-          service.deleteById(id);
-          //noContent la operacion se hizo bien pero no hay contenido en el cuerpo
-            return ResponseEntity.noContent().build(); 
-        }
-        //noFound no se ha encontrado, codigo de error 404
-        return ResponseEntity.notFound().build();
+   @DeleteMapping("/borrar/{id}")
+public ResponseEntity<Void> borrar(@PathVariable Integer id){
+    if(service.existsById(id)){
+        service.deleteById(id);
+        return ResponseEntity.noContent().build();
     }
+    return ResponseEntity.notFound().build();
+}
 
     //editar
     @GetMapping("/editar/{id}")

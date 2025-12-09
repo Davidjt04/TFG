@@ -1,3 +1,56 @@
+// package com.david.tfg.services;
+
+// import java.util.List;
+// import java.util.Optional;
+// import org.springframework.stereotype.Service;
+// import com.david.tfg.entities.Cart;
+// import com.david.tfg.interfaces.Crud;
+// import com.david.tfg.repos.RepoCart;
+
+// @Service
+// public class CartService implements Crud<Cart, Integer> {
+
+//     private final RepoCart repo;
+
+//     public CartService(RepoCart repo) {
+//         this.repo = repo;
+//     }
+
+//     @Override
+//     public void save(Cart entity) {
+//         repo.save(entity);
+//     }
+
+//     @Override
+//     public Optional<Cart> findById(Integer id) {
+//         return repo.findById(id);
+//     }
+
+//     @Override
+//     public boolean existsById(Integer id) {
+//         return repo.existsById(id);
+//     }
+
+//     @Override
+//     public List<Cart> findAll() {
+//         return repo.findAll();
+//     }
+
+//     @Override
+//     public void deleteById(Integer id) {
+//         repo.deleteById(id);
+//     }
+
+//     @Override
+//     public void deleteAll() {
+//         repo.deleteAll();
+//     }
+
+//     // ✅ ESTE ES EL MÉTODO CLAVE
+//     public Optional<Cart> findByUsuarioId(Integer idUsuario) {
+//         return repo.findByUserIdUsuario(idUsuario);
+//     }
+// }
 package com.david.tfg.entities;
 
 import java.util.List;

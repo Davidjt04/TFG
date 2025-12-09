@@ -165,26 +165,53 @@ calcularTotal(): void {
 //     error: (err) => console.error("Error cargando horas disponibles:", err)
 //   });
 // }
+// cargarHorasDisponibles() {
+//   if (!this.fechaSeleccionada) {
+//     this.listaHorasDisponibles = [];
+//     return;
+//   }
+
+//   this.workerscheduleService.getHorasDisponibles(this.fechaSeleccionada)
+//     .subscribe(horarios => {
+//       console.log("Horas obtenidas del backend:", horarios);
+//       this.listaHorasDisponibles = horarios
+//         .filter(h => h.hora)   // previene nulos
+//         .map(h => h.hora.substring(0,5));
+//       if (this.listaHorasDisponibles.length === 0) {
+//         console.log("No hay horas disponibles para esta fecha");
+//       }
+//     }, err => {
+//       console.error("Error al cargar horas:", err);
+//       this.listaHorasDisponibles = [];
+//     });
+// }
 cargarHorasDisponibles() {
   if (!this.fechaSeleccionada) {
-    console.log("No hay fecha seleccionada");
     this.listaHorasDisponibles = [];
     return;
   }
 
-  // Llamada al backend
-  this.workerscheduleService.getHorasDisponibles(this.fechaSeleccionada).subscribe(horarios => {
-    console.log("Horas obtenidas del backend:", horarios);
+  this.workerscheduleService.getHorasDisponibles(this.fechaSeleccionada)
+    .subscribe(horarios => {
+      console.log("Horas obtenidas del backend:", horarios);
 
-    // Solo convertimos las horas a formato "HH:mm"
-    this.listaHorasDisponibles = horarios.map(h => h.hora.substring(0,5));
+      // Mapear horas y eliminar duplicados usando Set
+      this.listaHorasDisponibles = Array.from(
+        new Set(
+          horarios
+            .filter(h => h.hora)       // previene nulos
+            .map(h => h.hora.substring(0, 5)) // "HH:mm"
+        )
+      );
 
-    if(this.listaHorasDisponibles.length === 0) {
-      console.log("No hay horas disponibles para esta fecha");
-    }
-  });
+      if (this.listaHorasDisponibles.length === 0) {
+        console.log("No hay horas disponibles para esta fecha");
+      }
+    }, err => {
+      console.error("Error al cargar horas:", err);
+      this.listaHorasDisponibles = [];
+    });
 }
-
 
 
 
