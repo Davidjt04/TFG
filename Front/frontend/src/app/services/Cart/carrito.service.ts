@@ -258,6 +258,23 @@ export class CarritoService {
       })
     );
   }
+  // carrito.service.ts
+actualizarCantidad(idCarrito: number, idArticulo: number, nuevaCantidad: number) {
+  const token = localStorage.getItem('token');
+  if (!token) throw new Error("No se encuentra el token del usuario");
+
+  const payload = JSON.parse(atob(token.split('.')[1]));
+  const idUsuario = payload.idUsuario;
+
+  return this.http.put(
+    `${this.apiUrl}/carrito/${idCarrito}/articulo/${idArticulo}`,
+    { cantidad: nuevaCantidad },
+    { headers: { Authorization: `Bearer ${token}` } }
+  ).pipe(
+    tap(() => this.getCartClientePorUsuario(idUsuario).subscribe())
+  );
+}
+
 }
 
 
