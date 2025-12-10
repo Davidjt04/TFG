@@ -24,6 +24,11 @@ export class CarritoService {
   }
 
   // Listar artículos en el carrito
+  // getCartClientePorUsuario(userId: number): Observable<CartHasArticle[]> {
+  //   return this.http.get<CartHasArticle[]>(`${this.apiUrl}/carrito/${userId}/articulos`).pipe(
+  //     tap(items => this.cartItemsSubject.next(items))
+  //   );
+  // }
   getCartClientePorUsuario(userId: number): Observable<CartHasArticle[]> {
     return this.http.get<CartHasArticle[]>(`${this.apiUrl}/carrito/${userId}/articulos`).pipe(
       tap(items => this.cartItemsSubject.next(items))

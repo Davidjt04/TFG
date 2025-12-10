@@ -23,17 +23,29 @@ export class CarritoComponent implements OnInit {
     private authService: AuthService
   ) {}
 
+  // ngOnInit(): void {
+  //   const userId = this.authService.getUserId();
+  //   console.log('🟡 Cargando carrito para userId:', userId);
+
+  //   this.carritoService.getCartClientePorUsuario(userId);
+
+  //   this.carritoService.cartItems$.subscribe(data => {
+  //     this.carrito = data;
+  //     this.cargando = false;
+  //   });
+  // }
   ngOnInit(): void {
-    const userId = this.authService.getUserId();
-    console.log('🟡 Cargando carrito para userId:', userId);
+  const userId = this.authService.getUserId();
+  console.log('🟡 Cargando carrito para userId:', userId);
 
-    this.carritoService.getCartClientePorUsuario(userId);
+  this.carritoService.getCartClientePorUsuario(userId);
 
-    this.carritoService.cartItems$.subscribe(data => {
-      this.carrito = data;
-      this.cargando = false;
-    });
-  }
+  this.carritoService.cartItems$.subscribe(data => {
+    console.log('🟢 Datos recibidos del servicio carrito:', data); // <--- LOG
+    this.carrito = data;
+    this.cargando = false;
+  });
+}
 
   borrarArticulo(item: CartHasArticle): void {
     console.log('❌ Borrando artículo:', item);
@@ -59,7 +71,10 @@ export class CarritoComponent implements OnInit {
   }
 
   get totalCarrito(): number {
-    return this.carrito.reduce((sum, item) => sum + (item.cantidad * item.article.precio), 0);
-  }
+  return this.carrito.reduce(
+    (sum, item) => sum + (item.article ? item.cantidad * item.article.precio : 0),
+    0
+  );
+}
 }
 

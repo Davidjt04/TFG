@@ -36,7 +36,6 @@ public class Cart {
 
     //pocos con CartHasArticle
     @OneToMany(mappedBy = "cart", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
-    @JsonIgnore
     private List<CartHasArticle> CartHasArticles;
     
     // Constructor vacío

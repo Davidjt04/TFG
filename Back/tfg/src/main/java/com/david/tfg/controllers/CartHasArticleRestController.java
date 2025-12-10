@@ -15,6 +15,7 @@ import com.david.tfg.entities.Cart;
 import com.david.tfg.entities.CartArticleDTO;
 import com.david.tfg.entities.CartDTO;
 import com.david.tfg.entities.CartHasArticle;
+import com.david.tfg.entities.CartHasArticleResponseDTO;
 import com.david.tfg.services.CartHasArticleService;
 
 @CrossOrigin(origins = "*")
@@ -51,21 +52,57 @@ public class CartHasArticleRestController {
         return ResponseEntity.ok(cartDTO);
     }
 
-    @GetMapping("/carrito/{idUsuario}/articulos")
-    public ResponseEntity<List<CartArticleDTO>> getCartArticles(@PathVariable int idUsuario) {
-    // Obtenemos todos los CartHasArticle del usuario
+//     @GetMapping("/carrito/{idUsuario}/articulos")
+//     public ResponseEntity<List<CartArticleDTO>> getCartArticles(@PathVariable int idUsuario) {
+//     // Obtenemos todos los CartHasArticle del usuario
+//     List<CartHasArticle> articles = cartHasArticleService.getCartArticles(idUsuario);
+
+//     // Convertimos a DTO para evitar referencias circulares
+//     List<CartArticleDTO> dtoList = articles.stream()
+//             .map(cha -> new CartArticleDTO(
+//                     cha.getCart().getUser() != null ? cha.getCart().getUser().getIdUsuario() : 0,
+//                     cha.getArticle().getIdArticulo(),
+//                     cha.getCantidad()
+//             ))
+//             .toList();
+
+//     return ResponseEntity.ok(dtoList);
+// }
+// @GetMapping("/carrito/{idUsuario}/articulos")
+// public ResponseEntity<List<CartArticleDTO>> getCartArticles(@PathVariable int idUsuario) {
+//     // Obtenemos todos los CartHasArticle del usuario
+//     List<CartHasArticle> articles = cartHasArticleService.getCartArticles(idUsuario);
+
+//     // 🔴 Log para inspección
+//     System.out.println("🔴 Artículos crudos del backend para userId " + idUsuario + ":");
+//     for (CartHasArticle cha : articles) {
+//         System.out.println("    CartId: " + cha.getCart().getIdCarrito() +
+//                            ", ArticleId: " + (cha.getArticle() != null ? cha.getArticle().getIdArticulo() : "null") +
+//                            ", Nombre: " + (cha.getArticle() != null ? cha.getArticle().getNombre() : "null") +
+//                            ", Cantidad: " + cha.getCantidad());
+//     }
+
+//     // Convertimos a DTO (actual)
+//     List<CartArticleDTO> dtoList = articles.stream()
+//             .map(cha -> new CartArticleDTO(
+//                     cha.getCart().getUser() != null ? cha.getCart().getUser().getIdUsuario() : 0,
+//                     cha.getArticle().getIdArticulo(),
+//                     cha.getCantidad()
+//             ))
+//             .toList();
+
+//     return ResponseEntity.ok(dtoList);
+// }
+@GetMapping("/carrito/{idUsuario}/articulos")
+public ResponseEntity<List<CartHasArticleResponseDTO>> getCartArticles(@PathVariable int idUsuario) {
     List<CartHasArticle> articles = cartHasArticleService.getCartArticles(idUsuario);
 
-    // Convertimos a DTO para evitar referencias circulares
-    List<CartArticleDTO> dtoList = articles.stream()
-            .map(cha -> new CartArticleDTO(
-                    cha.getCart().getUser() != null ? cha.getCart().getUser().getIdUsuario() : 0,
-                    cha.getArticle().getIdArticulo(),
-                    cha.getCantidad()
-            ))
+    // Mapear cada CartHasArticle a nuestro DTO de salida
+    List<CartHasArticleResponseDTO> response = articles.stream()
+            .map(CartHasArticleResponseDTO::new)
             .toList();
 
-    return ResponseEntity.ok(dtoList);
+    return ResponseEntity.ok(response);
 }
 
     // 3️⃣ Obtener carrito completo

@@ -37,6 +37,12 @@ protected void doFilterInternal(HttpServletRequest request,
                                 FilterChain filterChain)
                                 throws ServletException, IOException {
 
+    String path = request.getRequestURI();
+    if (path.startsWith("/img/") || path.startsWith("/css/") || path.startsWith("/js/")) {
+        filterChain.doFilter(request, response);
+        return;
+    }
+
     final String authHeader = request.getHeader("Authorization");
     String username = null;
     String token = null;
