@@ -37,31 +37,6 @@ public class AuthController {
         }
     }
 
-    //     @PostMapping("/login")
-    // public ResponseEntity<?> login(@RequestBody User usuario) {
-    //     //se tienen que validar 
-    //     try {
-    //         User nuevoUsuario = userService.validaLogin(usuario);
-    //         return ResponseEntity.ok("El usuario " + nuevoUsuario.getNombreUsuario() + " ha iniciado sesión con exito");
-    //     } catch (Exception e) {
-    //         return ResponseEntity.badRequest().body(e.getMessage());
-    //     }
-    // }
-
-//     @PostMapping("/login")
-// public ResponseEntity<?> login(@RequestBody User usuario) {
-//     try {
-//         //valida las credenciales del usuario
-//         User usuarioBD = userService.validaLogin(usuario);
-//         //se genera el token JWT
-//         String token = jwtUtil.generateToken(usuarioBD.getNombreUsuario(), usuarioBD.getRol());
-//         System.out.println("Token generado: " + token);
-//         return ResponseEntity.ok(new LoginResponse(token, usuarioBD.getNombreUsuario(), usuarioBD.getRol()));
-        
-//     } catch (Exception e) {
-//         return ResponseEntity.badRequest().body(e.getMessage());
-//     }
-// }
 
 @PostMapping("/login")
 public ResponseEntity<?> login(@RequestBody User usuario) {
@@ -86,8 +61,4 @@ public ResponseEntity<?> login(@RequestBody User usuario) {
         return ResponseEntity.badRequest().body(e.getMessage());
     }
 }
-
-
-// Clase interna para la respuesta
-
 }

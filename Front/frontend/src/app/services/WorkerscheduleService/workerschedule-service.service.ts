@@ -23,18 +23,7 @@ export class WorkerscheduleServiceService {
       .set("hora", hora);
     return this.http.get<any[]>(`${this.apiUrl}/trabajadores`, { params });
   }
-//   // workerschedule.service.ts
-// getHorasDisponiblesPorTrabajador(idTrabajador: number, fecha: string): Observable<any[]> {
-//   return this.http.get<any[]>(`${this.apiUrl}/workerschedule/horas-disponibles`, {
-//     params: { idTrabajador, fecha }
-//   });
-// }
 
-// marcarHoraNoDisponible(idTrabajador: number, fecha: string, hora: string): Observable<void> {
-//   return this.http.post<void>(`${this.apiUrl}/workerschedule/marcar-no-disponible`, null, {
-//     params: { idTrabajador, fecha, hora }
-//   });
-// }
 
   // Obtener horas disponibles por trabajador y fecha
   getHorasDisponiblesPorTrabajador(idTrabajador: number, fecha: string): Observable<any[]> {
@@ -53,19 +42,6 @@ export class WorkerscheduleServiceService {
     return this.http.post<void>(`${this.apiUrl}/marcar-no-disponible`, null, { params });
   }
 
-  // ✅ NUEVO: Bloqueo de horario por el trabajador (sin pasar ID)
-// marcarHoraNoDisponibleTrabajador(fecha: string, hora: string): Observable<void> {
-//   const params = new HttpParams()
-//     .set('fecha', fecha)
-//     .set('hora', hora);
-
-//   return this.http.post<void>(
-//     `${this.apiUrl}/TRABAJADOR/marcar-no-disponible`,
-//     null,
-//     { params }
-//   );
-// }
-// workerschedule.service.ts
 // Marcar una hora como no disponible (por el trabajador logueado)
 marcarHoraNoDisponiblePorTrabajador(fecha: string, hora: string): Observable<void> {
   const params = new HttpParams()

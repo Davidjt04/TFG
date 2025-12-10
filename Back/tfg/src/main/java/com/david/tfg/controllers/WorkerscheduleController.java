@@ -105,24 +105,6 @@ public ResponseEntity<Void> borrar(@PathVariable Integer id){
         return service.getTrabajadoresDisponibles(fecha, hora);
     }
 
-// @GetMapping("/horas-disponibles")
-// public List<Workerschedule> getHorasDisponiblesPorTrabajador(
-//         @RequestParam Integer idTrabajador,
-//         @RequestParam LocalDate fecha) {
-
-//     System.out.println("Backend: recibiendo idTrabajador=" + idTrabajador + ", fecha=" + fecha);
-
-//     List<Workerschedule> todosLosHorarios = service.getHorasDisponibles(fecha);
-
-//     List<Workerschedule> filtrados = todosLosHorarios.stream()
-//             .filter(ws -> ws.getDetalleTrabajador().getIdDetalle_Trabajador().equals(idTrabajador))
-//             .toList();
-
-//     System.out.println("Backend: horarios filtrados encontrados=" + filtrados.size());
-
-//     return filtrados;
-// }
-
 @GetMapping("/horas-disponibles")
 public List<Workerschedule> getHorasDisponiblesPorTrabajador(
         @RequestParam Integer idTrabajador,
@@ -137,25 +119,6 @@ public List<Workerschedule> getHorasDisponiblesPorTrabajador(
             .toList();
 }
 
-// @PostMapping("/marcar-no-disponible")
-// public ResponseEntity<Void> marcarHoraNoDisponible(
-//         @RequestParam Integer idTrabajador,
-//         @RequestParam LocalDate fecha,
-//         @RequestParam LocalTime hora) {
-
-//     Optional<Workerschedule> wsOpt = repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(
-//             idTrabajador, fecha, hora
-//     );
-
-//     if(wsOpt.isPresent()) {
-//         Workerschedule ws = wsOpt.get();
-//         ws.setDisponible(false);
-//         repo.save(ws);
-//         return ResponseEntity.ok().build();
-//     }
-
-//     return ResponseEntity.notFound().build();
-// }
 
 @PostMapping("/marcar-no-disponible")
 public ResponseEntity<Void> marcarHoraNoDisponible(
@@ -177,29 +140,7 @@ public ResponseEntity<Void> marcarHoraNoDisponible(
     return ResponseEntity.notFound().build();
 }
 
-// @PostMapping("/TRABAJADOR/marcar-no-disponible")
-// public ResponseEntity<Void> marcarHoraNoDisponibleTrabajador(
-//         @RequestParam LocalDate fecha,
-//         @RequestParam LocalTime hora,
-//         Authentication authentication) {
 
-//     User usuario = (User) authentication.getPrincipal();
-//     WorkerDetail trabajador = usuario.getWorkerDetail();
-
-//     Optional<Workerschedule> wsOpt =
-//         repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(
-//             trabajador.getIdDetalle_Trabajador(), fecha, hora
-//         );
-
-//     if (wsOpt.isPresent()) {
-//         Workerschedule ws = wsOpt.get();
-//         ws.setDisponible(false);
-//         repo.save(ws);
-//         return ResponseEntity.ok().build();
-//     }
-
-//     return ResponseEntity.notFound().build();
-// }
 
 
 @PostMapping("/trabajador/marcar-no-disponible")

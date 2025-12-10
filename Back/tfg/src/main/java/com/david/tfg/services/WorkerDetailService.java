@@ -78,52 +78,6 @@ public class WorkerDetailService implements Crud<WorkerDetail, Integer> {
         repo.delete(detalle);
     }
 
-// @Service
-// public class WorkerDetailService implements Crud <WorkerDetail,Integer>{
-//     //inyeccion de dependencias
-//     private final RepoWorkerDetail repo;
 
-//     public WorkerDetailService(RepoWorkerDetail repo) {
-//         this.repo = repo;
-//     }
-//     @Override
-//     public void save(WorkerDetail entity) {
-//         repo.save(entity);
-//     }
-
-//     @Override
-//     public Optional<WorkerDetail> findById(Integer id) {
-//         return this.repo.findById(id);
-//     }
-
-//     @Override
-//     public boolean existsById(Integer id) {
-//         return this.repo.existsById(id);
-//     }
-
-//     @Override
-//     public List<WorkerDetail> findAll() {
-//         return this.repo.findAll();
-//     }
-
-//     @Override
-//     public void deleteById(Integer id) {
-//         this.repo.deleteById(id);
-//     }
-
-//     @Override
-//     public void deleteAll() {
-//         this.repo.deleteAll();
-//     }
-
-    // @Autowired
-    // public void borrarWorkerDetail(Integer id) {
-    //     // Primero obtenemos el WorkerDetail
-    //     WorkerDetail worker = repo.findById(id)
-    //             .orElseThrow(() -> new RuntimeException("Trabajador no encontrado con id " + id));
-        
-    //     // Al eliminar este objeto, Hibernate borrará automáticamente los Workerschedule asociados
-    //     repo.delete(worker);
-    // }
 
 }

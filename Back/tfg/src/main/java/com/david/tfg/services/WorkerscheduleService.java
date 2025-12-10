@@ -52,39 +52,6 @@ public class WorkerscheduleService implements Crud <Workerschedule,Integer>{
 
     }
 
-    // public void bloquearHoras(Long detalleTrabajadorId, LocalDate fecha, List<LocalTime> horas, boolean bloquearDia) {
-    //     if (bloquearDia) {
-    //         repo.findByFechaAndDisponible(fecha, true)
-    //             .stream()
-    //             .filter(h -> h.getDetalleTrabajador().getIdDetalle_Trabajador() == detalleTrabajadorId)
-    //             .forEach(h -> h.setDisponible(false));
-    //     } else {
-    //         for (LocalTime h : horas) {
-    //             repo.findByDetalleTrabajadorIdAndFechaAndHora(detalleTrabajadorId, fecha, h)
-    //                 .ifPresent(slot -> slot.setDisponible(false));
-    //         }
-    //     }
-    // }
-
-    // @Transactional
-    // public void desbloquearHoras(Long detalleTrabajadorId, LocalDate fecha, List<LocalTime> horas, boolean desbloquearDia) {
-    //     if (desbloquearDia) {
-    //         repo.findByFechaAndDisponible(fecha, false)
-    //             .stream()
-    //             .filter(h -> h.getDetalleTrabajador().getIdDetalle_Trabajador() == detalleTrabajadorId)
-    //             .forEach(h -> h.setDisponible(true));
-    //     } else {
-    //         for (LocalTime h : horas) {
-    //             repo.findByDetalleTrabajadorIdAndFechaAndHora(detalleTrabajadorId, fecha, h)
-    //                 .ifPresent(slot -> slot.setDisponible(true));
-    //         }
-    //     }
-    // }
-
-//     public List<Workerschedule> getHorasDisponibles(LocalDate fecha) {
-//     return repo.findByFechaAndDisponible(fecha, true);
-// }
-
 // Horas disponibles para una fecha
 public List<Workerschedule> getHorasDisponibles(LocalDate fecha) {
     return repo.findByFechaAndDisponible(fecha,true);

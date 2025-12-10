@@ -64,28 +64,6 @@ public class ServiceRestController {
         return ResponseEntity.ok(new Services());
     }
 
-    //guardar
-    // @PostMapping("/service/guardar")
-    // public ResponseEntity<Services> guardar(@RequestBody Services service){
-    //     //parte de creacion de un servicio 
-    //     if(service.getIdServicio() == 0){
-    //         serviceService.save(service);
-    //         return ResponseEntity.ok(service);
-    //     }else{
-    //         //parte de modificacin de un servicio 
-    //         Optional<Services> serviceSinActu = serviceService.findById(service.getIdServicio());
-    //         //cogemos el objeto del optional 
-    //         Services serviceActu = serviceSinActu.get();
-    //         serviceActu.setNombre(service.getNombre());
-    //         serviceActu.setPrecio(service.getPrecio());
-
-
-    //         //meter los partidos asociados 
-    //         serviceService.save(serviceActu);
-    //         return ResponseEntity.ok(serviceActu);  
-    //     }
-            
-    // }
     @PostMapping("/service/guardar")
 public ResponseEntity<Services> guardar(@RequestBody Services service){
     if(service.getIdServicio() <= 0){ // incluir 0 y negativos

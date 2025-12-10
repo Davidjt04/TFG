@@ -30,53 +30,7 @@ public class JwtFilter extends OncePerRequestFilter {
         this.userService = userService;
     }
 
-    // @Override
-    // protected void doFilterInternal(HttpServletRequest request,
-    //                                 HttpServletResponse response,
-    //                                 FilterChain filterChain)
-    //                                 throws ServletException, IOException {
-
-    //     // Leer el header "Authorization"
-    //     final String authHeader = request.getHeader("Authorization");
-    //     String username = null;
-    //     String token = null;
-
-    //     // 2️⃣ Validar formato "Bearer <token>"
-    //     if (authHeader != null && authHeader.startsWith("Bearer ")) {
-    //         token = authHeader.substring(7); // quitamos "Bearer "
-    //         try {
-    //             username = jwtUtil.extractUsername(token);
-    //         } catch (Exception e) {
-    //             System.out.println("Error al extraer username del token: " + e.getMessage());
-    //         }
-    //     }
-
-    //     // Validar token y autenticar usuario
-    //     if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
-    //         User usuario = userService.findByNombreUsuario(username);
-
-    //         if (usuario != null && jwtUtil.validateToken(token, username)) {
-    //             // Extraemos el rol del token
-    //             String rol = jwtUtil.extractRole(token);
-
-    //             // Creamos la autenticación para Spring Security
-    //             UsernamePasswordAuthenticationToken authToken =
-    //                     new UsernamePasswordAuthenticationToken(
-    //                             usuario,
-    //                             null,
-    //                             List.of(new SimpleGrantedAuthority("ROLE_" + rol))
-    //                     );
-
-    //             authToken.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
-
-    //             // Guardamos autenticación en el contexto de Spring Security
-    //             SecurityContextHolder.getContext().setAuthentication(authToken);
-    //         }
-    //     }
-
-    //     // Continuar con la cadena de filtros
-    //     filterChain.doFilter(request, response);
-    // }
+    
     @Override
 protected void doFilterInternal(HttpServletRequest request,
                                 HttpServletResponse response,
