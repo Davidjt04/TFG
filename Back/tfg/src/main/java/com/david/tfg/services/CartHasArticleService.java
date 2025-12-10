@@ -86,5 +86,24 @@ public class CartHasArticleService {
     public List<CartHasArticle> getCartArticles(int idUsuario) {
         return repo.findByCartUserIdUsuario(idUsuario);
     }
+
+    public CartHasArticle actualizarCantidad(int idCarrito, int idArticulo, int nuevaCantidad) {
+    Cart cart = cartService.findById(idCarrito)
+            .orElseThrow(() -> new RuntimeException("Carrito no encontrado: " + idCarrito));
+
+    Article article = articleService.findById(idArticulo)
+            .orElseThrow(() -> new RuntimeException("Artículo no encontrado: " + idArticulo));
+
+    CartHasArticle cha = repo.findByCartAndArticleEntities(cart, article)
+            .orElseThrow(() -> new RuntimeException("El artículo no está en el carrito"));
+
+    cha.setCantidad(nuevaCantidad);       // Actualizamos cantidad en CartHasArticle
+    repo.save(cha);
+
+    cartService.actualizarCantidadTotal(cart);  // Actualizamos cantidad_total del carrito
+
+    return cha;
+}
+
 }
 

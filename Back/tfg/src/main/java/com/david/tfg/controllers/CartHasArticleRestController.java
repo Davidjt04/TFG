@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.david.tfg.entities.Cart;
@@ -128,4 +130,14 @@ public ResponseEntity<List<CartHasArticleResponseDTO>> getCartArticles(@PathVari
 
         return ResponseEntity.ok(cartDTO);
     }
+    @PutMapping("/carrito/{idCarrito}/articulo/{idArticulo}")
+public ResponseEntity<CartHasArticleResponseDTO> actualizarCantidad(
+        @PathVariable int idCarrito,
+        @PathVariable int idArticulo,
+        @RequestParam int cantidad) {
+
+    CartHasArticle cha = cartHasArticleService.actualizarCantidad(idCarrito, idArticulo, cantidad);
+    return ResponseEntity.ok(new CartHasArticleResponseDTO(cha));
+}
+
 }
