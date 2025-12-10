@@ -92,6 +92,11 @@ public class SecurityConfig {
                 .requestMatchers("/", "/login", "/registro", "/review", "/auth/**").permitAll()
                 .requestMatchers(HttpMethod.OPTIONS, "/**").permitAll()
 
+                .requestMatchers(HttpMethod.GET, "/TRABAJADOR/HORARIO/horas").hasAnyRole("CLIENTE", "TRABAJADOR")
+                .requestMatchers(HttpMethod.GET, "/TRABAJADOR/HORARIO/trabajadores").hasAnyRole("CLIENTE", "TRABAJADOR")
+                .requestMatchers(HttpMethod.POST, "/TRABAJADOR/HORARIO/marcar-no-disponible").hasRole("CLIENTE")
+
+
                 // Endpoints de cliente
                 .requestMatchers("/CLIENTE/**").hasAnyRole("CLIENTE", "ADMIN")
                 .requestMatchers("/ADMIN/**").hasRole("ADMIN")
