@@ -74,18 +74,30 @@ export class JustificantesTrabajadorComponent implements OnInit {
 
   // Marcar una hora como no disponible
   marcarHora(): void {
-    if (!this.fechaSeleccionada || !this.horaSeleccionada) return;
+  if (!this.fechaSeleccionada || !this.horaSeleccionada) return;
 
-    this.wsService.marcarHoraNoDisponiblePorTrabajador(this.fechaSeleccionada, this.horaSeleccionada)
-      .subscribe({
-        next: () => {
-          this.mensaje = `Hora ${this.horaSeleccionada} marcada como no disponible`;
-          this.cargarHoras(); // recarga las horas
-        },
-        error: (err) => {
-          console.error('[Error] al marcar hora no disponible', err);
-          this.mensaje = 'No se pudo marcar la hora como no disponible';
-        }
-      });
-  }
+  console.log(
+    "[Marcar Hora] Trabajador:", this.idTrabajador,
+    "Fecha:", this.fechaSeleccionada,
+    "Hora:", this.horaSeleccionada
+  );
+
+  this.wsService.marcarHoraNoDisponible(
+    this.idTrabajador,
+    this.fechaSeleccionada,
+    this.horaSeleccionada
+  ).subscribe({
+    next: () => {
+      this.mensaje = `Hora ${this.horaSeleccionada} marcada como no disponible`;
+
+      // Recargar horas para actualizar la UI
+      this.cargarHoras();
+    },
+    error: (err) => {
+      console.error("[Error] al marcar hora no disponible", err);
+      this.mensaje = "No se pudo marcar la hora como no disponible";
+    }
+  });
+}
+
 }

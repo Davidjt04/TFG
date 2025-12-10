@@ -29,8 +29,8 @@
       <div *ngIf="horasDisponibles && horasDisponibles.length > 0" class="mb-3">
         <label class="form-label">Horas disponibles:</label>
         <select class="form-select" [(ngModel)]="horaSeleccionada">
-          <option *ngFor="let hora of horasDisponibles" [value]="hora">
-            {{ hora }}
+          <option *ngFor="let ws of horasDisponibles" [value]="ws.hora">
+            {{ ws.hora }}
           </option>
         </select>
       </div>
