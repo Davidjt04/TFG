@@ -53,6 +53,7 @@ INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabaja
 (9, '2025-11-17 17:00:00', 'Fiesta', 'trabajador9.jpg', 9, 9, 'Feliipe'),
 (10, '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 10, 10, 'Feliipe');
 INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `nombre`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('11', '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 'David4', '6', '17');
+INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `nombre`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('11', '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 'David4', '4', '13');
 
 
 /*HORARIO TRABAJADOR*/
@@ -67,6 +68,9 @@ INSERT INTO `tfg`.`horario_trabajador` (`idHorario_trabajador`, `fecha`, `hora`,
 (8, '2025-11-19', '11:30:00', 1, 8),
 (9, '2025-11-19', '12:30:00', 1, 9),
 (10, '2025-11-19', '13:30:00', 1, 10);
+INSERT INTO `tfg`.`horario_trabajador` (`idHorario_trabajador`, `fecha`, `hora`, `disponible`, `Detalle_Trabajador_idDetalle_Trabajador`) VALUES
+(11, '2025-11-19', '13:30:00', 1, 9);
+
 
 /*SERVICIOS*/
 INSERT INTO `tfg`.`servicio` (`idServicio`, `Nombre`, `Precio`) VALUES
@@ -96,17 +100,41 @@ INSERT INTO `tfg`.`resenia` (`idResenia`, `Estrellas`, `Hora`, `Usuario_idUsuari
 
 /*ARTICULOS*/
 INSERT INTO `tfg`.`articulo` (`idArticulo`, `Nombre`, `Descripcion`, `Imagen`, `Precio`, `Categoria`) VALUES
-(1, 'Crema Facial', 'Crema hidratante para todo tipo de piel', 'https://example.com/img/crema1.jpg', 19.99, 'Cosmética'),
-(2, 'Sérum Antiedad', 'Sérum para reducir arrugas y líneas de expresión', 'https://example.com/img/serum1.jpg', 29.99, 'Cosmética'),
+(1, 'Crema Facial', 'Crema hidratante', 'https://example.com/img/crema1.jpg', 19.99, 'Cosmética'),
+(2, 'Sérum Antiedad', 'Sérum para reducir arrugas', 'https://example.com/img/serum1.jpg', 29.99, 'Cosmética'),
 (3, 'Perfume Floral', 'Fragancia floral de larga duración', 'https://example.com/img/perfume1.jpg', 49.99, 'Perfumería'),
-(4, 'Champú Revitalizante', 'Champú para cabello seco y dañado', 'https://example.com/img/champu1.jpg', 12.50, 'Cuidado Capilar'),
-(5, 'Mascarilla Capilar', 'Mascarilla nutritiva para cabello brillante', 'https://example.com/img/mascarilla1.jpg', 15.75, 'Cuidado Capilar'),
-(6, 'Gel Corporal', 'Gel refrescante y energizante para el cuerpo', 'https://example.com/img/gel1.jpg', 9.99, 'Cuidado Corporal'),
+(4, 'Champú Revitalizante', 'Champú para cabello', 'https://example.com/img/champu1.jpg', 12.50, 'Cuidado Capilar'),
+(5, 'Mascarilla Capilar', 'Mascarilla nutritiva', 'https://example.com/img/mascarilla1.jpg', 15.75, 'Cuidado Capilar'),
+(6, 'Gel Corporal', 'Gel refrescante y energizante', 'https://example.com/img/gel1.jpg', 9.99, 'Cuidado Corporal'),
 (7, 'Exfoliante Facial', 'Exfoliante suave para todo tipo de piel', 'https://example.com/img/exfoliante1.jpg', 14.99, 'Cosmética'),
-(8, 'Loción Hidratante', 'Loción corporal hidratante con aloe vera', 'https://example.com/img/locion1.jpg', 11.50, 'Cuidado Corporal'),
+(8, 'Loción Hidratante', 'Loción corporal hidratante', 'https://example.com/img/locion1.jpg', 11.50, 'Cuidado Corporal'),
 (9, 'Bálsamo Labial', 'Bálsamo nutritivo para labios secos', 'https://example.com/img/balsamo1.jpg', 4.99, 'Cosmética'),
 (10, 'Aceite Esencial', 'Aceite esencial relajante de lavanda', 'https://example.com/img/aceite1.jpg', 19.50, 'Aromaterapia');
 
+/*CARRITO*/
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (1, 0, 1);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (2, 0, 2);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (3, 0, 3);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (4, 0, 4);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (5, 0, 5);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (6, 0, 6);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (7, 0, 7);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (8, 0, 8);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (9, 0, 9);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (10, 0, 10);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (11, 0, 11);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (12, 0, 12);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (13, 0, 13);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (14, 0, 14);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (15, 0, 15);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (16, 0, 16);
+INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (17, 0, 17);
+
+/*CARRITO HAS ARICULO*/
+INSERT INTO `tfg`.`carrito_has_articulo` (`Carrito_idCarrito`, `Articulo_idArticulo`, `Cantidad`) VALUES ('1', '3', '2');
 
 
-
+SELECT carrito_idCarrito, Articulo_idArticulo, COUNT(*)
+FROM carrito_has_articulo
+GROUP BY carrito_idCarrito, Articulo_idArticulo
+HAVING COUNT(*) > 1;

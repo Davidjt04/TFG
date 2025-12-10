@@ -10,6 +10,8 @@ import com.david.tfg.entities.Article;
 import com.david.tfg.interfaces.Crud;
 import com.david.tfg.repos.RepoArticle;
 
+import jakarta.transaction.Transactional;
+
 @Service
 public class ArticleService implements Crud <Article,Integer> {
     //inyeccion de dependencias
@@ -49,4 +51,12 @@ public class ArticleService implements Crud <Article,Integer> {
         this.repo.deleteAll();
     }
 
+    @Transactional
+public void deleteArticleOnly(Integer id) {
+    if (!repo.existsById(id)) {
+        throw new RuntimeException("Artículo no encontrado id: " + id);
+    }
+    // Borra directamente usando deleteById
+    repo.deleteById(id);
+}
 }

@@ -114,4 +114,6 @@ public class Article {
         this.Categoria = categoria;
     }
 
+    
+
 }
