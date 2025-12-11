@@ -1,29 +1,28 @@
-
 /*USUARIO*/
 INSERT INTO `tfg`.`usuario` (`idUsuario`, `nombreUsuario`, `contrasenia`, `email`, `rol`) VALUES
-(1, 'usuario1', 'pass123', 'usuario1@email.com', 'CLIENTE'),
+/*(1, 'usuario1', 'pass123', 'usuario1@email.com', 'CLIENTE'),
 (2, 'usuario2', 'pass123', 'usuario2@email.com', 'CLIENTE'),
 (3, 'usuario3', 'pass123', 'usuario3@email.com', 'CLIENTE'),
-(4, 'usuario4', 'pass123', 'usuario4@email.com', 'CLIENTE'),
-(5, 'usuario5', 'pass123', 'usuario5@email.com', 'CLIENTE'),
-(6, 'usuario6', 'pass123', 'usuario6@email.com', 'ADMIN'),
-(7, 'usuario7', 'pass123', 'usuario7@email.com', 'TRABAJADOR'),
+(4, 'usuario4', 'pass123', 'usuario4@email.com', 'CLIENTE'),*/
+/*(5, 'usuario5', 'pass123', 'usuario5@email.com', 'CLIENTE'),*/
+/*(6, 'usuario6', 'pass123', 'usuario6@email.com', 'ADMIN'),*/
+/*(7, 'usuario7', 'pass123', 'usuario7@email.com', 'TRABAJADOR'),*/
 (8, 'usuario8', 'pass123', 'usuario8@email.com', 'TRABAJADOR'),
 (9, 'usuario9', 'pass123', 'usuario9@email.com', 'TRABAJADOR'),
 (10, 'usuario10', 'pass123', 'usuario10@email.com', 'TRABAJADOR');
 
 /*CORTE PREDEFINIDO*/
 INSERT INTO `tfg`.`corte_predefinido` (`idCorte_Predefinido`, `Nombre`, `Precio_Total`, `Duracion_Base`, `Imagen`) VALUES
-(1, 'Corte Clásico', 15.00, '2025-11-17 00:30:00', 'corte_clasico.jpg'),
-(2, 'Corte Moderno', 20.00, '2025-11-17 00:40:00', 'corte_moderno.jpg'),
-(3, 'Corte Degradado', 18.50, '2025-11-17 00:35:00', 'corte_degradado.jpg'),
-(4, 'Corte Infantil', 12.00, '2025-11-17 00:25:00', 'corte_infantil.jpg'),
-(5, 'Corte Profesional', 25.00, '2025-11-17 00:50:00', 'corte_profesional.jpg'),
-(6, 'Corte Estilo Libre', 22.00, '2025-11-17 00:45:00', 'corte_estilo_libre.jpg'),
-(7, 'Corte Ejecutivo', 30.00, '2025-11-17 01:00:00', 'corte_ejecutivo.jpg'),
-(8, 'Corte Rápido', 10.00, '2025-11-17 00:20:00', 'corte_rapido.jpg'),
-(9, 'Corte Fiesta', 28.00, '2025-11-17 00:55:00', 'corte_fiesta.jpg'),
-(10, 'Corte Vintage', 26.00, '2025-11-17 00:50:00', 'corte_vintage.jpg');
+(1, 'Corte Clásico', 15.00, '2025-11-17 00:30:00', 'CorteClasico.jfif'),
+(2, 'Corte Moderno', 20.00, '2025-11-17 00:40:00', 'CorteModerno.jfif'),
+(3, 'Corte Degradado', 18.50, '2025-11-17 00:35:00', 'CorteDegradado.jfif'),
+(4, 'Corte Infantil', 12.00, '2025-11-17 00:25:00', 'CorteInfantil.jfif'),
+(5, 'Corte Profesional', 25.00, '2025-11-17 00:50:00', 'CorteProfesional.jfif'),
+(6, 'Corte Estilo Libre', 22.00, '2025-11-17 00:45:00', 'CorteEstiloLibre.jfif'),
+(7, 'Corte Ejecutivo', 30.00, '2025-11-17 01:00:00', 'CorteEjecutivo.jfif'),
+(8, 'Corte Rápido', 10.00, '2025-11-17 00:20:00', 'CorteRapido.jfif'),
+(9, 'Corte Fiesta', 28.00, '2025-11-17 00:55:00', 'CorteFiesta.jfif'),
+(10, 'Corte Vintage', 26.00, '2025-11-17 00:50:00', 'CorteVintage.jfif');
 
 /*CORTE TRABAJADOR*/
 INSERT INTO `tfg`.`corte_trabajador` (`idCorte_Trabajador`, `Duracion`, `Precio`, `Corte_Predefinido_idCorte_Predefinido`) VALUES
@@ -38,39 +37,37 @@ INSERT INTO `tfg`.`corte_trabajador` (`idCorte_Trabajador`, `Duracion`, `Precio`
 (9, '2000-01-01 00:55:00', 28.00, 9),
 (10, '2000-01-01 00:50:00', 26.00, 10);
 
-
-/*DETALLE TRABAJADOR */
-
-INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`,`nombre`) VALUES
-(1, '2025-11-17 09:00:00', 'Cortes clásicos', 'trabajador1.jpg', 1, 1, 'Feliipe'),
-(2, '2025-11-17 10:00:00', 'Cortes modernos', 'trabajador2.jpg', 2, 2, 'Manolo'),
-(3, '2025-11-17 11:00:00', 'Degradados', 'trabajador3.jpg', 3, 3, 'Feliipe'),
-(4, '2025-11-17 12:00:00', 'Infantiles', 'trabajador4.jpg', 4, 4, 'Feliipe'),
-(5, '2025-11-17 13:00:00', 'Profesionales', 'trabajador5.jpg', 5, 5, 'David'),
-(6, '2025-11-17 14:00:00', 'Estilo libre', 'trabajador6.jpg', 6, 6, 'Juan'),
-(7, '2025-11-17 15:00:00', 'Ejecutivos', 'trabajador7.jpg', 7, 7, 'Feliipe'),
-(8, '2025-11-17 16:00:00', 'Rápidos', 'trabajador8.jpg', 8, 8, 'Miguel'),
-(9, '2025-11-17 17:00:00', 'Fiesta', 'trabajador9.jpg', 9, 9, 'Feliipe'),
-(10, '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 10, 10, 'Feliipe');
-INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `nombre`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('11', '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 'David4', '6', '17');
-INSERT INTO `tfg`.`detalle_trabajador` (`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `nombre`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`) VALUES ('11', '2025-11-17 18:00:00', 'Vintage', 'trabajador10.jpg', 'David4', '4', '13');
+/*DETALLE TRABAJADOR*/
+INSERT INTO `tfg`.`detalle_trabajador` 
+(`idDetalle_Trabajador`, `Horario_Trabajador`, `especializacion`, `imagen`, `Corte_Trabajador_idCorte_Trabajador`, `Usuario_idUsuario`, `nombre`) 
+VALUES
+(1, '2025-11-17 09:00:00', 'Cortes clásicos', 'Trabajador.jfif', 1, 7, 'Manolo'),
+(2, '2025-11-17 10:00:00', 'Cortes modernos', 'Trabajador.jfif', 2, 8, 'Miguel'),
+(3, '2025-11-17 11:00:00', 'Degradados', 'Trabajador.jfif', 3, 9, 'Juan'),
+(4, '2025-11-17 12:00:00', 'Infantiles', 'Trabajador.jfif', 4, 10, 'Antonio'),
+(5, '2025-11-17 13:00:00', 'Profesionales', 'Trabajador.jfif', 5, 7, 'Felipe'),
+(6, '2025-11-17 14:00:00', 'Estilo libre', 'Trabajador.jfif', 6, 8, 'Marcos'),
+(7, '2025-11-17 15:00:00', 'Ejecutivos', 'Trabajador.jfif', 7, 9, 'Antoñito'),
+(8, '2025-11-17 16:00:00', 'Rápidos', 'Trabajador.jfif', 8, 10, 'Atanasio');
 
 
 /*HORARIO TRABAJADOR*/
-INSERT INTO `tfg`.`horario_trabajador` (`idHorario_trabajador`, `fecha`, `hora`, `disponible`, `Detalle_Trabajador_idDetalle_Trabajador`) VALUES
+INSERT INTO `tfg`.`horario_trabajador` 
+(`idHorario_trabajador`, `fecha`, `hora`, `disponible`, `Detalle_Trabajador_idDetalle_Trabajador`) 
+VALUES
 (1, '2025-11-18', '09:00:00', 1, 1),
-(2, '2025-11-18', '10:00:00', 1, 2),
-(3, '2025-11-18', '11:00:00', 1, 3),
-(4, '2025-11-18', '12:00:00', 1, 4),
-(5, '2025-11-18', '13:00:00', 1, 5),
-(6, '2025-11-19', '09:00:00', 1, 6),
-(7, '2025-11-19', '10:30:00', 1, 7),
-(8, '2025-11-19', '11:30:00', 1, 8),
-(9, '2025-11-19', '12:30:00', 1, 9),
-(10, '2025-11-19', '13:30:00', 1, 10);
-INSERT INTO `tfg`.`horario_trabajador` (`idHorario_trabajador`, `fecha`, `hora`, `disponible`, `Detalle_Trabajador_idDetalle_Trabajador`) VALUES
-(11, '2025-11-19', '13:30:00', 1, 9);
-
+(2, '2025-11-18', '10:00:00', 1, 1),
+(3, '2025-11-18', '11:00:00', 1, 1),
+(4, '2025-11-18', '12:00:00', 1, 2),
+(5, '2025-11-18', '13:00:00', 1, 2),
+(6, '2025-11-19', '09:00:00', 1, 3),
+(7, '2025-11-19', '10:30:00', 1, 3),
+(8, '2025-11-19', '11:30:00', 1, 4),
+(9, '2025-11-19', '12:30:00', 1, 4),
+(10, '2025-11-19', '13:30:00', 1, 5),
+(11, '2025-11-19', '14:30:00', 1, 6),
+(12, '2025-11-19', '15:30:00', 1, 7),
+(13, '2025-11-19', '16:30:00', 1, 8);
 
 /*SERVICIOS*/
 INSERT INTO `tfg`.`servicio` (`idServicio`, `Nombre`, `Precio`) VALUES
@@ -100,41 +97,18 @@ INSERT INTO `tfg`.`resenia` (`idResenia`, `Estrellas`, `Hora`, `Usuario_idUsuari
 
 /*ARTICULOS*/
 INSERT INTO `tfg`.`articulo` (`idArticulo`, `Nombre`, `Descripcion`, `Imagen`, `Precio`, `Categoria`) VALUES
-(1, 'Crema Facial', 'Crema hidratante', 'https://example.com/img/crema1.jpg', 19.99, 'Cosmética'),
-(2, 'Sérum Antiedad', 'Sérum para reducir arrugas', 'https://example.com/img/serum1.jpg', 29.99, 'Cosmética'),
-(3, 'Perfume Floral', 'Fragancia floral de larga duración', 'https://example.com/img/perfume1.jpg', 49.99, 'Perfumería'),
-(4, 'Champú Revitalizante', 'Champú para cabello', 'https://example.com/img/champu1.jpg', 12.50, 'Cuidado Capilar'),
-(5, 'Mascarilla Capilar', 'Mascarilla nutritiva', 'https://example.com/img/mascarilla1.jpg', 15.75, 'Cuidado Capilar'),
-(6, 'Gel Corporal', 'Gel refrescante y energizante', 'https://example.com/img/gel1.jpg', 9.99, 'Cuidado Corporal'),
-(7, 'Exfoliante Facial', 'Exfoliante suave para todo tipo de piel', 'https://example.com/img/exfoliante1.jpg', 14.99, 'Cosmética'),
-(8, 'Loción Hidratante', 'Loción corporal hidratante', 'https://example.com/img/locion1.jpg', 11.50, 'Cuidado Corporal'),
-(9, 'Bálsamo Labial', 'Bálsamo nutritivo para labios secos', 'https://example.com/img/balsamo1.jpg', 4.99, 'Cosmética'),
-(10, 'Aceite Esencial', 'Aceite esencial relajante de lavanda', 'https://example.com/img/aceite1.jpg', 19.50, 'Aromaterapia');
-
-/*CARRITO*/
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (1, 0, 1);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (2, 0, 2);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (3, 0, 3);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (4, 0, 4);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (5, 0, 5);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (6, 0, 6);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (7, 0, 7);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (8, 0, 8);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (9, 0, 9);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (10, 0, 10);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (11, 0, 11);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (12, 0, 12);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (13, 0, 13);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (14, 0, 14);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (15, 0, 15);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (16, 0, 16);
-INSERT INTO `tfg`.`carrito` (`idCarrito`,`Cantidad_Total`, `Usuario_idUsuario`) VALUES (17, 0, 17);
-
-/*CARRITO HAS ARICULO*/
-INSERT INTO `tfg`.`carrito_has_articulo` (`Carrito_idCarrito`, `Articulo_idArticulo`, `Cantidad`) VALUES ('1', '3', '2');
+(1, 'Crema Facial', 'Crema hidratante', 'CremaFacial.jfif', 19.99, 'Cosmética'),
+(2, 'Sérum Antiedad', 'Sérum para reducir arrugas', 'SerumAntiEdad.jfif', 29.99, 'Cosmética'),
+(3, 'Perfume Floral', 'Fragancia floral de larga duración', 'PerfumeFloral.jfif', 49.99, 'Perfumería'),
+(4, 'Champú Revitalizante', 'Champú para cabello', 'ChampuRevitalizante.jfif', 12.50, 'Cuidado Capilar'),
+(5, 'Mascarilla Capilar', 'Mascarilla nutritiva', 'MascarillaCapilar.jfif', 15.75, 'Cuidado Capilar'),
+(6, 'Gel Corporal', 'Gel refrescante y energizante', 'GelCorporal.jfif', 9.99, 'Cuidado Corporal'),
+(7, 'Exfoliante Facial', 'Exfoliante suave para todo tipo de piel', 'ExfolianteFacial.jfif', 14.99, 'Cosmética'),
+(8, 'Loción Hidratante', 'Loción corporal hidratante', 'LocionHidratante.jfif', 11.50, 'Cuidado Corporal'),
+(9, 'Bálsamo Labial', 'Bálsamo nutritivo para labios secos', 'BalsamoLabial.jfif', 4.99, 'Cosmética'),
+(10, 'Aceite Esencial', 'Aceite esencial relajante de lavanda', 'AceiteEsencial.jfif', 19.50, 'Aromaterapia');
 
 
-SELECT carrito_idCarrito, Articulo_idArticulo, COUNT(*)
-FROM carrito_has_articulo
-GROUP BY carrito_idCarrito, Articulo_idArticulo
-HAVING COUNT(*) > 1;
+UPDATE detalle_trabajador
+SET Usuario_idUsuario = 10
+WHERE idDetalle_Trabajador = 5;
