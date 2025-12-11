@@ -61,6 +61,8 @@ public class SecurityConfig {
                 // ✅ Aquí añadimos que también CLIENTE pueda acceder
                 .requestMatchers(HttpMethod.POST, "/TRABAJADOR/HORARIO/marcar-no-disponible", "/TRABAJADOR/HORARIO/marcar-disponible")
                     .hasAnyRole("TRABAJADOR", "CLIENTE")
+                    .requestMatchers(HttpMethod.GET, "/detallesTrabajador/lista")
+                    .hasAnyRole("CLIENTE", "TRABAJADOR", "ADMIN")
                     
                 .requestMatchers(HttpMethod.DELETE, "/articulo/borrar/**").hasRole("ADMIN")
                 .requestMatchers(HttpMethod.DELETE, "/cita/borrar/**").hasRole("CLIENTE")
