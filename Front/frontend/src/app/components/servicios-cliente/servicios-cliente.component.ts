@@ -129,62 +129,6 @@ calcularTotal(): void {
   console.log("Total calculado:", this.totalSeleccionado);
 }
 
-
-
-
-  // cargarHorasDisponibles() {
-  //   if (!this.fechaSeleccionada) {
-  //     this.listaHorasDisponibles = [];
-  //     return;
-  //   }
-
-  //   this.workerscheduleService.getHorasDisponibles(this.fechaSeleccionada).subscribe(
-  //     (data: any[]) => {
-  //       this.listaHorasDisponibles = data.map(item => item.hora || item);
-  //     },
-  //     error => console.error("Error cargando horas disponibles:", error)
-  //   );
-  // }
-// cargarHorasDisponibles() {
-//   if (!this.trabajadorSeleccionado || !this.fechaSeleccionada) {
-//     console.log("No hay trabajador o fecha seleccionada");
-//     this.listaHorasDisponibles = [];
-//     return;
-//   }
-
-//   console.log("Llamando a backend con:", this.trabajadorSeleccionado.idDetalle_Trabajador, this.fechaSeleccionada);
-
-//   this.workerscheduleService.getHorasDisponiblesPorTrabajador(
-//     this.trabajadorSeleccionado.idDetalle_Trabajador,
-//     this.fechaSeleccionada
-//   ).subscribe({
-//     next: (horarios: any[]) => {
-//       console.log("Horas recibidas del backend:", horarios);
-//       this.listaHorasDisponibles = horarios.map(h => h.hora.substring(0,5));
-//     },
-//     error: (err) => console.error("Error cargando horas disponibles:", err)
-//   });
-// }
-// cargarHorasDisponibles() {
-//   if (!this.fechaSeleccionada) {
-//     this.listaHorasDisponibles = [];
-//     return;
-//   }
-
-//   this.workerscheduleService.getHorasDisponibles(this.fechaSeleccionada)
-//     .subscribe(horarios => {
-//       console.log("Horas obtenidas del backend:", horarios);
-//       this.listaHorasDisponibles = horarios
-//         .filter(h => h.hora)   // previene nulos
-//         .map(h => h.hora.substring(0,5));
-//       if (this.listaHorasDisponibles.length === 0) {
-//         console.log("No hay horas disponibles para esta fecha");
-//       }
-//     }, err => {
-//       console.error("Error al cargar horas:", err);
-//       this.listaHorasDisponibles = [];
-//     });
-// }
 cargarHorasDisponibles() {
   if (!this.fechaSeleccionada) {
     this.listaHorasDisponibles = [];
@@ -246,13 +190,19 @@ seleccionarCorte(corte: PredefinedCut) {
   this.totalSeleccionado = corte.precio_Total; 
 }
 
-
 // finish() {
+//   // Validación de campos
 //   if (!this.trabajadorSeleccionado || !this.fechaSeleccionada || !this.horaSeleccionada) {
 //     alert("Debes completar todos los pasos antes de finalizar");
+//     console.warn("finish(): faltan datos para completar la cita", {
+//       trabajador: this.trabajadorSeleccionado,
+//       fecha: this.fechaSeleccionada,
+//       hora: this.horaSeleccionada
+//     });
 //     return;
 //   }
 
+//   // Formateo de la cita a enviar al backend
 //   const citaFormateada: FinalCite = {
 //     idCita: 0,
 //     fecha: this.fechaSeleccionada,
@@ -262,24 +212,31 @@ seleccionarCorte(corte: PredefinedCut) {
 //     nombreTrabajador: this.trabajadorSeleccionado.nombre
 //   };
 
+//   console.log("finish(): enviando cita al backend", citaFormateada);
+
+//   // Guardar la cita
 //   this.finalCiteService.guardarCiteService(citaFormateada).subscribe({
 //     next: () => {
-//       // Marcar la hora como no disponible
+//       console.log("finish(): cita guardada correctamente");
+
+//       // Marcar la hora como no disponible en Workerschedule
 //       this.workerscheduleService.marcarHoraNoDisponible(
 //         this.trabajadorSeleccionado.idDetalle_Trabajador,
 //         this.fechaSeleccionada,
 //         this.horaSeleccionada
-//       ).subscribe(() => console.log('Horario marcado como no disponible'));
+//       ).subscribe({
+//         next: () => console.log(`finish(): horario ${this.horaSeleccionada} del ${this.fechaSeleccionada} marcado como no disponible`),
+//         error: (err) => console.error("finish(): error al marcar hora no disponible", err)
+//       });
 
 //       alert("Reserva realizada con éxito 🚀");
 //     },
 //     error: (error) => {
-//       console.error("Error al guardar la cita:", error);
+//       console.error("finish(): error al guardar la cita", error);
 //       alert("Hubo un error al guardar la cita");
 //     }
 //   });
 // }
-
 
 finish() {
   // Validación de campos
@@ -307,17 +264,24 @@ finish() {
 
   // Guardar la cita
   this.finalCiteService.guardarCiteService(citaFormateada).subscribe({
-    next: () => {
-      console.log("finish(): cita guardada correctamente");
+    next: (citaCreada: FinalCite) => { // recibimos la cita con idCita generado
+      console.log("finish(): cita guardada correctamente", citaCreada);
 
-      // Marcar la hora como no disponible en Workerschedule
+      // Guardamos en localStorage incluyendo idDetalle_Trabajador
+      const citaConTrabajador = {
+        ...citaCreada,
+        idDetalle_Trabajador: this.trabajadorSeleccionado.idDetalle_Trabajador
+      };
+      localStorage.setItem("citaCliente", JSON.stringify(citaConTrabajador));
+
+      // Marcar la hora como no disponible
       this.workerscheduleService.marcarHoraNoDisponible(
         this.trabajadorSeleccionado.idDetalle_Trabajador,
         this.fechaSeleccionada,
         this.horaSeleccionada
       ).subscribe({
-        next: () => console.log(`finish(): horario ${this.horaSeleccionada} del ${this.fechaSeleccionada} marcado como no disponible`),
-        error: (err) => console.error("finish(): error al marcar hora no disponible", err)
+        next: () => console.log(`Horario ${this.horaSeleccionada} del ${this.fechaSeleccionada} marcado como no disponible`),
+        error: (err) => console.error("Error al marcar hora no disponible", err)
       });
 
       alert("Reserva realizada con éxito 🚀");
@@ -328,38 +292,6 @@ finish() {
     }
   });
 }
-
-// finish() {
-//   const citaFormateada: FinalCite = {
-//     idCita: 0, // nueva cita
-//     fecha: this.fechaSeleccionada,       // "2025-11-19"
-//     hora: this.horaSeleccionada,         // "09:30"
-//     precioCorte: this.totalSeleccionado, // number
-//     nombreCorte: this.PredefinedCutSeleccionado?.nombre || 'Corte personalizado',
-//     nombreTrabajador: this.trabajadorSeleccionado.nombre
-//   };
-
-//   this.finalCiteService.guardarCiteService(citaFormateada).subscribe({
-//     next: () => {
-//       this.workerscheduleService.marcarHoraNoDisponible(
-//         this.trabajadorSeleccionado.idDetalle_Trabajador,
-//         this.fechaSeleccionada,
-//         this.horaSeleccionada
-//       ).subscribe(() => console.log('Horario marcado como no disponible'));
-
-//       alert("Reserva realizada con éxito 🚀");
-//     },
-//     error: (error) => {
-//       console.error("Error al guardar la cita:", error);
-//       alert("Hubo un error al guardar la cita");
-//     }
-//   });
-// }
-
-
-
-
-
 
 }
 

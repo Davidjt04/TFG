@@ -5,6 +5,7 @@ import java.util.Optional;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,17 +34,25 @@ public class FinalCiteRestController {
         return this.service.findAll();
     }
 
-    @GetMapping("/borrar/{id}")
-    public ResponseEntity<FinalCite> borrar(@PathVariable Integer id){
-        //va a borrar un Date
-        if(service.existsById(id)){  
-          service.deleteById(id);
-          //noContent la operacion se hizo bien pero no hay contenido en el cuerpo
-            return ResponseEntity.noContent().build(); 
+   @DeleteMapping("/borrar/{id}")
+public ResponseEntity<?> borrar(@PathVariable Integer id) {
+    System.out.println("[DELETE] Solicitud para borrar cita con ID = " + id);
+
+    try {
+        if (service.existsById(id)) {
+            service.deleteById(id);
+            System.out.println("[OK] Cita eliminada correctamente.");
+            return ResponseEntity.noContent().build();
+        } else {
+            System.out.println("[WARN] La cita con ID " + id + " no existe.");
+            return ResponseEntity.notFound().build();
         }
-        //noFound no se ha encontrado, codigo de error 404
-        return ResponseEntity.notFound().build();
+    } catch (Exception e) {
+        System.out.println("[ERROR] Falló la eliminación: " + e.getMessage());
+        return ResponseEntity.status(500).body("Error al eliminar la cita");
     }
+}
+
 
     //editar
     @GetMapping("/editar/{id}")

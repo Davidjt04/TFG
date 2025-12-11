@@ -1,0 +1,32 @@
+<div class="container mt-5">
+  <div class="card shadow-lg p-4">
+    <h3 class="text-center mb-4">Cancelar Cita</h3>
+
+    <div class="mb-3">
+      <label class="form-label">ID de la cita</label>
+      <input type="number" class="form-control" [(ngModel)]="idCita" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Fecha</label>
+      <input type="date" class="form-control" [(ngModel)]="fecha" disabled>
+    </div>
+
+    <div class="mb-3">
+      <label class="form-label">Hora</label>
+      <input type="time" class="form-control" [(ngModel)]="hora" disabled>
+    </div>
+
+    <div class="mb-3" *ngIf="idTrabajador !== undefined">
+      <label class="form-label">ID del Trabajador</label>
+      <input type="number" class="form-control" [value]="idTrabajador" disabled>
+    </div>
+
+    <button class="btn btn-danger w-100" (click)="cancelarCita()">
+      Cancelar cita
+    </button>
+
+    <div class="alert alert-success mt-3" *ngIf="mensaje">{{ mensaje }}</div>
+    <div class="alert alert-danger mt-3" *ngIf="error">{{ error }}</div>
+  </div>
+</div>

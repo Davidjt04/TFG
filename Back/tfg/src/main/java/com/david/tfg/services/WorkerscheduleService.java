@@ -70,6 +70,28 @@ public void marcarHoraNoDisponible(Integer idTrabajador, LocalDate fecha, LocalT
         repo.save(slot);
     });
 }
+
+
+// Añadir dentro de WorkerscheduleService
+
+public void marcarHoraDisponible(Integer idTrabajador, LocalDate fecha, LocalTime hora) {
+    System.out.println("[DEBUG] Marcando horario como DISPONIBLE → Trabajador: " 
+        + idTrabajador + " | Fecha: " + fecha + " | Hora: " + hora);
+
+    Optional<Workerschedule> ws = repo.findByDetalleTrabajadorIdDetalleTrabajadorAndFechaAndHora(
+        idTrabajador, fecha, hora
+    );
+
+    if (ws.isPresent()) {
+        Workerschedule slot = ws.get();
+        slot.setDisponible(true); // 1 = disponible
+        repo.save(slot);
+        System.out.println("[OK] Horario marcado como disponible correctamente.");
+    } else {
+        System.out.println("[ERROR] No se encontró el horario para marcar como disponible.");
+    }
+}
+
 }
 
 

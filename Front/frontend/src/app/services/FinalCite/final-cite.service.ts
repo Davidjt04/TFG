@@ -3,6 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { FinalCite } from '../../entities/FinalCite';
 
+
 @Injectable({
   providedIn: 'root'
 })
@@ -19,4 +20,9 @@ export class FinalCiteService {
   getCiteService(): Observable<FinalCite[]> {
     return this.http.get<FinalCite[]>(`${this.baseUrl}/lista`);
   }
+
+  delete(idCita: number): Observable<void> {
+  return this.http.delete<void>(`${this.baseUrl}/borrar/${idCita}`);
+}
+
 }
