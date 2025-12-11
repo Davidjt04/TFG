@@ -16,6 +16,7 @@ import { TiendaClienteComponent } from './components/tienda-cliente/tienda-clien
 import { TiendaAdminComponent } from './components/tienda-admin/tienda-admin.component';
 import { CarritoComponent } from './components/carrito/carrito.component';
 import { CancelarCitaComponent } from './components/cancelar-cita/cancelar-cita.component';
+import { PagoComponent } from './components/pago/pago.component';
 // import { ImagenesAdminComponent } from './components/imagenes-admin/imagenes-admin.component';
 
 export const routes: Routes = [
@@ -68,7 +69,7 @@ export const routes: Routes = [
   { path: 'CLIENTE/cancelarCita', component: CancelarCitaComponent },
   {path: 'CLIENTE/cita/info', component: InfoClienteComponent },
   {path: 'CLIENTE/tienda', component: TiendaClienteComponent },
-//   {path: 'CLIENTE/tienda/saldo', component: HomeComponent },
+  {path: 'CLIENTE/tienda/pago', component: PagoComponent },
   {path: 'CLIENTE/carrito', component: CarritoComponent },
 
 

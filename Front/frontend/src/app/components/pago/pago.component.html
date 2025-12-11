@@ -1,1 +1,28 @@
-<p>pago works!</p>
+<div class="container mt-4">
+  <h3 class="mb-3">Simulación de Pago</h3>
+
+  <!-- Saldo actual -->
+  <div class="mb-3">
+    <p><strong>Saldo disponible:</strong> {{ saldo | currency:'EUR' }}</p>
+  </div>
+
+  <!-- Añadir saldo -->
+  <div class="input-group mb-3" style="max-width: 300px;">
+    <input type="number" class="form-control" placeholder="Cantidad a añadir" [(ngModel)]="cantidadAgregar">
+    <button class="btn btn-primary" (click)="agregarSaldo()">Añadir saldo</button>
+  </div>
+
+  <!-- Total del carrito -->
+  <div class="mb-3">
+    <p><strong>Total a pagar:</strong> {{ totalCarrito | currency:'EUR' }}</p>
+  </div>
+
+  <!-- Mensajes de error o éxito -->
+  <div *ngIf="mensaje" class="alert" 
+       [ngClass]="{'alert-success': exito, 'alert-danger': !exito}">
+    {{ mensaje }}
+  </div>
+
+  <!-- Botón Pagar -->
+  <button class="btn btn-success" (click)="pagar()">Pagar</button>
+</div>
